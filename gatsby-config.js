@@ -13,6 +13,7 @@ module.exports = {
         typeName: "WPGraphQL",
         fieldName: "wpgraphql",
         url: "https://www.simmonsguns.biz/graphql",
+        fields: ["products", "products/categories", "products/attributes"],
       },
     },
   ],

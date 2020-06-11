@@ -24,7 +24,7 @@ export default () => {
   const imageCss = tw`rounded-4xl`
   return (
     <AnimationRevealPage disabled>
-      {/* <Hero
+      <Hero
         heading={
           <>
             Delicious & Affordable{" "}
@@ -36,7 +36,7 @@ export default () => {
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Order Now"
-      /> */}
+      />
       <MainFeature
         subheading={<Subheading>Established In 1945</Subheading>}
         heading={

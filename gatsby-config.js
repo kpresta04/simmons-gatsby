@@ -16,5 +16,15 @@ module.exports = {
         fields: ["products", "products/categories", "products/attributes"],
       },
     },
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-styled-components`,
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
   ],
 }

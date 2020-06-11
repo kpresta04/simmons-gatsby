@@ -1,20 +1,21 @@
 import React from "react"
+import "tailwindcss/dist/base.css"
+import "../styles/globalStyles.css"
 import tw from "twin.macro"
 import { css } from "styled-components/macro" //eslint-disable-line
-import AnimationRevealPage from "helpers/AnimationRevealPage.js"
-import Hero from "components/hero/TwoColumnWithVideo.js"
-import Features from "components/features/ThreeColSimple.js"
-import MainFeature from "components/features/TwoColWithButton.js"
-import MainFeature2 from "components/features/TwoColSingleFeatureWithStats2.js"
-import TabGrid from "components/cards/TabCardGrid.js"
-import Testimonial from "components/testimonials/ThreeColumnWithProfileImage.js"
-import DownloadApp from "components/cta/DownloadApp.js"
-import Footer from "components/footers/FiveColumnWithInputForm.js"
+import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
+import Hero from "../components/hero/TwoColumnWithVideo.js"
+import Features from "../components/features/ThreeColSimple.js"
+import MainFeature from "../components/features/TwoColWithButton.js"
+import MainFeature2 from "../components/features/TwoColSingleFeatureWithStats2.js"
+import TabGrid from "../components/cards/TabCardGrid.js"
+import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
+// import DownloadApp from "../components/cta/DownloadApp.js"
+import Footer from "../components/footers/FiveColumnDark.js"
 
-import chefIconImageSrc from "images/chef-icon.svg"
-import celebrationIconImageSrc from "images/celebration-icon.svg"
-import shopIconImageSrc from "images/shop-icon.svg"
-
+import chefIconImageSrc from "../images/chef-icon.svg"
+import celebrationIconImageSrc from "../images/celebration-icon.svg"
+import shopIconImageSrc from "../images/shop-icon.svg"
 export default () => {
   const Subheading = tw.span`tracking-wider text-sm font-medium`
   const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`
@@ -22,8 +23,8 @@ export default () => {
   const Description = tw.span`inline-block mt-8`
   const imageCss = tw`rounded-4xl`
   return (
-    <AnimationRevealPage>
-      <Hero
+    <AnimationRevealPage disabled>
+      {/* <Hero
         heading={
           <>
             Delicious & Affordable{" "}
@@ -35,14 +36,13 @@ export default () => {
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Order Now"
-        watchVideoButtonText="Meet The Chefs"
-      />
+      /> */}
       <MainFeature
-        subheading={<Subheading>Established Since 2014</Subheading>}
+        subheading={<Subheading>Established In 1945</Subheading>}
         heading={
           <>
-            We've been serving for
-            <wbr /> <HighlightedText>over 5 years.</HighlightedText>
+            Professional gunsmithing for
+            <wbr /> <HighlightedText>over 75 years.</HighlightedText>
           </>
         }
         description={
@@ -65,11 +65,10 @@ export default () => {
         imageDecoratorBlob={true}
         imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
       />
-      {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
       <TabGrid
         heading={
           <>
-            Checkout our <HighlightedText>menu.</HighlightedText>
+            Latest <HighlightedText> products</HighlightedText>
           </>
         }
       />
@@ -79,26 +78,6 @@ export default () => {
             Amazing <HighlightedText>Services.</HighlightedText>
           </>
         }
-        cards={[
-          {
-            imageSrc: shopIconImageSrc,
-            title: "230+ Locations",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
-            url: "https://google.com",
-          },
-          {
-            imageSrc: chefIconImageSrc,
-            title: "Professional Chefs",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
-            url: "https://timerse.com",
-          },
-          {
-            imageSrc: celebrationIconImageSrc,
-            title: "Birthday Catering",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
-            url: "https://reddit.com",
-          },
-        ]}
         imageContainerCss={tw`p-2!`}
         imageCss={tw`w-20! h-20!`}
       />
@@ -133,6 +112,7 @@ export default () => {
         imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
         textOnLeft={true}
       />
+
       <Testimonial
         subheading=""
         heading={
@@ -141,14 +121,7 @@ export default () => {
           </>
         }
       />
-      <DownloadApp
-        text={
-          <>
-            People around you are ordering delicious meals using the{" "}
-            <HighlightedTextInverse>Treact App.</HighlightedTextInverse>
-          </>
-        }
-      />
+
       <Footer />
     </AnimationRevealPage>
   )

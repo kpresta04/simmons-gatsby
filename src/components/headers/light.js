@@ -6,9 +6,10 @@ import { css } from "styled-components/macro" //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
 
-import logo from "../../images/logo.svg"
 import MenuIcon from "feather-icons/dist/icons/menu.svg"
 import CloseIcon from "feather-icons/dist/icons/x.svg"
+
+const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
 
 const Header = tw.header`
   flex justify-between items-center
@@ -127,11 +128,11 @@ export default ({
           onClick={toggleNavbar}
           className={showNavLinks ? "open" : "closed"}
         >
-          {showNavLinks ? (
+          {/* {showNavLinks ? (
             <CloseIcon tw="w-6 h-6" />
           ) : (
             <MenuIcon tw="w-6 h-6" />
-          )}
+          )} */}
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>

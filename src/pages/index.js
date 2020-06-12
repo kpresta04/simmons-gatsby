@@ -22,8 +22,8 @@ export const query = graphql`
   query MyQuery {
     logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
       childImageSharp {
-        fluid(maxWidth: 40, maxHeight: 25) {
-          ...GatsbyImageSharpFluid
+        fixed(width: 40, height: 25) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
@@ -40,6 +40,7 @@ export default ({ data }) => {
   return (
     <AnimationRevealPage disabled>
       <Hero
+        logoImage={logoSmall}
         heading={
           <>
             Professional gunsmithing for

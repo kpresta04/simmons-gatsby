@@ -56,6 +56,7 @@ export default ({
   imageSrc = DesignIllustration,
   imageCss = null,
   imageDecoratorBlob = false,
+  logoImage,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -63,7 +64,7 @@ export default ({
 
   return (
     <>
-      <Header />
+      <Header logoImage={logoImage} />
       <Container>
         <TwoColumn>
           <LeftColumn>

@@ -64,7 +64,7 @@ let logoLink
 let links
 let className
 let collapseBreakpointClass = "lg"
-export default () => {
+export default ({ logoImage }) => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -100,7 +100,7 @@ export default () => {
   const defaultLogoLink = (
     <LogoLink href="/">
       <img src={logo} alt="logo" />
-      {/* <Img fluid={logoImage.fluid} /> */}
+      {/* <Img fixed={logoImage.fixed} /> */}
       Simmons Gun Repair
     </LogoLink>
   )

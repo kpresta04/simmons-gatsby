@@ -8,7 +8,20 @@ import illustration from "../images/login-illustration.svg"
 import logo from "../images/logo.svg"
 // import googleIconImageSrc from "../images/google-icon.png"
 // import twitterIconImageSrc from "../images/twitter-icon.png"
-// import LoginIcon from "feather-icons/dist/icons/log-in.svg"
+import LoginIcon from "../images/log-in.svg"
+import { grapgql } from "gatsby"
+
+// export const query = graphql`
+//   query MyQuery {
+//     googleIcon: file(relativePath: { eq: "google-icon.png" }) {
+//       childImageSharp {
+//         fixed(width: 16, height: 16) {
+//           ...GatsbyImageSharpFixed
+//         }
+//       }
+//     }
+//   }
+// `
 
 const Container = tw(
   ContainerBase
@@ -71,10 +84,11 @@ const headingText = "Sign In To Treact"
 //   },
 // ],
 const submitButtonText = "Sign In"
-// const SubmitButtonIcon = LoginIcon
+const SubmitButtonIcon = LoginIcon
 const forgotPasswordUrl = "#"
 const signupUrl = "#"
-export default () => {
+export default ({ data }) => {
+  console.log(data)
   return (
     <AnimationRevealPage>
       <Container>
@@ -107,7 +121,7 @@ export default () => {
                   <Input type="email" placeholder="Email" />
                   <Input type="password" placeholder="Password" />
                   <SubmitButton type="submit">
-                    {/* <SubmitButtonIcon className="icon" /> */}
+                    <SubmitButtonIcon className="icon" />
                     <span className="text">{submitButtonText}</span>
                   </SubmitButton>
                 </Form>

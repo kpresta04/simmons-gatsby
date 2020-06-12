@@ -3,7 +3,6 @@ import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
 
-import LogoImage from "../../images/logo-light.svg"
 import FacebookIcon from "../../images/facebook-icon.svg"
 import TwitterIcon from "../../images/twitter-icon.svg"
 import YoutubeIcon from "../../images/youtube-icon.svg"
@@ -22,7 +21,7 @@ const LinkListItem = tw.li`mt-3`
 const Link = tw.a`border-b-2 border-transparent hocus:text-gray-300 hocus:border-gray-100 pb-1 transition duration-300`
 
 const LogoContainer = tw.div`flex items-center justify-center lg:justify-start`
-const LogoImg = tw.img`w-8`
+// const LogoImg = tw.img`w-8`
 const LogoText = tw.h5`text-xl font-black mr-4`
 
 const CompanyAddress = tw.p`mt-4 max-w-xs font-medium text-sm mx-auto lg:mx-0 lg:mr-4 leading-loose text-center lg:text-left`
@@ -47,7 +46,6 @@ export default () => {
         <FiveColumns>
           <CompanyColumn>
             <LogoContainer>
-              <LogoImg src={LogoImage} />
               <LogoText>Simmons Gun Repair</LogoText>
             </LogoContainer>
             <CompanyAddress>700 S. Rogers Road, Olathe Kansas</CompanyAddress>
@@ -117,10 +115,10 @@ export default () => {
           <Column>
             <ColumnHeading>Contact</ColumnHeading>
             <LinkList>
-              <LinkListItem>+1 (234) (567)-8901</LinkListItem>
+              <LinkListItem>(913) (782)-3131</LinkListItem>
               <LinkListItem>
-                <Link href="mailto:support@servana.com">
-                  support@servana.com
+                <Link href="mailto:tpresta@simmonsguns.com">
+                  tpresta@simmonsguns.com
                 </Link>
               </LinkListItem>
               <LinkListItem>

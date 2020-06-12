@@ -3,7 +3,9 @@ import { motion } from "framer-motion"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
-
+import { graphql } from "gatsby"
+import Img from "gatsby-image"
+// import logo from "../../images/logoSmall.png"
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
 
 import MenuIcon from "feather-icons/dist/icons/menu.svg"
@@ -29,8 +31,8 @@ export const NavLink = tw.a`
 
 export const PrimaryLink = tw(NavLink)`
   lg:mx-0
-  px-8 py-3 rounded bg-primary-500 text-gray-100
-  hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline
+  px-8 py-3 rounded bg-blue-900 text-gray-100
+  hocus:bg-blue-800 hocus:text-gray-200 focus:shadow-outline
   border-b-0
 `
 
@@ -57,13 +59,12 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `
 
-export default ({
-  roundedHeaderButton = false,
-  logoLink,
-  links,
-  className,
-  collapseBreakpointClass = "lg",
-}) => {
+let roundedHeaderButton = false
+let logoLink
+let links
+let className
+let collapseBreakpointClass = "lg"
+export default () => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -80,10 +81,10 @@ export default ({
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
+      <NavLink href="/#">Shop</NavLink>
+      <NavLink href="/#">Services</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
+      <NavLink href="/login" tw="lg:ml-12!">
         Login
       </NavLink>
       <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">
@@ -99,6 +100,7 @@ export default ({
   const defaultLogoLink = (
     <LogoLink href="/">
       <img src={logo} alt="logo" />
+      {/* <Img fluid={logoImage.fluid} /> */}
       Simmons Gun Repair
     </LogoLink>
   )

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import tw from "twin.macro"
 import { css } from "styled-components/macro" //eslint-disable-line
@@ -42,7 +42,7 @@ const Card = styled.a`
   }
 
   .link {
-    ${tw`mt-auto inline-flex items-center pt-5 text-sm font-bold text-primary-300 leading-none hocus:text-primary-900 transition duration-300`}
+    ${tw`mt-auto inline-flex items-center pt-5 text-sm font-bold text-blue-900 leading-none hocus:text-blue-800 transition duration-300`}
     .icon {
       ${tw`ml-2 w-4`}
     }
@@ -55,8 +55,8 @@ const DecoratorBlob = styled(SvgDecoratorBlob3)`
 
 const cards = [
   {
-    // imageSrc: ShieldIconImage,
-    imageSrc: "../../images/shield-icon.svg",
+    imageSrc: ShieldIconImage,
+
     title: "Secure",
     description:
       "We strictly only deal with vendors that provide top notch security.",
@@ -82,6 +82,9 @@ const description = ""
 const imageContainerCss = null
 const imageCss = null
 export default function ThreeColSimple() {
+  useEffect(() => {
+    console.log(ShieldIconImage)
+  }, [])
   /*
    * This componets accepts a prop - `cards` which is an array of object denoting the cards. Each object in the cards array can have the following keys (Change it according to your need, you can also add more objects to have more cards in this feature component):
    *  1) imageSrc - the image shown at the top of the card

@@ -12,23 +12,38 @@ import TabGrid from "../components/cards/TabCardGrid.js"
 import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
 // import DownloadApp from "../components/cta/DownloadApp.js"
 import Footer from "../components/footers/FiveColumnDark.js"
+import Img from "gatsby-image"
 
 import chefIconImageSrc from "../images/chef-icon.svg"
 import celebrationIconImageSrc from "../images/celebration-icon.svg"
 import shopIconImageSrc from "../images/shop-icon.svg"
-export default () => {
-  const Subheading = tw.span`tracking-wider text-sm font-medium`
-  const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`
+
+export const query = graphql`
+  query MyQuery {
+    logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 40, maxHeight: 25) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+export default ({ data }) => {
+  const Subheading = tw.span`tracking-wider text-sm font-medium text-blue-900`
+  const HighlightedText = tw.span`bg-blue-800 text-gray-100 px-4 transform -skew-x-12 inline-block`
   const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`
   const Description = tw.span`inline-block mt-8`
   const imageCss = tw`rounded-4xl`
+
+  const logoSmall = data.logoSmall.childImageSharp
   return (
     <AnimationRevealPage disabled>
       <Hero
         heading={
           <>
-            Delicious & Affordable{" "}
-            <HighlightedText>Meals Near You.</HighlightedText>
+            Professional gunsmithing for
+            <wbr /> <HighlightedText>over 75 years.</HighlightedText>
           </>
         }
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -41,8 +56,8 @@ export default () => {
         subheading={<Subheading>Established In 1945</Subheading>}
         heading={
           <>
-            Professional gunsmithing for
-            <wbr /> <HighlightedText>over 75 years.</HighlightedText>
+            Serving Customers
+            <HighlightedText>Nationwide</HighlightedText>
           </>
         }
         description={
@@ -117,7 +132,7 @@ export default () => {
         subheading=""
         heading={
           <>
-            Customers <HighlightedText>Love Us.</HighlightedText>
+            Customers <HighlightedText>Love Us</HighlightedText>
           </>
         }
       />

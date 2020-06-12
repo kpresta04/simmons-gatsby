@@ -89,7 +89,7 @@ const IllustrationImage = styled.div`
   ${tw`m-12 xl:m-16 w-full max-w-sm bg-contain bg-center bg-no-repeat`}
 `
 
-const logoLinkUrl = "#"
+const logoLinkUrl = "/"
 const headingText = "Sign In To Simmons"
 const submitButtonText = "Sign In"
 const SubmitButtonIcon = LoginIcon

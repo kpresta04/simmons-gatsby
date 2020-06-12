@@ -123,7 +123,7 @@ export default ({ data }) => {
         subheading={<Subheading>A Reputed Brand</Subheading>}
         heading={
           <>
-            Amazing <HighlightedText>Services</HighlightedText>
+            Artisan <HighlightedText>Services</HighlightedText>
           </>
         }
         statistics={[
@@ -136,7 +136,7 @@ export default ({ data }) => {
             value: "11000+",
           },
           {
-            key: "Chefs",
+            key: "Repairs",
             value: "1500+",
           },
         ]}

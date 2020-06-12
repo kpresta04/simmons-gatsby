@@ -9,23 +9,37 @@ import logo from "../images/logo.svg"
 // import googleIconImageSrc from "../images/google-icon.png"
 // import twitterIconImageSrc from "../images/twitter-icon.png"
 import LoginIcon from "../images/log-in.svg"
-import { grapgql } from "gatsby"
+import { graphql } from "gatsby"
 
-// export const query = graphql`
-//   query MyQuery {
-//     googleIcon: file(relativePath: { eq: "google-icon.png" }) {
-//       childImageSharp {
-//         fixed(width: 16, height: 16) {
-//           ...GatsbyImageSharpFixed
-//         }
-//       }
-//     }
-//   }
-// `
+export const query = graphql`
+  query {
+    googleIcon: file(relativePath: { eq: "google-icon.png" }) {
+      childImageSharp {
+        fixed(height: 16, width: 16) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    twitterIcon: file(relativePath: { eq: "twitter-icon.png" }) {
+      childImageSharp {
+        fixed(height: 16, width: 16) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    dogLogo: file(relativePath: { eq: "dogLogo.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 640, maxHeight: 500) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
 
 const Container = tw(
   ContainerBase
-)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`
+)`min-h-screen bg-blue-900 text-white font-medium flex justify-center -m-8`
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`
 const LogoLink = tw.a``
@@ -54,7 +68,7 @@ const DividerText = tw.div`leading-none px-2 inline-block text-sm text-gray-600 
 const Form = tw.form`mx-auto max-w-xs`
 const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`
 const SubmitButton = styled.button`
-  ${tw`mt-5 tracking-wide font-semibold bg-primary-500 text-gray-100 w-full py-4 rounded-lg hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none`}
+  ${tw`mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none`}
   .icon {
     ${tw`w-6 h-6 -ml-2`}
   }
@@ -69,25 +83,25 @@ const IllustrationImage = styled.div`
 `
 
 const logoLinkUrl = "#"
-const illustrationImageSrc = illustration
-const headingText = "Sign In To Treact"
-// socialButtons = [
-//   {
-//     iconImageSrc: googleIconImageSrc,
-//     text: "Sign In With Google",
-//     url: "https://google.com",
-//   },
-//   {
-//     iconImageSrc: twitterIconImageSrc,
-//     text: "Sign In With Twitter",
-//     url: "https://twitter.com",
-//   },
-// ],
+const headingText = "Sign In To Simmons"
 const submitButtonText = "Sign In"
 const SubmitButtonIcon = LoginIcon
 const forgotPasswordUrl = "#"
-const signupUrl = "#"
+const signupUrl = "/signup"
 export default ({ data }) => {
+  const illustrationImageSrc = data.dogLogo.childImageSharp.fluid.src
+  const socialButtons = [
+    {
+      iconImageSrc: data.googleIcon.childImageSharp.fixed.src,
+      text: "Sign In With Google",
+      url: "https://google.com",
+    },
+    {
+      iconImageSrc: data.twitterIcon.childImageSharp.fixed.src,
+      text: "Sign In With Twitter",
+      url: "https://twitter.com",
+    },
+  ]
   console.log(data)
   return (
     <AnimationRevealPage>
@@ -100,20 +114,20 @@ export default ({ data }) => {
             <MainContent>
               <Heading>{headingText}</Heading>
               <FormContainer>
-                {/* <SocialButtonsContainer>
-                {socialButtons.map((socialButton, index) => (
-                  <SocialButton key={index} href={socialButton.url}>
-                    <span className="iconContainer">
-                      <img
-                        src={socialButton.iconImageSrc}
-                        className="icon"
-                        alt=""
-                      />
-                    </span>
-                    <span className="text">{socialButton.text}</span>
-                  </SocialButton>
-                ))}
-              </SocialButtonsContainer> */}
+                <SocialButtonsContainer>
+                  {socialButtons.map((socialButton, index) => (
+                    <SocialButton key={index} href={socialButton.url}>
+                      <span className="iconContainer">
+                        <img
+                          src={socialButton.iconImageSrc}
+                          className="icon"
+                          alt=""
+                        />
+                      </span>
+                      <span className="text">{socialButton.text}</span>
+                    </SocialButton>
+                  ))}
+                </SocialButtonsContainer>
                 <DividerTextContainer>
                   <DividerText>Or Sign in with your e-mail</DividerText>
                 </DividerTextContainer>

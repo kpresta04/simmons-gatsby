@@ -59,7 +59,7 @@ export default ({ data }) => {
   const imageCss = tw`rounded-4xl`
 
   const logoSmall = data.logoSmall.childImageSharp
-  console.log(data)
+  // console.log(data)
   return (
     <AnimationRevealPage disabled>
       <Hero
@@ -123,7 +123,7 @@ export default ({ data }) => {
         subheading={<Subheading>A Reputed Brand</Subheading>}
         heading={
           <>
-            Artisan <HighlightedText>Services</HighlightedText>
+            Standard of <HighlightedText>Excellence</HighlightedText>
           </>
         }
         statistics={[

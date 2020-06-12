@@ -8,8 +8,8 @@ import Img from "gatsby-image"
 // import logo from "../../images/logoSmall.png"
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
 
-import MenuIcon from "feather-icons/dist/icons/menu.svg"
-import CloseIcon from "feather-icons/dist/icons/x.svg"
+import MenuIcon from "../../images/menu.svg"
+import CloseIcon from "../../images/x.svg"
 
 const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
 
@@ -129,11 +129,11 @@ export default ({ logoImage }) => {
           onClick={toggleNavbar}
           className={showNavLinks ? "open" : "closed"}
         >
-          {/* {showNavLinks ? (
+          {showNavLinks ? (
             <CloseIcon tw="w-6 h-6" />
           ) : (
             <MenuIcon tw="w-6 h-6" />
-          )} */}
+          )}
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>

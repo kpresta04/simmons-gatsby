@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
-import { graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 import Img from "gatsby-image"
 // import logo from "../../images/logoSmall.png"
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
@@ -24,7 +24,7 @@ export const NavLinks = tw.div`inline-block`
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
 export const NavLink = tw.a`
-  text-xl my-2 lg:text-base lg:mx-6 lg:my-0
+  text-xl my-2 lg:text-base lg:mx-6 lg:my-0 
   font-semibold tracking-wide transition duration-300
   pb-1 border-b-2 border-transparent hover:border-blue-900 hocus:text-blue-800
 `
@@ -64,7 +64,7 @@ let logoLink
 let links
 let className
 let collapseBreakpointClass = "lg"
-export default ({ logoImage }) => {
+export default () => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -80,10 +80,10 @@ export default ({ logoImage }) => {
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Shop</NavLink>
-      <NavLink href="/#">Services</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
+      <NavLink href="/about">About</NavLink>
+      <NavLink href="/shop">Shop</NavLink>
+      <NavLink href="/services">Services</NavLink>
+      <NavLink href="/contact">Contact Us</NavLink>
       <NavLink href="/login" tw="lg:ml-12!">
         Login
       </NavLink>
@@ -100,7 +100,7 @@ export default ({ logoImage }) => {
   const defaultLogoLink = (
     <LogoLink href="/">
       {/* <img src={logo} alt="logo" /> */}
-      <Img fixed={logoImage.fixed} />
+      {/* <Img fixed={logoImage.fixed} /> */}
     </LogoLink>
   )
 
@@ -108,35 +108,54 @@ export default ({ logoImage }) => {
   links = links || defaultLinks
 
   return (
-    <Header className={className || "header-light"}>
-      <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
-        {logoLink}
-        {links}
-      </DesktopNavLinks>
+    <StaticQuery
+      query={graphql`
+        query {
+          logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
+            childImageSharp {
+              fixed(width: 80, height: 45) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+        }
+      `}
+      render={data => (
+        <Header className={className || "header-light"}>
+          <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
+            <LogoLink href="/">
+              <Img fixed={data.logoSmall.childImageSharp.fixed} />
+            </LogoLink>
+            {links}
+          </DesktopNavLinks>
 
-      <MobileNavLinksContainer
-        css={collapseBreakpointCss.mobileNavLinksContainer}
-      >
-        {logoLink}
-        <MobileNavLinks
-          initial={{ x: "150%", display: "none" }}
-          animate={animation}
-          css={collapseBreakpointCss.mobileNavLinks}
-        >
-          {links}
-        </MobileNavLinks>
-        <NavToggle
-          onClick={toggleNavbar}
-          className={showNavLinks ? "open" : "closed"}
-        >
-          {showNavLinks ? (
-            <CloseIcon tw="w-6 h-6" />
-          ) : (
-            <MenuIcon tw="w-6 h-6" />
-          )}
-        </NavToggle>
-      </MobileNavLinksContainer>
-    </Header>
+          <MobileNavLinksContainer
+            css={collapseBreakpointCss.mobileNavLinksContainer}
+          >
+            <LogoLink href="/">
+              <Img fixed={data.logoSmall.childImageSharp.fixed} />
+            </LogoLink>
+            <MobileNavLinks
+              initial={{ x: "150%", display: "none" }}
+              animate={animation}
+              css={collapseBreakpointCss.mobileNavLinks}
+            >
+              {links}
+            </MobileNavLinks>
+            <NavToggle
+              onClick={toggleNavbar}
+              className={showNavLinks ? "open" : "closed"}
+            >
+              {showNavLinks ? (
+                <CloseIcon tw="w-6 h-6" />
+              ) : (
+                <MenuIcon tw="w-6 h-6" />
+              )}
+            </NavToggle>
+          </MobileNavLinksContainer>
+        </Header>
+      )}
+    />
   )
 }
 

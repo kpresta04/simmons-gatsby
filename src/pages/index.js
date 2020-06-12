@@ -21,13 +21,6 @@ import shopIconImageSrc from "../images/shop-icon.svg"
 
 export const query = graphql`
   query MyQuery {
-    logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
-      childImageSharp {
-        fixed(width: 80, height: 45) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     smithing: file(relativePath: { eq: "smithing.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 640, maxHeight: 425) {
@@ -53,17 +46,16 @@ export const query = graphql`
 `
 export default ({ data }) => {
   const Subheading = tw.span`tracking-wider text-sm font-medium text-blue-900`
-  const HighlightedText = tw.span`bg-blue-800 text-gray-100 px-4 transform -skew-x-12 inline-block`
+  const HighlightedText = tw.span`text-blue-700 inline-block`
   const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`
   const Description = tw.span`inline-block mt-8`
   const imageCss = tw`rounded-4xl`
 
-  const logoSmall = data.logoSmall.childImageSharp
+  // const logoSmall = data.logoSmall.childImageSharp
   // console.log(data)
   return (
     <AnimationRevealPage disabled>
       <Hero
-        logoImage={logoSmall}
         heading={
           <>
             Professional gunsmithing for

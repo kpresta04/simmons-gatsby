@@ -12,6 +12,7 @@ import TabGrid from "../components/cards/TabCardGrid.js"
 import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
 // import DownloadApp from "../components/cta/DownloadApp.js"
 import Footer from "../components/footers/FiveColumnDark.js"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import chefIconImageSrc from "../images/chef-icon.svg"
@@ -22,7 +23,7 @@ export const query = graphql`
   query MyQuery {
     logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
       childImageSharp {
-        fixed(width: 40, height: 25) {
+        fixed(width: 80, height: 45) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -51,7 +52,7 @@ export default ({ data }) => {
         imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         imageCss={imageCss}
         imageDecoratorBlob={true}
-        primaryButtonText="Order Now"
+        primaryButtonText="Shop Now"
       />
       <MainFeature
         subheading={<Subheading>Established In 1945</Subheading>}

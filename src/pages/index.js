@@ -28,6 +28,27 @@ export const query = graphql`
         }
       }
     }
+    smithing: file(relativePath: { eq: "smithing.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 640, maxHeight: 425) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    handgun: file(relativePath: { eq: "handgun.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 640, maxHeight: 425) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    gunrack: file(relativePath: { eq: "gunrack.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 640, maxHeight: 425) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
   }
 `
 export default ({ data }) => {
@@ -38,6 +59,7 @@ export default ({ data }) => {
   const imageCss = tw`rounded-4xl`
 
   const logoSmall = data.logoSmall.childImageSharp
+  console.log(data)
   return (
     <AnimationRevealPage disabled>
       <Hero
@@ -49,7 +71,8 @@ export default ({ data }) => {
           </>
         }
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
+        // imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
+        imageSrc={data.smithing.childImageSharp.fluid.src}
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Shop Now"
@@ -75,9 +98,7 @@ export default ({ data }) => {
         buttonRounded={false}
         textOnLeft={false}
         primaryButtonText="Latest Offers"
-        imageSrc={
-          "https://images.unsplash.com/photo-1460306855393-0410f61241c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
-        }
+        imageSrc={data.handgun.childImageSharp.fluid.src}
         imageCss={imageCss}
         imageDecoratorBlob={true}
         imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
@@ -89,7 +110,7 @@ export default ({ data }) => {
           </>
         }
       />
-      <Features
+      {/* <Features
         heading={
           <>
             Amazing <HighlightedText>Services.</HighlightedText>
@@ -97,12 +118,12 @@ export default ({ data }) => {
         }
         imageContainerCss={tw`p-2!`}
         imageCss={tw`w-20! h-20!`}
-      />
+      /> */}
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
         heading={
           <>
-            Why <HighlightedText>Choose Us ?</HighlightedText>
+            Amazing <HighlightedText>Services</HighlightedText>
           </>
         }
         statistics={[
@@ -122,7 +143,8 @@ export default ({ data }) => {
         primaryButtonText="Order Now"
         primaryButtonUrl="https://order.now.com"
         imageInsideDiv={false}
-        imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
+        // imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
+        imageSrc={data.gunrack.childImageSharp.fluid.src}
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={true}

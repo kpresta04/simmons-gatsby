@@ -76,12 +76,11 @@ const cards = [
   },
 ]
 const linkText = "Learn More"
-const heading = ""
-const subheading = ""
+
 const description = ""
 const imageContainerCss = null
 const imageCss = null
-export default function ThreeColSimple() {
+export default function ThreeColSimple({ heading = "", subheading = "" }) {
   useEffect(() => {
     console.log(ShieldIconImage)
   }, [])

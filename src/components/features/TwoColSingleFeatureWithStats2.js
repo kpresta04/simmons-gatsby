@@ -36,7 +36,7 @@ const Description = tw.p`mt-4 text-center md:text-left text-sm md:text-base lg:t
 const Statistics = tw.div`flex flex-col items-center sm:block text-center md:text-left mt-4`
 const Statistic = tw.div`text-left sm:inline-block sm:mr-12 last:mr-0 mt-4`
 const Value = tw.div`font-bold text-lg sm:text-xl lg:text-2xl text-secondary-500 tracking-wide`
-const Key = tw.div`font-medium text-primary-700`
+const Key = tw.div`font-medium text-blue-700`
 
 const PrimaryButton = tw(
   PrimaryButtonBase

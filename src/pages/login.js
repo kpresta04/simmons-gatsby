@@ -34,6 +34,13 @@ export const query = graphql`
         }
       }
     }
+    logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
+      childImageSharp {
+        fixed(width: 80, height: 45) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
   }
 `
 
@@ -109,7 +116,7 @@ export default ({ data }) => {
         <Content>
           <MainContainer>
             <LogoLink href={logoLinkUrl}>
-              <LogoImage src={logo} />
+              <LogoImage src={data.logoSmall.childImageSharp.fixed.src} />
             </LogoLink>
             <MainContent>
               <Heading>{headingText}</Heading>

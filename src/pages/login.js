@@ -111,7 +111,7 @@ export default ({ data }) => {
   ]
   console.log(data)
   return (
-    <AnimationRevealPage>
+    <AnimationRevealPage disabled>
       <Container>
         <Content>
           <MainContainer>

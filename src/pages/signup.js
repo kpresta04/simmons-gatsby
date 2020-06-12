@@ -111,7 +111,7 @@ export default ({
     },
   ]
   return (
-    <AnimationRevealPage>
+    <AnimationRevealPage disabled>
       <Container>
         <Content>
           <MainContainer>

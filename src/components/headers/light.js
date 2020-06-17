@@ -24,7 +24,7 @@ export const NavLinks = tw.div`inline-block`
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
 export const NavLink = tw.a`
-  text-xl my-2 lg:text-base lg:mx-6 lg:my-0 
+  text-xl! my-2 lg:text-base lg:mx-6 lg:my-0 
   font-semibold tracking-wide transition duration-300
   pb-1 border-b-2 border-transparent hover:border-blue-900 hocus:text-blue-800
 `
@@ -38,10 +38,6 @@ export const PrimaryLink = tw(NavLink)`
 
 export const LogoLink = styled(NavLink)`
   ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
-
-  img {
-    ${tw`w-10 mr-3`}
-  }
 `
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`
@@ -80,7 +76,7 @@ export default () => {
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/about">About</NavLink>
+      {/* <NavLink href="/about">About</NavLink> */}
       <NavLink href="/shop">Shop</NavLink>
       <NavLink href="/contact">Contact Us</NavLink>
       <NavLink href="/login" tw="lg:ml-12!">
@@ -112,7 +108,7 @@ export default () => {
         query {
           logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
             childImageSharp {
-              fixed(width: 80, height: 45) {
+              fixed(width: 100, height: 65, cropFocus: ATTENTION, fit: COVER) {
                 ...GatsbyImageSharpFixed
               }
             }

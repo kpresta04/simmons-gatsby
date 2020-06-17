@@ -2,6 +2,7 @@ import React from "react"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
+import { Link } from "gatsby"
 
 import FacebookIcon from "../../images/facebook-icon.svg"
 import TwitterIcon from "../../images/twitter-icon.svg"
@@ -18,7 +19,7 @@ const ColumnHeading = tw.h5`font-bold uppercase`
 
 const LinkList = tw.ul`mt-4 text-sm font-medium`
 const LinkListItem = tw.li`mt-3`
-const Link = tw.a`border-b-2 border-transparent hocus:text-gray-300 hocus:border-gray-100 pb-1 transition duration-300`
+const Linkstyle = `border-b-2 border-transparent hocus:text-gray-300 hocus:border-gray-100 pb-1 transition duration-300`
 
 const LogoContainer = tw.div`flex items-center justify-center lg:justify-start`
 // const LogoImg = tw.img`w-8`
@@ -65,16 +66,24 @@ export default () => {
             <ColumnHeading>Quick Links</ColumnHeading>
             <LinkList>
               <LinkListItem>
-                <Link href="#">Blog</Link>
+                <Link className={Linkstyle} to="#">
+                  Blog
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">FAQs</Link>
+                <Link className={Linkstyle} to="#">
+                  FAQs
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Support</Link>
+                <Link className={Linkstyle} to="#">
+                  Support
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">About Us</Link>
+                <Link className={Linkstyle} to="#">
+                  About Us
+                </Link>
               </LinkListItem>
             </LinkList>
           </Column>
@@ -82,16 +91,24 @@ export default () => {
             <ColumnHeading>Product</ColumnHeading>
             <LinkList>
               <LinkListItem>
-                <Link href="#">Log In</Link>
+                <Link className={Linkstyle} to="#">
+                  Log In
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Personal</Link>
+                <Link className={Linkstyle} to="#">
+                  Personal
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Business</Link>
+                <Link className={Linkstyle} to="#">
+                  Business
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Team</Link>
+                <Link className={Linkstyle} to="#">
+                  Team
+                </Link>
               </LinkListItem>
             </LinkList>
           </Column>
@@ -99,16 +116,24 @@ export default () => {
             <ColumnHeading>Legal</ColumnHeading>
             <LinkList>
               <LinkListItem>
-                <Link href="#">GDPR</Link>
+                <Link className={Linkstyle} to="#">
+                  GDPR
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Privacy Policy</Link>
+                <Link className={Linkstyle} to="/privacy">
+                  Privacy Policy
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Terms of Service</Link>
+                <Link className={Linkstyle} to="#">
+                  Terms of Service
+                </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Disclaimer</Link>
+                <Link className={Linkstyle} to="#">
+                  Disclaimer
+                </Link>
               </LinkListItem>
             </LinkList>
           </Column>
@@ -117,15 +142,19 @@ export default () => {
             <LinkList>
               <LinkListItem>(913) (782)-3131</LinkListItem>
               <LinkListItem>
-                <Link href="mailto:tpresta@simmonsguns.com">
+                <a className={Linkstyle} href="mailto:tpresta@simmonsguns.com">
                   tpresta@simmonsguns.com
+                </a>
+              </LinkListItem>
+              <LinkListItem>
+                <Link className={Linkstyle} to="#">
+                  Sales
                 </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Sales</Link>
-              </LinkListItem>
-              <LinkListItem>
-                <Link href="#">Report Abuse</Link>
+                <Link className={Linkstyle} to="#">
+                  Report Abuse
+                </Link>
               </LinkListItem>
             </LinkList>
           </Column>

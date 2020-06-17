@@ -9,7 +9,7 @@ import illustration from "../images/signup-illustration.svg"
 // import googleIconImageSrc from "images/google-icon.png";
 // import twitterIconImageSrc from "images/twitter-icon.png";
 import SignUpIcon from "../images/user-plus.svg"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 const Container = tw(
   ContainerBase
@@ -116,9 +116,9 @@ export default ({
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href={logoLinkUrl}>
+            <Link to={logoLinkUrl}>
               <LogoImage src={data.logoSmall.childImageSharp.fixed.src} />
-            </LogoLink>
+            </Link>
             <MainContent>
               <Heading>{headingText}</Heading>
               <FormContainer>
@@ -165,12 +165,12 @@ export default ({
 
                   <p tw="mt-8 text-sm text-gray-600 text-center">
                     Already have an account?{" "}
-                    <a
-                      href={signInUrl}
+                    <Link
+                      to={signInUrl}
                       tw="border-b border-gray-500 border-dotted"
                     >
                       Sign In
-                    </a>
+                    </Link>
                   </p>
                 </Form>
               </FormContainer>

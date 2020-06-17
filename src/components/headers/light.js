@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
-import { graphql, StaticQuery } from "gatsby"
+import { graphql, StaticQuery, Link } from "gatsby"
 import Img from "gatsby-image"
 // import logo from "../../images/logoSmall.png"
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
@@ -23,10 +23,10 @@ export const NavLinks = tw.div`inline-block`
 /* hocus: stands for "on hover or focus"
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
-export const NavLink = tw.a`
-  text-xl! my-2 lg:text-base lg:mx-6 lg:my-0 
+export const NavLink = styled(Link)`
+  ${tw`text-xl! my-2 lg:text-base lg:mx-6 lg:my-0 
   font-semibold tracking-wide transition duration-300
-  pb-1 border-b-2 border-transparent hover:border-blue-900 hocus:text-blue-800
+  pb-1 border-b-2 border-transparent hover:border-blue-900 hocus:text-blue-800`}
 `
 
 export const PrimaryLink = tw(NavLink)`
@@ -55,12 +55,11 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `
 
-let roundedHeaderButton = false
 let logoLink
 let links
 let className
 let collapseBreakpointClass = "lg"
-export default () => {
+export default (roundedHeaderButton = false) => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -77,14 +76,12 @@ export default () => {
   const defaultLinks = [
     <NavLinks key={1}>
       {/* <NavLink href="/about">About</NavLink> */}
-      <NavLink href="/shop">Shop</NavLink>
-      <NavLink href="/contact">Contact Us</NavLink>
-      <NavLink href="/login" tw="lg:ml-12!">
+      <NavLink to="/shop">Shop</NavLink>
+      <NavLink to="/contact">Contact Us</NavLink>
+      <NavLink to="/login" tw="lg:ml-12!">
         Login
       </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/signup">
-        Sign Up
-      </PrimaryLink>
+      <PrimaryLink to="/signup">Sign Up</PrimaryLink>
     </NavLinks>,
   ]
 
@@ -93,7 +90,7 @@ export default () => {
     collapseBreakPointCssMap[collapseBreakpointClass]
 
   const defaultLogoLink = (
-    <LogoLink href="/">
+    <LogoLink to="/">
       {/* <img src={logo} alt="logo" /> */}
       {/* <Img fixed={logoImage.fixed} /> */}
     </LogoLink>
@@ -118,7 +115,7 @@ export default () => {
       render={data => (
         <Header className={className || "header-light"}>
           <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
-            <LogoLink href="/">
+            <LogoLink to="/">
               <Img fixed={data.logoSmall.childImageSharp.fixed} />
             </LogoLink>
             {links}
@@ -127,7 +124,7 @@ export default () => {
           <MobileNavLinksContainer
             css={collapseBreakpointCss.mobileNavLinksContainer}
           >
-            <LogoLink href="/">
+            <LogoLink to="/">
               <Img fixed={data.logoSmall.childImageSharp.fixed} />
             </LogoLink>
             <MobileNavLinks

@@ -9,7 +9,7 @@ import logo from "../images/logo.svg"
 // import googleIconImageSrc from "../images/google-icon.png"
 // import twitterIconImageSrc from "../images/twitter-icon.png"
 import LoginIcon from "../images/log-in.svg"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 export const query = graphql`
   query {
@@ -36,7 +36,7 @@ export const query = graphql`
     }
     logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
       childImageSharp {
-        fixed(width: 80, height: 45) {
+        fixed(width: 100, height: 65) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -115,9 +115,9 @@ export default ({ data }) => {
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href={logoLinkUrl}>
+            <Link to={logoLinkUrl}>
               <LogoImage src={data.logoSmall.childImageSharp.fixed.src} />
-            </LogoLink>
+            </Link>
             <MainContent>
               <Heading>{headingText}</Heading>
               <FormContainer>
@@ -156,12 +156,12 @@ export default ({ data }) => {
                 </p>
                 <p tw="mt-8 text-sm text-gray-600 text-center">
                   Dont have an account?{" "}
-                  <a
-                    href={signupUrl}
+                  <Link
+                    to={signupUrl}
                     tw="border-b border-gray-500 border-dotted"
                   >
                     Sign Up
-                  </a>
+                  </Link>
                 </p>
               </FormContainer>
             </MainContent>

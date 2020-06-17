@@ -126,7 +126,7 @@ export default () => {
                 </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link className={Linkstyle} to="#">
+                <Link className={Linkstyle} to="/terms">
                   Terms of Service
                 </Link>
               </LinkListItem>

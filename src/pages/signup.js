@@ -9,6 +9,7 @@ import illustration from "../images/signup-illustration.svg"
 // import googleIconImageSrc from "images/google-icon.png";
 // import twitterIconImageSrc from "images/twitter-icon.png";
 import SignUpIcon from "../images/user-plus.svg"
+import { graphql } from "gatsby"
 
 const Container = tw(
   ContainerBase

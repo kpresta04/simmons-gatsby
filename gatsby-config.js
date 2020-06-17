@@ -36,5 +36,21 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        // The domain name of your Shopify shop.
+        shopName: `simmons-gun-repairs`,
+        // The storefront access token
+        accessToken: `80ec29390ee7217adbe1cb9b5b4f0e4a`,
+        apiVersion: "2020-04",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        "~": path.join(__dirname, "src/"),
+      },
+    },
   ],
 }

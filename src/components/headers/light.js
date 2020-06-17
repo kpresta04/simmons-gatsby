@@ -82,7 +82,6 @@ export default () => {
     <NavLinks key={1}>
       <NavLink href="/about">About</NavLink>
       <NavLink href="/shop">Shop</NavLink>
-      <NavLink href="/services">Services</NavLink>
       <NavLink href="/contact">Contact Us</NavLink>
       <NavLink href="/login" tw="lg:ml-12!">
         Login

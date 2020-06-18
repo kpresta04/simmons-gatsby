@@ -75,7 +75,7 @@ export default (roundedHeaderButton = false) => {
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      {/* <NavLink href="/about">About</NavLink> */}
+      <NavLink to="/about">About</NavLink>
       <NavLink to="/shop">Shop</NavLink>
       <NavLink to="/contact">Contact Us</NavLink>
       <NavLink to="/login" tw="lg:ml-12!">

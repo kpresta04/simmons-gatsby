@@ -54,7 +54,7 @@ export default ({
         "Firearm purchases will take less than 1 week. Repairs will be quoted on a case by case basis.",
     },
     {
-      question: "How secure is shopping in the Online Shop? Is my data secure?",
+      question: "How secure is shopping in the Online Shop?",
       answer:
         "All data is encrypted and secure. Our site is state of the art and you can have true peace of mind when shopping online with us.",
     },

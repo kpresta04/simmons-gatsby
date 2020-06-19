@@ -126,7 +126,7 @@ export default ({
     return null
   })
   return (
-    <PrimaryBackgroundContainer>
+    <PrimaryBackgroundContainer style={{ minHeight: "85vh" }}>
       <ContentWithPaddingXl>
         <HeadingContainer>
           {subheading && <Subheading>{subheading}</Subheading>}

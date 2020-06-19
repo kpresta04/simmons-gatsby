@@ -29,14 +29,14 @@ export const query = graphql`
     }
     dogLogo: file(relativePath: { eq: "dogLogo.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 500) {
+        fluid(maxWidth: 640, maxHeight: 500, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }
     }
     logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
       childImageSharp {
-        fixed(width: 100, height: 65) {
+        fixed(width: 100, height: 65, quality: 100) {
           ...GatsbyImageSharpFixed
         }
       }

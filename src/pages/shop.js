@@ -67,7 +67,13 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(width: 240, height: 240, cropFocus: CENTER, fit: COVER) {
+              fixed(
+                width: 240
+                height: 240
+                cropFocus: CENTER
+                fit: COVER
+                quality: 100
+              ) {
                 ...GatsbyImageSharpFixed
               }
             }

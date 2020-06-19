@@ -23,21 +23,21 @@ export const query = graphql`
   query MyQuery {
     smithing: file(relativePath: { eq: "smithing.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 425) {
+        fluid(maxWidth: 640, maxHeight: 425, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }
     }
     handgun: file(relativePath: { eq: "handgun.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 425) {
+        fluid(maxWidth: 640, maxHeight: 425, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }
     }
     gunrack: file(relativePath: { eq: "gunrack.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 425) {
+        fluid(maxWidth: 640, maxHeight: 425, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }

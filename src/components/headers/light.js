@@ -107,7 +107,13 @@ export default (roundedHeaderButton = false) => {
         query {
           logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
             childImageSharp {
-              fixed(width: 100, height: 65, cropFocus: ATTENTION, fit: COVER) {
+              fixed(
+                width: 100
+                height: 65
+                cropFocus: ATTENTION
+                fit: COVER
+                quality: 100
+              ) {
                 ...GatsbyImageSharpFixed
               }
             }

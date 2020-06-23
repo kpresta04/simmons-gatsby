@@ -74,7 +74,7 @@ export const query = graphql`
                 fit: COVER
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed
+                ...GatsbyImageSharpFixed_withWebp
               }
             }
           }

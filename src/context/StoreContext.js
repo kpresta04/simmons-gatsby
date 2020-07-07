@@ -15,12 +15,31 @@ const defaultContext = {
 const StoreContext = React.createContext(defaultContext)
 
 export const StoreProvider = ({ children }) => {
-  const [checkoutId, setCheckoutId] = useState({})
+  const [checkout, setCheckout] = useState({})
 
   const initializeCheckout = async () => {
     try {
-      const newCheckout = await client.checkout.create()
-      setCheckoutId(newCheckout.id)
+      const isBrowser = typeof window !== "undefined"
+
+      const currentCheckoutId = isBrowser
+        ? localStorage.getItem("checkout_id")
+        : null
+
+      let newCheckout = null
+
+      if (currentCheckoutId) {
+        //if checkout id exists
+        newCheckout = await client.checkout.fetch(currentCheckoutId)
+      } else {
+        //else create a new one
+        newCheckout = await client.checkout.create()
+
+        if (isBrowser) {
+          localStorage.setItem("checkout_id", newCheckout.id)
+        }
+      }
+
+      setCheckout(newCheckout)
     } catch (error) {
       console.log(error)
     }
@@ -38,7 +57,10 @@ export const StoreProvider = ({ children }) => {
           quantity: 1,
         },
       ]
-      const addItems = await client.checkout.addLineItems(checkoutId, lineItems)
+      const addItems = await client.checkout.addLineItems(
+        checkout.id,
+        lineItems
+      )
       // Buy Now Button Code
       // window.open(addItems.webUrl, "_blank")
       console.log(addItems.webUrl)

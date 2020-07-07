@@ -10,6 +10,7 @@ import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
 
 import MenuIcon from "../../images/menu.svg"
 import CloseIcon from "../../images/x.svg"
+import CartIcon from "~/images/shopping-cart.svg"
 
 const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
 
@@ -84,6 +85,11 @@ export default (roundedHeaderButton = false) => {
         Login
       </NavLink>
       <PrimaryLink to="/signup">Sign Up</PrimaryLink>
+      <NavLink to="/cart">
+        <CartIcon
+          style={{ display: "inline-flex", height: "32px", width: "32px" }}
+        />
+      </NavLink>
     </NavLinks>,
   ]
 

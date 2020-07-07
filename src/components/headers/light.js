@@ -37,7 +37,7 @@ export const PrimaryLink = tw(NavLink)`
 `
 
 export const LogoLink = styled(NavLink)`
-  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
+  ${tw`flex items-center font-black border-b-0 text-2xl! ml-4!`};
 `
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`
@@ -108,9 +108,9 @@ export default (roundedHeaderButton = false) => {
           logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
             childImageSharp {
               fixed(
-                width: 100
+                width: 105
                 height: 65
-                cropFocus: ATTENTION
+                cropFocus: CENTER
                 fit: COVER
                 quality: 100
               ) {
@@ -124,7 +124,10 @@ export default (roundedHeaderButton = false) => {
         <Header className={className || "header-light"}>
           <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
             <LogoLink to="/">
-              <Img fixed={data.logoSmall.childImageSharp.fixed} />
+              <Img
+                fixed={data.logoSmall.childImageSharp.fixed}
+                imgStyle={{ objectFit: "contain" }}
+              />
             </LogoLink>
             {links}
           </DesktopNavLinks>
@@ -133,7 +136,10 @@ export default (roundedHeaderButton = false) => {
             css={collapseBreakpointCss.mobileNavLinksContainer}
           >
             <LogoLink to="/">
-              <Img fixed={data.logoSmall.childImageSharp.fixed} />
+              <Img
+                fixed={data.logoSmall.childImageSharp.fixed}
+                imgStyle={{ objectFit: "contain" }}
+              />
             </LogoLink>
             <MobileNavLinks
               initial={{ x: "150%", display: "none" }}

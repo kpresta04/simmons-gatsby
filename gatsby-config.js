@@ -28,6 +28,12 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        "~": path.join(__dirname, "src/"),
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -44,12 +50,6 @@ module.exports = {
         // The storefront access token
         accessToken: `80ec29390ee7217adbe1cb9b5b4f0e4a`,
         apiVersion: "2020-04",
-      },
-    },
-    {
-      resolve: "gatsby-plugin-root-import",
-      options: {
-        "~": path.join(__dirname, "src/"),
       },
     },
   ],

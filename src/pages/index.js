@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import "tailwindcss/dist/base.css"
 import "../styles/globalStyles.css"
 import tw from "twin.macro"
@@ -10,14 +10,9 @@ import MainFeature from "../components/features/TwoColWithButton.js"
 import MainFeature2 from "../components/features/TwoColSingleFeatureWithStats2.js"
 import TabGrid from "../components/cards/TabCardGrid.js"
 import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
-// import DownloadApp from "../components/cta/DownloadApp.js"
 import Footer from "../components/footers/FiveColumnDark.js"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-
-import chefIconImageSrc from "../images/chef-icon.svg"
-import celebrationIconImageSrc from "../images/celebration-icon.svg"
-import shopIconImageSrc from "../images/shop-icon.svg"
 
 export const query = graphql`
   query MyQuery {
@@ -50,7 +45,7 @@ export default ({ data }) => {
   const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`
   const Description = tw.span`inline-block mt-8`
   const imageCss = tw`rounded-4xl`
-
+  // const { addProductToCart } = useContext(StoreContext)
   // const logoSmall = data.logoSmall.childImageSharp
   // console.log(data)
   return (

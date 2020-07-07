@@ -25,6 +25,9 @@ exports.createPages = async ({ graphql, actions }) => {
             shopifyId
             variants {
               shopifyId
+              price
+              title
+              availableForSale
             }
             handle
             description

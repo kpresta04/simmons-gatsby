@@ -24,7 +24,7 @@ const TextContent = tw.div`lg:py-8`
 
 const Heading = tw(
   SectionHeading
-)`text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`
+)`text-left text-3xl sm:text-4xl  text-center md:text-left leading-tight`
 const Description = tw.p`text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100 mt-4`
 
 const Statistics = tw.div`mt-6 lg:mt-8 xl:mt-16 flex flex-wrap`
@@ -55,7 +55,7 @@ export default ({ textOnLeft = false, image }) => {
   ]
   console.log(image)
   return (
-    <Container>
+    <Container style={{ minHeight: "70vh" }}>
       <TwoColumn>
         <ImageColumn>
           <Image imageSrc={image.childImageSharp.fluid.src} />

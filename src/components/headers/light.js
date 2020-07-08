@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import tw from "twin.macro"
 import styled from "styled-components"
@@ -7,7 +7,7 @@ import { graphql, StaticQuery, Link } from "gatsby"
 import Img from "gatsby-image"
 // import logo from "../../images/logoSmall.png"
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
-
+import CartCount from "~/components/misc/CartCount"
 import MenuIcon from "../../images/menu.svg"
 import CloseIcon from "../../images/x.svg"
 import CartIcon from "~/images/shopping-cart.svg"
@@ -60,7 +60,11 @@ let logoLink
 let links
 let className
 let collapseBreakpointClass = "lg"
-export default (roundedHeaderButton = false) => {
+const HeadComponent = (roundedHeaderButton = false) => {
+  // useEffect(() => {
+  //   setQuantity(quantity + 1)
+  // }, [checkout])
+
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -85,10 +89,20 @@ export default (roundedHeaderButton = false) => {
         Login
       </NavLink>
       <PrimaryLink to="/signup">Sign Up</PrimaryLink>
-      <NavLink to="/cart">
+      <NavLink
+        style={{
+          position: "relative",
+        }}
+        to="/cart"
+      >
         <CartIcon
-          style={{ display: "inline-flex", height: "32px", width: "32px" }}
+          style={{
+            display: "inline-flex",
+            height: "32px",
+            width: "32px",
+          }}
         />
+        <CartCount />
       </NavLink>
     </NavLinks>,
   ]
@@ -199,3 +213,4 @@ const collapseBreakPointCssMap = {
     mobileNavLinksContainer: tw`lg:hidden`,
   },
 }
+export default HeadComponent

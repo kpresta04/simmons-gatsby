@@ -12,12 +12,12 @@ export default function CartCount() {
     <div
       style={{
         position: "absolute",
-        top: "-22px",
+        top: "-16px",
         left: "20px",
         borderRadius: "1.75em",
         backgroundColor: "rgba(114,114,114,0.9)",
         color: "white",
-        fontSize: "0.8571428571em",
+        fontSize: "0.8571428571rem",
         fontWeight: "500",
         lineHeight: "1.75em",
         whiteSpace: "nowrap",

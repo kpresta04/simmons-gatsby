@@ -39,7 +39,13 @@ export default () => {
         <FormContainer>
           <div tw="mx-auto max-w-4xl">
             <h2>Contact Us</h2>
-            <form action="#">
+            <form
+              name="contact"
+              method="post"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="contact" />
               <TwoColumn>
                 <Column>
                   <InputContainer>

@@ -8,7 +8,7 @@ export default function CartCount() {
     return total + item.quantity
   }, 0)
 
-  return (
+  return quantity > 0 ? (
     <div
       style={{
         position: "absolute",
@@ -27,7 +27,9 @@ export default function CartCount() {
         zIndex: "3",
       }}
     >
-      {quantity > 0 && quantity}
+      {quantity}
     </div>
+  ) : (
+    <div></div>
   )
 }

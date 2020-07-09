@@ -48,6 +48,7 @@ export default function Cart() {
         ))}
         <hr style={{ maxWidth: "50%", margin: "1rem auto" }} />
         <h3>{checkout.totalPrice}</h3>
+        <a href={checkout.webUrl}>Checkout Now</a>
       </div>
     </Layout>
   )

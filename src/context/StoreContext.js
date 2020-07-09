@@ -17,19 +17,30 @@ const defaultContext = {
 }
 
 const StoreContext = React.createContext(defaultContext)
+const isBrowser = typeof window !== "undefined"
 
 export const StoreProvider = ({ children }) => {
   const [checkout, setCheckout] = useState(defaultContext.checkout)
   const [isCartOpen, setCartOpen] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
   const toggleCartOpen = () => {
     setCartOpen(!isCartOpen)
   }
 
+  const getNewId = async () => {
+    try {
+      const newCheckout = await client.checkout.create()
+      if (isBrowser) {
+        localStorage.setItem("checkout_id", newCheckout.id)
+      }
+      return newCheckout
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const initializeCheckout = async () => {
     try {
-      const isBrowser = typeof window !== "undefined"
-
       const currentCheckoutId = isBrowser
         ? localStorage.getItem("checkout_id")
         : null
@@ -39,13 +50,13 @@ export const StoreProvider = ({ children }) => {
       if (currentCheckoutId) {
         //if checkout id exists
         newCheckout = await client.checkout.fetch(currentCheckoutId)
+
+        if (newCheckout.completedAt) {
+          newCheckout = await getNewId()
+        }
       } else {
         //else create a new one
-        newCheckout = await client.checkout.create()
-
-        if (isBrowser) {
-          localStorage.setItem("checkout_id", newCheckout.id)
-        }
+        newCheckout = await getNewId()
       }
 
       setCheckout(newCheckout)
@@ -59,6 +70,7 @@ export const StoreProvider = ({ children }) => {
 
   const addProductToCart = async variantId => {
     try {
+      setLoading(true)
       // const newCheckout = await client.checkout.create()
       const lineItems = [
         {
@@ -74,6 +86,7 @@ export const StoreProvider = ({ children }) => {
       // window.open(newCheckout.webUrl, "_blank")
       console.log(newCheckout.webUrl)
       setCheckout(newCheckout)
+      setLoading(false)
     } catch (e) {
       console.error(e)
     }
@@ -98,6 +111,7 @@ export const StoreProvider = ({ children }) => {
         addProductToCart,
         toggleCartOpen,
         removeProductFromCart,
+        isLoading,
       }}
     >
       {children}

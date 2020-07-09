@@ -8,20 +8,6 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             title
-            images {
-              localFile {
-                childImageSharp {
-                  fluid(
-                    quality: 100
-                    cropFocus: CENTER
-                    maxHeight: 530
-                    maxWidth: 530
-                  ) {
-                    srcWebp
-                  }
-                }
-              }
-            }
             shopifyId
             variants {
               shopifyId

@@ -12,6 +12,7 @@ export default function Cart() {
   )
 
   console.log(checkout.lineItems)
+  console.log(checkout)
   return (
     <Layout>
       <div

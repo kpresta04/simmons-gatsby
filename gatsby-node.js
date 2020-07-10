@@ -7,6 +7,15 @@ exports.createPages = async ({ graphql, actions }) => {
       allShopifyProduct(sort: { fields: [title] }) {
         edges {
           node {
+            images {
+              localFile {
+                childImageSharp {
+                  original {
+                    src
+                  }
+                }
+              }
+            }
             title
             shopifyId
             variants {

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react"
 import StoreContext from "~/context/StoreContext"
 import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
+import ProductImages from "~/components/ProductImages/ProductImages"
 
 const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
@@ -25,10 +26,11 @@ const ProductTemplate = ({ pageContext }) => {
       <section css={tw`text-gray-700 overflow-hidden`}>
         <div css={tw`container px-5 py-24 mx-auto`}>
           <div css={tw`lg:w-4/5 mx-auto flex flex-wrap`}>
+            {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
             <img
               alt="Product"
               css={tw`lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded`}
-              src="https://dummyimage.com/400x400"
+              src={product.images[0].localFile.childImageSharp.original.src}
             />
             <div css={tw`lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0`}>
               <h2 css={tw`text-sm text-gray-500 tracking-widest`}>SIMMONS</h2>

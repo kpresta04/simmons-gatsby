@@ -52,5 +52,11 @@ module.exports = {
         apiVersion: "2020-04",
       },
     },
+    {
+      resolve: `gatsby-plugin-netlify-identity`,
+      options: {
+        url: `https://peaceful-turing-1274a7.netlify.app/`, // required!
+      },
+    },
   ],
 }

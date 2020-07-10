@@ -6,6 +6,7 @@ import { css } from "styled-components/macro" //eslint-disable-line
 import { graphql, StaticQuery, Link } from "gatsby"
 import Img from "gatsby-image"
 // import logo from "../../images/logoSmall.png"
+import LoginButton from "./LogInButton"
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js"
 import CartCount from "~/components/misc/CartCount"
 import MenuIcon from "../../images/menu.svg"
@@ -20,6 +21,8 @@ import "react-netlify-identity-widget/styles.css"
 const Header = tw.header`
   flex justify-between items-center
   max-w-screen-xl mx-auto
+
+
 `
 
 export const NavLinks = tw.div`inline-block`
@@ -64,8 +67,12 @@ let links
 let className
 let collapseBreakpointClass = "lg"
 const HeadComponent = (roundedHeaderButton = false) => {
-  const [dialog, setDialog] = useState(false)
   const identity = useIdentityContext()
+  const [dialog, setDialog] = useState(false)
+  useEffect(() => {
+    setDialog(false)
+  }, [identity.isLoggedIn])
+
   console.log(identity)
   // useEffect(() => {
   //   setQuantity(quantity + 1)
@@ -92,17 +99,9 @@ const HeadComponent = (roundedHeaderButton = false) => {
 
       <NavLink to="/contact">Contact Us</NavLink>
 
-      <NavLink
-        to="/"
-        tw="lg:ml-12!"
-        onClick={e => {
-          e.preventDefault()
-          setDialog(true)
-        }}
-      >
-        Login
-      </NavLink>
-      <PrimaryLink to="/signup">Sign Up</PrimaryLink>
+      <LoginButton tw="lg:ml-12!" setDialog={setDialog} />
+
+      {/* {isLoggedIn && <PrimaryLink to="/signup">Sign Up</PrimaryLink>} */}
 
       <NavLink
         style={{
@@ -159,7 +158,9 @@ const HeadComponent = (roundedHeaderButton = false) => {
         <Header className={className || "header-light"}>
           <IdentityModal
             showDialog={dialog}
-            onCloseDialog={() => setDialog(false)}
+            onCloseDialog={() => {
+              setDialog(false)
+            }}
           />
           <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
             <LogoLink to="/">

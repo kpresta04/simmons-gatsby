@@ -4,10 +4,8 @@ import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
-import illustration from "../images/login-illustration.svg"
-import logo from "../images/logo.svg"
-// import googleIconImageSrc from "../images/google-icon.png"
-// import twitterIconImageSrc from "../images/twitter-icon.png"
+import { useIdentityContext } from "react-netlify-identity-widget"
+
 import LoginIcon from "../images/log-in.svg"
 import { graphql, Link } from "gatsby"
 
@@ -56,7 +54,7 @@ const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`
 const FormContainer = tw.div`w-full flex-1 mt-8`
 
 const SocialButtonsContainer = tw.div`flex flex-col items-center`
-const SocialButton = styled.a`
+const SocialButton = styled.button`
   ${tw`w-full max-w-xs font-semibold rounded-lg py-3 border text-gray-900 bg-gray-100 hocus:bg-gray-200 hocus:border-gray-400 flex items-center justify-center transition-all duration-300 focus:outline-none focus:shadow-outline text-sm mt-5 first:mt-0`}
   .iconContainer {
     ${tw`bg-white p-2 rounded-full`}
@@ -96,17 +94,15 @@ const SubmitButtonIcon = LoginIcon
 const forgotPasswordUrl = "#"
 const signupUrl = "/signup"
 export default ({ data }) => {
+  const identity = useIdentityContext()
+
+  console.log(identity)
   const illustrationImageSrc = data.dogLogo.childImageSharp.fluid.src
   const socialButtons = [
     {
       iconImageSrc: data.googleIcon.childImageSharp.fixed.src,
       text: "Sign In With Google",
       url: "https://google.com",
-    },
-    {
-      iconImageSrc: data.twitterIcon.childImageSharp.fixed.src,
-      text: "Sign In With Twitter",
-      url: "https://twitter.com",
     },
   ]
   console.log(data)
@@ -123,7 +119,10 @@ export default ({ data }) => {
               <FormContainer>
                 <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
-                    <SocialButton key={index} href={socialButton.url}>
+                    <SocialButton
+                      key={index}
+                      onClick={() => identity.loginProvider("google")}
+                    >
                       <span className="iconContainer">
                         <img
                           src={socialButton.iconImageSrc}

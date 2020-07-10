@@ -12,9 +12,7 @@ import CartCount from "~/components/misc/CartCount"
 import MenuIcon from "../../images/menu.svg"
 import CloseIcon from "../../images/x.svg"
 import CartIcon from "~/images/shopping-cart.svg"
-import IdentityModal, {
-  useIdentityContext,
-} from "react-netlify-identity-widget"
+import { useIdentityContext } from "react-netlify-identity-widget"
 // const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
 import "react-netlify-identity-widget/styles.css"
 
@@ -68,10 +66,6 @@ let className
 let collapseBreakpointClass = "lg"
 const HeadComponent = (roundedHeaderButton = false) => {
   const identity = useIdentityContext()
-  const [dialog, setDialog] = useState(false)
-  useEffect(() => {
-    setDialog(false)
-  }, [identity.isLoggedIn])
 
   console.log(identity)
   // useEffect(() => {
@@ -99,7 +93,7 @@ const HeadComponent = (roundedHeaderButton = false) => {
 
       <NavLink to="/contact">Contact Us</NavLink>
 
-      <LoginButton tw="lg:ml-12!" setDialog={setDialog} />
+      <LoginButton tw="lg:ml-12!" />
 
       {/* {isLoggedIn && <PrimaryLink to="/signup">Sign Up</PrimaryLink>} */}
 
@@ -156,12 +150,6 @@ const HeadComponent = (roundedHeaderButton = false) => {
       `}
       render={data => (
         <Header className={className || "header-light"}>
-          <IdentityModal
-            showDialog={dialog}
-            onCloseDialog={() => {
-              setDialog(false)
-            }}
-          />
           <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
             <LogoLink to="/">
               <Img

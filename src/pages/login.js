@@ -121,7 +121,11 @@ export default ({ data }) => {
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton
                       key={index}
-                      onClick={() => identity.loginProvider("google")}
+                      onClick={() =>
+                        identity
+                          .loginProvider("google")
+                          .then(() => console.log("moo"))
+                      }
                     >
                       <span className="iconContainer">
                         <img

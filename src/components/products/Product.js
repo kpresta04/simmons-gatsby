@@ -29,6 +29,7 @@ const ProductTemplate = ({ pageContext }) => {
             {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
             <img
               alt="Product"
+              style={{ maxHeight: "400px", maxWidth: "500px" }}
               css={tw`lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded`}
               src={product.images[0].localFile.childImageSharp.original.src}
             />

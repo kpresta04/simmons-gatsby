@@ -1,15 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
 import illustration from "../images/signup-illustration.svg"
-// import logo from "../images/logo.svg"
-// import googleIconImageSrc from "images/google-icon.png";
-// import twitterIconImageSrc from "images/twitter-icon.png";
 import SignUpIcon from "../images/user-plus.svg"
-import { graphql, Link } from "gatsby"
+import { graphql, Link, navigate } from "gatsby"
+import { useIdentityContext } from "react-netlify-identity-widget"
 
 const Container = tw(
   ContainerBase
@@ -17,13 +15,13 @@ const Container = tw(
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`
 const LogoLink = tw.a``
-const LogoImage = tw.img`h-12 mx-auto`
+const LogoImage = tw.img` mx-auto`
 const MainContent = tw.div`mt-12 flex flex-col items-center`
 const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`
 const FormContainer = tw.div`w-full flex-1 mt-8`
 
 const SocialButtonsContainer = tw.div`flex flex-col items-center`
-const SocialButton = styled.a`
+const SocialButton = styled.button`
   ${tw`w-full max-w-xs font-semibold rounded-lg py-3 border text-gray-900 bg-gray-100 hocus:bg-gray-200 hocus:border-gray-400 flex items-center justify-center transition-all duration-300 focus:outline-none focus:shadow-outline text-sm mt-5 first:mt-0`}
   .iconContainer {
     ${tw`bg-white p-2 rounded-full`}
@@ -80,7 +78,13 @@ export const query = graphql`
     }
     logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
       childImageSharp {
-        fixed(width: 80, height: 45, quality: 100) {
+        fixed(
+          width: 115
+          height: 70
+          quality: 100
+          cropFocus: CENTER
+          fit: COVER
+        ) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -99,16 +103,13 @@ export default ({
   signInUrl = "/login",
   data,
 }) => {
+  const identity = useIdentityContext()
+  const [errorMessage, setErrorMessage] = useState(null)
+
   const socialButtons = [
     {
       iconImageSrc: data.googleIcon.childImageSharp.fixed.src,
       text: "Sign Up With Google",
-      url: "https://google.com",
-    },
-    {
-      iconImageSrc: data.twitterIcon.childImageSharp.fixed.src,
-      text: "Sign Up With Twitter",
-      url: "https://twitter.com",
     },
   ]
   return (
@@ -124,7 +125,12 @@ export default ({
               <FormContainer>
                 <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
-                    <SocialButton key={index} href={socialButton.url}>
+                    <SocialButton
+                      key={index}
+                      onClick={() => {
+                        identity.loginProvider("google")
+                      }}
+                    >
                       <span className="iconContainer">
                         <img
                           src={socialButton.iconImageSrc}
@@ -139,15 +145,43 @@ export default ({
                 <DividerTextContainer>
                   <DividerText>Or Sign up with your e-mail</DividerText>
                 </DividerTextContainer>
-                <Form>
-                  <Input type="email" placeholder="Email" />
-                  <Input type="password" placeholder="Password" />
+                <Form
+                  onSubmit={e => {
+                    e.preventDefault()
+                    if (errorMessage) {
+                      setErrorMessage(null)
+                    }
+                    const email = document.querySelector("#email").value
+                    const pw = document.querySelector("#password").value
+                    identity
+                      .signupUser(email, pw)
+                      .catch(err => setErrorMessage(err.message.slice(12)))
+                  }}
+                >
+                  <Input
+                    name="email"
+                    required
+                    id="email"
+                    type="email"
+                    placeholder="Email"
+                  />
+                  <Input
+                    required
+                    name="password"
+                    pattern=".{8,}"
+                    title="8 characters minimum"
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                  />
                   <SubmitButton type="submit">
                     <SubmitButtonIcon className="icon" />
                     <span className="text">{submitButtonText}</span>
                   </SubmitButton>
+                  <p tw="text-red-700 mt-4 text-center">{errorMessage}</p>
+
                   <p tw="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by treact's{" "}
+                    I agree to abide by Simmons's{" "}
                     <a
                       href={tosUrl}
                       tw="border-b border-gray-500 border-dotted"

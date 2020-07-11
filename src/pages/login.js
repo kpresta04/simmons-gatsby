@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
@@ -7,7 +7,8 @@ import { css } from "styled-components/macro" //eslint-disable-line
 import { useIdentityContext } from "react-netlify-identity-widget"
 
 import LoginIcon from "../images/log-in.svg"
-import { graphql, Link } from "gatsby"
+import { graphql, Link, navigate } from "gatsby"
+import Multipassify from "multipassify"
 
 export const query = graphql`
   query {
@@ -34,7 +35,13 @@ export const query = graphql`
     }
     logoSmall: file(relativePath: { eq: "logoSmall.png" }) {
       childImageSharp {
-        fixed(width: 100, height: 65, quality: 100) {
+        fixed(
+          width: 115
+          height: 70
+          quality: 100
+          cropFocus: CENTER
+          fit: COVER
+        ) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -48,7 +55,7 @@ const Container = tw(
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`
 const LogoLink = tw.a``
-const LogoImage = tw.img`h-12 mx-auto`
+const LogoImage = tw.img` mx-auto`
 const MainContent = tw.div`mt-12 flex flex-col items-center`
 const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`
 const FormContainer = tw.div`w-full flex-1 mt-8`
@@ -94,6 +101,7 @@ const SubmitButtonIcon = LoginIcon
 const forgotPasswordUrl = "#"
 const signupUrl = "/signup"
 export default ({ data }) => {
+  const [errorMessage, setErrorMessage] = useState(null)
   const identity = useIdentityContext()
 
   console.log(identity)
@@ -105,7 +113,8 @@ export default ({ data }) => {
       url: "https://google.com",
     },
   ]
-  console.log(data)
+  const multipassify = new Multipassify("1b94c8f90eeac13675e71bfb6db69169")
+
   return (
     <AnimationRevealPage disabled>
       <Container>
@@ -121,13 +130,8 @@ export default ({ data }) => {
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton
                       key={index}
-                      onClick={async () => {
-                        try {
-                          await identity.loginProvider("google")
-                          console.log("moo")
-                        } catch (error) {
-                          console.log(error)
-                        }
+                      onClick={() => {
+                        identity.loginProvider("google")
                       }}
                     >
                       <span className="iconContainer">
@@ -144,20 +148,56 @@ export default ({ data }) => {
                 <DividerTextContainer>
                   <DividerText>Or Sign in with your e-mail</DividerText>
                 </DividerTextContainer>
-                <Form>
-                  <Input type="email" placeholder="Email" />
-                  <Input type="password" placeholder="Password" />
+                <Form
+                  onSubmit={e => {
+                    e.preventDefault()
+                    if (errorMessage) {
+                      setErrorMessage(null)
+                    }
+                    const email = document.querySelector("#email").value
+                    const pw = document.querySelector("#password").value
+                    identity
+                      .loginUser(email, pw, true)
+                      .then(User => {
+                        const customerData = {
+                          email: User.email,
+                          created_at: User.created_at,
+                          return_to: "http://localhost:8000/",
+                        }
+
+                        // Encode a Multipass token
+                        var token = multipassify.encode(customerData)
+
+                        // Generate a Shopify multipass URL to your shop
+                        var loginUrl = multipassify.generateUrl(
+                          customerData,
+                          "simmons-gun-repairs.myshopify.com"
+                        )
+
+                        navigate(loginUrl)
+                      })
+                      .catch(err => setErrorMessage(err.message.slice(14)))
+                  }}
+                >
+                  <Input id="email" required type="email" placeholder="Email" />
+                  <Input
+                    id="password"
+                    required
+                    type="password"
+                    placeholder="Password"
+                  />
                   <SubmitButton type="submit">
                     <SubmitButtonIcon className="icon" />
                     <span className="text">{submitButtonText}</span>
                   </SubmitButton>
                 </Form>
+                <p tw="text-red-700 mt-4 text-center">{errorMessage}</p>
                 <p tw="mt-6 text-xs text-gray-600 text-center">
                   <a
                     href={forgotPasswordUrl}
                     tw="border-b border-gray-500 border-dotted"
                   >
-                    Forgot Password ?
+                    Forgot your password?
                   </a>
                 </p>
                 <p tw="mt-8 text-sm text-gray-600 text-center">

@@ -8,6 +8,7 @@ import illustration from "../images/signup-illustration.svg"
 import SignUpIcon from "../images/user-plus.svg"
 import { graphql, Link, navigate } from "gatsby"
 import { useIdentityContext } from "react-netlify-identity-widget"
+import fetchGraphQL from "~/utils/fetchGraphQL"
 
 const Container = tw(
   ContainerBase
@@ -123,7 +124,7 @@ export default ({
             <MainContent>
               <Heading>{headingText}</Heading>
               <FormContainer>
-                <SocialButtonsContainer>
+                {/* <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton
                       key={index}
@@ -141,21 +142,51 @@ export default ({
                       <span className="text">{socialButton.text}</span>
                     </SocialButton>
                   ))}
-                </SocialButtonsContainer>
-                <DividerTextContainer>
+                </SocialButtonsContainer> */}
+                {/* <DividerTextContainer>
                   <DividerText>Or Sign up with your e-mail</DividerText>
-                </DividerTextContainer>
+                </DividerTextContainer> */}
                 <Form
-                  onSubmit={e => {
+                  onSubmit={async e => {
                     e.preventDefault()
                     if (errorMessage) {
                       setErrorMessage(null)
                     }
-                    const email = document.querySelector("#email").value
-                    const pw = document.querySelector("#password").value
-                    identity
-                      .signupUser(email, pw)
-                      .catch(err => setErrorMessage(err.message.slice(12)))
+                    const emailField = document.querySelector("#email")
+                    const pwField = document.querySelector("#password")
+                    const mutation = `mutation {
+    customerCreate(input: {
+      email: "${emailField.value}",
+      password: "${pwField.value}"
+    }) {
+      customerUserErrors {
+        code
+        field
+        message
+      }
+      customer {
+        id
+      }
+    }
+  }`
+                    try {
+                      const response = await fetchGraphQL(mutation)
+
+                      const { data } = response.data
+                      console.log(data)
+                      if (data.customerCreate.customerUserErrors) {
+                        setErrorMessage(
+                          data.customerCreate.customerUserErrors[0].message
+                        )
+                        emailField.value = ""
+                        pwField.value = ""
+                      }
+                    } catch (error) {
+                      setErrorMessage(error.message)
+                    }
+                    // identity
+                    //   .signupUser(email, pw)
+                    //   .catch(err => setErrorMessage(err.message.slice(12)))
                   }}
                 >
                   <Input

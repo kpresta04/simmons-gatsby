@@ -193,12 +193,12 @@ export default ({ data }) => {
                 </Form>
                 <p tw="text-red-700 mt-4 text-center">{errorMessage}</p>
                 <p tw="mt-6 text-xs text-gray-600 text-center">
-                  <a
-                    href={forgotPasswordUrl}
+                  <Link
+                    to="/recover"
                     tw="border-b border-gray-500 border-dotted"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </p>
                 <p tw="mt-8 text-sm text-gray-600 text-center">
                   Dont have an account?{" "}

@@ -1,4 +1,7 @@
 const path = require("path")
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 /**
  * Configure your Gatsby site with this file.
  *
@@ -48,7 +51,7 @@ module.exports = {
         // The domain name of your Shopify shop.
         shopName: `simmons-gun-repairs`,
         // The storefront access token
-        accessToken: `80ec29390ee7217adbe1cb9b5b4f0e4a`,
+        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
         apiVersion: "2020-04",
       },
     },

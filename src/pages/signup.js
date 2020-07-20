@@ -124,6 +124,7 @@ export default ({
             <MainContent>
               <Heading>{headingText}</Heading>
               <FormContainer>
+                {/* hidden for now */}
                 {/* <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton

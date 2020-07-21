@@ -92,6 +92,7 @@ export const query = graphql`
     }
   }
 `
+
 export default ({
   logoLinkUrl = "/",
   illustrationImageSrc = illustration,
@@ -106,6 +107,43 @@ export default ({
 }) => {
   const identity = useIdentityContext()
   const [errorMessage, setErrorMessage] = useState(null)
+
+  const signUpFunc = async () => {
+    let email = document.querySelector("#email").value
+    let pw = document.querySelector("#password").value
+    const mutation = `mutation {
+      customerCreate(input: {
+        email: "${email}",
+        password: "${pw}"
+      }) {
+        customerUserErrors {
+          code
+          field
+          message
+        }
+        customer {
+          id
+        }
+      }
+    }`
+
+    try {
+      const response = await fetchGraphQL(mutation)
+
+      let { data } = response.data
+      console.log(data)
+      if (data.customerCreate.customerUserErrors.length > 0) {
+        setErrorMessage(data.customerCreate.customerUserErrors[0].message)
+        email = ""
+        pw = ""
+        return
+      }
+      const simmonsUserID = data.customerCreate.customer.id
+      return simmonsUserID
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
+  }
 
   const socialButtons = [
     {
@@ -153,41 +191,61 @@ export default ({
                     if (errorMessage) {
                       setErrorMessage(null)
                     }
-                    const emailField = document.querySelector("#email")
-                    const pwField = document.querySelector("#password")
-                    const mutation = `mutation {
-    customerCreate(input: {
-      email: "${emailField.value}",
-      password: "${pwField.value}"
-    }) {
-      customerUserErrors {
-        code
-        field
-        message
-      }
-      customer {
-        id
-      }
-    }
-  }`
-                    try {
-                      const response = await fetchGraphQL(mutation)
+                    let email = document.querySelector("#email").value
+                    let pw = document.querySelector("#password").value
 
-                      const { data } = response.data
+                    const userID = await signUpFunc()
+
+                    const logInMutation = `
+                    mutation  {
+  customerAccessTokenCreate(input: {
+      email: "${email}",
+      password: "${pw}"
+    }) {
+    customerUserErrors {
+      code
+      field
+      message
+    }
+    customerAccessToken {
+      accessToken
+      expiresAt
+    }
+  }
+}`
+                    try {
+                      const logInResponse = await fetchGraphQL(logInMutation)
+
+                      let { data } = logInResponse.data
                       console.log(data)
-                      if (data.customerCreate.customerUserErrors) {
-                        setErrorMessage(
-                          data.customerCreate.customerUserErrors[0].message
-                        )
-                        emailField.value = ""
-                        pwField.value = ""
-                      }
+                      // if (data.customerAccessTokenCreate.customerUserErrors) {
+                      //   setErrorMessage(
+                      //     data.customerAccessTokenCreate.customerUserErrors[0]
+                      //       .message
+                      //   )
+                      //   email = ""
+                      //   pw = ""
+                      //   return
+                      // }
+
+                      identity
+                        .signupUser(email, pw, {
+                          id: userID,
+
+                          ...data.customerAccessTokenCreate.customerAccessToken,
+                        })
+                        .catch(err => {
+                          setErrorMessage(err.message.slice(12))
+                          email = ""
+                          pw = ""
+                          return
+                        })
                     } catch (error) {
                       setErrorMessage(error.message)
+
+                      return
                     }
-                    // identity
-                    //   .signupUser(email, pw)
-                    //   .catch(err => setErrorMessage(err.message.slice(12)))
+                    navigate("/")
                   }}
                 >
                   <Input

@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
 import { useIdentityContext } from "react-netlify-identity-widget"
+import fetchGraphQL from "~/utils/fetchGraphQL"
 
 import LoginIcon from "../images/log-in.svg"
 import { graphql, Link, navigate } from "gatsby"
-import Multipassify from "multipassify"
+// import Multipassify from "multipassify"
 
 export const query = graphql`
   query {
@@ -104,7 +105,50 @@ export default ({ data }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const identity = useIdentityContext()
 
-  console.log(identity)
+  useEffect(() => {
+    const renewToken = async user_metadata => {
+      const renewTokenMutation = `
+      mutation {
+  customerAccessTokenRenew(customerAccessToken: "${user_metadata.accessToken}"
+  ) {
+  customerAccessToken {
+  accessToken
+  expiresAt
+  }
+  userErrors {
+  field
+  message
+  }
+  }
+  }`
+
+      try {
+        const response = await fetchGraphQL(renewTokenMutation)
+        const { data } = response.data
+        const newToken = data.customerAccessTokenRenew.customerAccessToken
+        return newToken
+        // setTimeout(
+        //   2000
+        // )
+        // navigate("/")
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const updateUserData = async () => {
+      const newToken = await renewToken(identity.user.user_metadata)
+      identity.updateUser({
+        data: { ...identity.user.user_metadata, ...newToken },
+      })
+
+      navigate("/")
+    }
+    if (identity.isLoggedIn) {
+      updateUserData()
+    }
+  }, [identity.isLoggedIn])
+
   const illustrationImageSrc = data.dogLogo.childImageSharp.fluid.src
   const socialButtons = [
     {
@@ -113,7 +157,7 @@ export default ({ data }) => {
       url: "https://google.com",
     },
   ]
-  const multipassify = new Multipassify("1b94c8f90eeac13675e71bfb6db69169")
+  // const multipassify = new Multipassify("1b94c8f90eeac13675e71bfb6db69169")
 
   return (
     <AnimationRevealPage disabled>
@@ -126,7 +170,7 @@ export default ({ data }) => {
             <MainContent>
               <Heading>{headingText}</Heading>
               <FormContainer>
-                <SocialButtonsContainer>
+                {/* <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton
                       key={index}
@@ -147,36 +191,47 @@ export default ({ data }) => {
                 </SocialButtonsContainer>
                 <DividerTextContainer>
                   <DividerText>Or Sign in with your e-mail</DividerText>
-                </DividerTextContainer>
+                </DividerTextContainer> */}
                 <Form
-                  onSubmit={e => {
+                  onSubmit={async e => {
                     e.preventDefault()
                     if (errorMessage) {
                       setErrorMessage(null)
                     }
-                    const email = document.querySelector("#email").value
-                    const pw = document.querySelector("#password").value
+
+                    let email = document.querySelector("#email").value
+                    let pw = document.querySelector("#password").value
+                    const mutation = `
+                    mutation  {
+  customerAccessTokenCreate(input: {
+      email: "${email}",
+      password: "${pw}"
+    }) {
+    customerUserErrors {
+      code
+      field
+      message
+    }
+    customerAccessToken {
+      accessToken
+      expiresAt
+    }
+  }
+}`
+
                     identity
                       .loginUser(email, pw, true)
-                      .then(User => {
-                        const customerData = {
-                          email: User.email,
-                          created_at: User.created_at,
-                          return_to: "http://localhost:8000/",
-                        }
-
-                        // Encode a Multipass token
-                        var token = multipassify.encode(customerData)
-
-                        // Generate a Shopify multipass URL to your shop
-                        var loginUrl = multipassify.generateUrl(
-                          customerData,
-                          "simmons-gun-repairs.myshopify.com"
-                        )
-
-                        navigate(loginUrl)
+                      // .then(async User => {
+                      //   // const newToken = await renewToken(User.user_metadata)
+                      //   // identity.updateUser({
+                      //   //   data: { ...User.user_metadata, ...newToken },
+                      //   // })
+                      // })
+                      .catch(err => {
+                        pw = ""
+                        email = ""
+                        setErrorMessage(err.message.slice(14))
                       })
-                      .catch(err => setErrorMessage(err.message.slice(14)))
                   }}
                 >
                   <Input id="email" required type="email" placeholder="Email" />

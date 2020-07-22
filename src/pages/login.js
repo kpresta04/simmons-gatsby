@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
 import { useIdentityContext } from "react-netlify-identity-widget"
 import fetchGraphQL from "~/utils/fetchGraphQL"
+import UserContext from "~/context/UserContext"
 
 import LoginIcon from "../images/log-in.svg"
 import { graphql, Link, navigate } from "gatsby"
@@ -104,50 +105,52 @@ const signupUrl = "/signup"
 export default ({ data }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const identity = useIdentityContext()
+  const user = useContext(UserContext)
+  // console.log(user)
 
-  useEffect(() => {
-    const renewToken = async user_metadata => {
-      const renewTokenMutation = `
-      mutation {
-  customerAccessTokenRenew(customerAccessToken: "${user_metadata.accessToken}"
-  ) {
-  customerAccessToken {
-  accessToken
-  expiresAt
-  }
-  userErrors {
-  field
-  message
-  }
-  }
-  }`
+  // useEffect(() => {
+  //   const renewToken = async user_metadata => {
+  //     const renewTokenMutation = `
+  //     mutation {
+  // customerAccessTokenRenew(customerAccessToken: "${user_metadata.accessToken}"
+  // ) {
+  // customerAccessToken {
+  // accessToken
+  // expiresAt
+  // }
+  // userErrors {
+  // field
+  // message
+  // }
+  // }
+  // }`
 
-      try {
-        const response = await fetchGraphQL(renewTokenMutation)
-        const { data } = response.data
-        const newToken = data.customerAccessTokenRenew.customerAccessToken
-        return newToken
-        // setTimeout(
-        //   2000
-        // )
-        // navigate("/")
-      } catch (error) {
-        console.log(error)
-      }
-    }
+  //     try {
+  //       const response = await fetchGraphQL(renewTokenMutation)
+  //       const { data } = response.data
+  //       const newToken = data.customerAccessTokenRenew.customerAccessToken
+  //       return newToken
+  //       // setTimeout(
+  //       //   2000
+  //       // )
+  //       // navigate("/")
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
 
-    const updateUserData = async () => {
-      const newToken = await renewToken(identity.user.user_metadata)
-      identity.updateUser({
-        data: { ...identity.user.user_metadata, ...newToken },
-      })
+  //   const updateUserData = async () => {
+  //     const newToken = await renewToken(identity.user.user_metadata)
+  //     identity.updateUser({
+  //       data: { ...identity.user.user_metadata, ...newToken },
+  //     })
 
-      navigate("/")
-    }
-    if (identity.isLoggedIn) {
-      updateUserData()
-    }
-  }, [identity.isLoggedIn])
+  //     navigate("/")
+  //   }
+  //   if (identity.isLoggedIn) {
+  //     updateUserData()
+  //   }
+  // }, [identity.isLoggedIn])
 
   const illustrationImageSrc = data.dogLogo.childImageSharp.fluid.src
   const socialButtons = [
@@ -195,43 +198,11 @@ export default ({ data }) => {
                 <Form
                   onSubmit={async e => {
                     e.preventDefault()
-                    if (errorMessage) {
-                      setErrorMessage(null)
-                    }
 
                     let email = document.querySelector("#email").value
                     let pw = document.querySelector("#password").value
-                    const mutation = `
-                    mutation  {
-  customerAccessTokenCreate(input: {
-      email: "${email}",
-      password: "${pw}"
-    }) {
-    customerUserErrors {
-      code
-      field
-      message
-    }
-    customerAccessToken {
-      accessToken
-      expiresAt
-    }
-  }
-}`
 
-                    identity
-                      .loginUser(email, pw, true)
-                      // .then(async User => {
-                      //   // const newToken = await renewToken(User.user_metadata)
-                      //   // identity.updateUser({
-                      //   //   data: { ...User.user_metadata, ...newToken },
-                      //   // })
-                      // })
-                      .catch(err => {
-                        pw = ""
-                        email = ""
-                        setErrorMessage(err.message.slice(14))
-                      })
+                    user.logInUser(email, pw)
                   }}
                 >
                   <Input id="email" required type="email" placeholder="Email" />
@@ -246,7 +217,7 @@ export default ({ data }) => {
                     <span className="text">{submitButtonText}</span>
                   </SubmitButton>
                 </Form>
-                <p tw="text-red-700 mt-4 text-center">{errorMessage}</p>
+                <p tw="text-red-700 mt-4 text-center">{user.errorMessage}</p>
                 <p tw="mt-6 text-xs text-gray-600 text-center">
                   <Link
                     to="/recover"

@@ -1,6 +1,9 @@
 import React from "react"
 import { StoreProvider } from "~/context/StoreContext"
+import { UserProvider } from "~/context/UserContext"
 
 export const wrapRootElement = ({ element }) => (
-  <StoreProvider>{element}</StoreProvider>
+  <UserProvider>
+    <StoreProvider>{element}</StoreProvider>
+  </UserProvider>
 )

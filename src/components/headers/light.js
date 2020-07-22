@@ -12,6 +12,7 @@ import CartCount from "~/components/misc/CartCount"
 import MenuIcon from "../../images/menu.svg"
 import CloseIcon from "../../images/x.svg"
 import CartIcon from "~/images/shopping-cart.svg"
+import UserContext from "~/context/UserContext"
 import { useIdentityContext } from "react-netlify-identity-widget"
 // const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
 import "react-netlify-identity-widget/styles.css"
@@ -66,8 +67,9 @@ let className
 let collapseBreakpointClass = "lg"
 const HeadComponent = (roundedHeaderButton = false) => {
   const identity = useIdentityContext()
+  const user = useContext(UserContext)
 
-  console.log(identity)
+  console.log(user)
   // useEffect(() => {
   //   setQuantity(quantity + 1)
   // }, [checkout])

@@ -3,7 +3,7 @@ import Client from "shopify-buy"
 
 const client = Client.buildClient({
   domain: "simmons-gun-repairs.myshopify.com",
-  storefrontAccessToken: "80ec29390ee7217adbe1cb9b5b4f0e4a",
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
 })
 const defaultContext = {
   isCartOpen: false,

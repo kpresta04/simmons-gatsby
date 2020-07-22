@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
@@ -7,8 +7,8 @@ import { css } from "styled-components/macro" //eslint-disable-line
 import illustration from "../images/signup-illustration.svg"
 import SignUpIcon from "../images/user-plus.svg"
 import { graphql, Link, navigate } from "gatsby"
-import { useIdentityContext } from "react-netlify-identity-widget"
 import fetchGraphQL from "~/utils/fetchGraphQL"
+import UserContext from "~/context/UserContext"
 
 const Container = tw(
   ContainerBase
@@ -105,7 +105,7 @@ export default ({
   signInUrl = "/login",
   data,
 }) => {
-  const identity = useIdentityContext()
+  const user = useContext(UserContext)
   const [errorMessage, setErrorMessage] = useState(null)
 
   const signUpFunc = async () => {
@@ -188,64 +188,66 @@ export default ({
                 <Form
                   onSubmit={async e => {
                     e.preventDefault()
-                    if (errorMessage) {
-                      setErrorMessage(null)
-                    }
+
                     let email = document.querySelector("#email").value
                     let pw = document.querySelector("#password").value
 
-                    const userID = await signUpFunc()
+                    user.signUpUser(email, pw)
 
-                    const logInMutation = `
-                    mutation  {
-  customerAccessTokenCreate(input: {
-      email: "${email}",
-      password: "${pw}"
-    }) {
-    customerUserErrors {
-      code
-      field
-      message
-    }
-    customerAccessToken {
-      accessToken
-      expiresAt
-    }
-  }
-}`
-                    try {
-                      const logInResponse = await fetchGraphQL(logInMutation)
+                    //                     const userID = await signUpFunc()
 
-                      let { data } = logInResponse.data
-                      console.log(data)
-                      // if (data.customerAccessTokenCreate.customerUserErrors) {
-                      //   setErrorMessage(
-                      //     data.customerAccessTokenCreate.customerUserErrors[0]
-                      //       .message
-                      //   )
-                      //   email = ""
-                      //   pw = ""
-                      //   return
-                      // }
+                    //                     const logInMutation = `
+                    //                     mutation  {
+                    //   customerAccessTokenCreate(input: {
+                    //       email: "${email}",
+                    //       password: "${pw}"
+                    //     }) {
+                    //     customerUserErrors {
+                    //       code
+                    //       field
+                    //       message
+                    //     }
+                    //     customerAccessToken {
+                    //       accessToken
+                    //       expiresAt
+                    //     }
+                    //   }
+                    // }`
+                    //                     try {
+                    //                       const logInResponse = await fetchGraphQL(logInMutation)
 
-                      identity
-                        .signupUser(email, pw, {
-                          id: userID,
+                    //                       let { data } = logInResponse.data
+                    //                       console.log(data)
+                    //                       // if (data.customerAccessTokenCreate.customerUserErrors) {
+                    //                       //   setErrorMessage(
+                    //                       //     data.customerAccessTokenCreate.customerUserErrors[0]
+                    //                       //       .message
+                    //                       //   )
+                    //                       //   email = ""
+                    //                       //   pw = ""
+                    //                       //   return
+                    //                       // }
+                    //                       if (!errorMessage) {
+                    //                         identity
+                    //                           .signupUser(email, pw, {
+                    //                             id: userID,
 
-                          ...data.customerAccessTokenCreate.customerAccessToken,
-                        })
-                        .catch(err => {
-                          setErrorMessage(err.message.slice(12))
-                          email = ""
-                          pw = ""
-                          return
-                        })
-                    } catch (error) {
-                      setErrorMessage(error.message)
+                    //                             ...data.customerAccessTokenCreate
+                    //                               .customerAccessToken,
+                    //                           })
+                    //                           .then(() => navigate("/"))
+                    //                           .catch(err => {
+                    //                             setErrorMessage(err.message.slice(12))
+                    //                             email = ""
+                    //                             pw = ""
+                    //                             return
+                    //                           })
+                    //                       }
+                    //                     } catch (error) {
+                    //                       setErrorMessage(error.message)
 
-                      return
-                    }
-                    navigate("/")
+                    //                       return
+                    //                     }
                   }}
                 >
                   <Input
@@ -268,10 +270,10 @@ export default ({
                     <SubmitButtonIcon className="icon" />
                     <span className="text">{submitButtonText}</span>
                   </SubmitButton>
-                  <p tw="text-red-700 mt-4 text-center">{errorMessage}</p>
+                  <p tw="text-red-700 mt-4 text-center">{user.errorMessage}</p>
 
                   <p tw="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by Simmons's{" "}
+                    By signing up you agree to abide by Simmons's{" "}
                     <a
                       href={tosUrl}
                       tw="border-b border-gray-500 border-dotted"

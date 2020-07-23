@@ -1,9 +1,11 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import fetchGraphQL from "~/utils/fetchGraphQL"
 import Layout from "~/components/Layout/Layout"
 import UserContext from "~/context/UserContext"
 import tw from "twin.macro"
 import styled from "styled-components"
+
+const Heading = tw.h1`text-2xl text-center xl:text-3xl font-extrabold mb-12`
 
 const SubmitButton = styled.button`
   ${tw`mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none`}
@@ -19,15 +21,34 @@ const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 borde
 
 export default function Recover() {
   const user = useContext(UserContext)
+
+  const [submitted, setSubmitted] = useState(false)
   return (
     <Layout>
       <div style={{ minHeight: "70vh" }}>
-        <Form style={{ marginTop: "7rem" }}>
+        <Form
+          onSubmit={e => {
+            e.preventDefault()
+            let email = document.querySelector("#email").value
+
+            setSubmitted(true)
+
+            user.sendPasswordRecoveryEmail(email)
+          }}
+          style={{ marginTop: "7rem" }}
+        >
+          <Heading>Reset Your Password</Heading>
+
           <Input id="email" required type="email" placeholder="Email" />
-          <SubmitButton type="submit">
+          <SubmitButton disabled={submitted} type="submit">
             <span className="text">Submit</span>
           </SubmitButton>
         </Form>
+        {submitted && (
+          <h1 style={{ textAlign: "center", marginTop: "3rem" }}>
+            An email to recover your password has been sent!
+          </h1>
+        )}
       </div>
     </Layout>
   )

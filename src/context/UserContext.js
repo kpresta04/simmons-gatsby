@@ -151,8 +151,39 @@ expiresAt
 
       let { data } = response.data
       console.log(data)
+      if (data.customerRecover.customerUserErrors.length > 0) {
+        setErrorMessage(data.customerRecover.customerUserErrors[0].message)
+        setIsLoading(false)
+      }
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const resetPasswordByURL = async (pw, reset_url) => {
+    const mutation = `mutation {
+      customerResetByUrl(resetUrl: "${reset_url}", password: "${pw}") {
+        customer { id }
+        customerUserErrors { code field message}
+      }
+    }`
+
+    try {
+      const response = await fetchGraphQL(mutation)
+
+      const { data } = response.data
+      console.log(data)
+      if (data.customerResetByUrl.customerUserErrors.length > 0) {
+        setErrorMessage(data.customerResetByUrl.customerUserErrors[0].message)
+        return false
+      } else {
+        setErrorMessage(null)
+
+        return true
+      }
+    } catch (error) {
+      console.log(error)
+      return false
     }
   }
   return (
@@ -168,6 +199,7 @@ expiresAt
         isLoading,
         signUpUser,
         sendPasswordRecoveryEmail,
+        resetPasswordByURL,
       }}
     >
       {children}

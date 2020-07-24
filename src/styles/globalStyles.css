@@ -18,3 +18,15 @@
 button:focus {
   outline: none !important;
 }
+
+th,
+td {
+  text-align: left;
+  border: 1px solid #ebebeb;
+  padding: 10px 14px;
+}
+
+th {
+  font-style: normal;
+  font-weight: 700;
+}

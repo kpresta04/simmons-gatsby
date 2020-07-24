@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import Layout from "~/components/Layout/Layout"
 import UserContext from "~/context/UserContext"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
@@ -31,11 +31,16 @@ const Account = () => {
         edges {
           node {
             orderNumber
+            id
             processedAt
             totalPrice
-                 subtotalPrice
+            subtotalPrice
             totalTax
-            
+            totalShippingPrice
+            shippingAddress {
+              name
+              formatted
+            }
             
             lineItems(first: 10) {
               edges {
@@ -116,10 +121,15 @@ const Account = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => (
-                <tr>
+              {orders.map((order, index) => (
+                <tr key={index}>
                   <th data-label="Order" scope="row">
-                    #{order.node.orderNumber}
+                    <Link
+                      state={order}
+                      to={`/order-details?order=${order.node.id}`}
+                    >
+                      #{order.node.orderNumber}
+                    </Link>
                   </th>
 
                   <td data-label="Date">

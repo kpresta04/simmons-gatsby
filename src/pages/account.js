@@ -27,7 +27,7 @@ const Account = () => {
     const mutation = `
   query  {
     customer(customerAccessToken: "${user.token.accessToken}") {
-      orders(first: 5) {
+      orders(first: 250) {
         edges {
           node {
             orderNumber
@@ -63,7 +63,7 @@ const Account = () => {
       const response = await fetchGraphQL(mutation)
 
       let { data } = response.data
-      console.log(data)
+      // console.log(data)
       setLoading(false)
 
       setOrders(data.customer.orders.edges)
@@ -145,6 +145,8 @@ const Account = () => {
         ) : (
           <h1>No orders found.</h1>
         )}
+
+        <Link to="/recover">Change password</Link>
         {loading && (
           <div>
             <Heading>Loading Order History</Heading>

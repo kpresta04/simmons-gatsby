@@ -39,7 +39,11 @@ const ProductTemplate = ({ pageContext }) => {
                 {product.title}
               </h1>
 
-              <p css={tw`leading-relaxed`}>{product.description}</p>
+              <div
+                className="productDescription"
+                css={tw`leading-relaxed`}
+                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+              />
               <div
                 css={tw`flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5`}
               >

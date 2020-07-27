@@ -43,7 +43,8 @@ const OrderDetails = props => {
             }}
           >
             Order #
-            {props.location.state.node && props.location.state.node.orderNumber}
+            {props.location.state.node !== undefined &&
+              props.location.state.node.orderNumber}
           </h2>
           <p
             style={{
@@ -53,7 +54,7 @@ const OrderDetails = props => {
             }}
           >
             Placed on{" "}
-            {props.location.state.node &&
+            {props.location.state.node !== undefined &&
               moment(props.location.state.node.processedAt.slice(0, 10)).format(
                 "MMMM Do YYYY"
               )}
@@ -76,7 +77,7 @@ const OrderDetails = props => {
             </thead>
 
             <tbody>
-              {props.location.state.node &&
+              {props.location.state.node !== undefined &&
                 props.location.state.node.lineItems.edges.map(
                   (product, index) => (
                     <tr key={index}>
@@ -106,7 +107,7 @@ const OrderDetails = props => {
                   Subtotal
                 </th>
                 <td className="text-right" data-label="Subtotal">
-                  {props.location.state.node &&
+                  {props.location.state.node !== undefined &&
                     props.location.state.node.subtotalPrice}
                 </td>
               </tr>
@@ -115,7 +116,7 @@ const OrderDetails = props => {
                   Shipping
                 </th>
                 <td className="text-right" data-label="Shipping (Standard)">
-                  {props.location.state.node &&
+                  {props.location.state.node !== undefined &&
                     props.location.state.node.totalShippingPrice}
                 </td>
               </tr>
@@ -124,7 +125,7 @@ const OrderDetails = props => {
                   Tax
                 </th>
                 <td className="text-right" data-label="Tax">
-                  {props.location.state.node &&
+                  {props.location.state.node !== undefined &&
                     props.location.state.node.totalTax}
                 </td>
               </tr>
@@ -134,7 +135,7 @@ const OrderDetails = props => {
                   Total
                 </th>
                 <td className="text-right" data-label="Total">
-                  {props.location.state.node &&
+                  {props.location.state.node !== undefined &&
                     props.location.state.node.totalPrice}
                 </td>
               </tr>
@@ -159,10 +160,10 @@ const OrderDetails = props => {
               Shipping Address
             </h3>
             <p>
-              {props.location.state.node &&
+              {props.location.state.node !== undefined &&
                 props.location.state.node.shippingAddress.name}
             </p>
-            {props.location.state.node &&
+            {props.location.state.node !== undefined &&
               props.location.state.node.shippingAddress.formatted.map(
                 (line, index) => <p key={index}>{line}</p>
               )}

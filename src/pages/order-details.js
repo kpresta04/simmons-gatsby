@@ -14,7 +14,7 @@ const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold
 const OrderDetails = ({ location }) => {
   const user = useContext(UserContext)
 
-  if (!location) {
+  if (location === null || location === undefined) {
     return <div></div>
   } else {
     return (

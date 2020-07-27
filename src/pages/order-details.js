@@ -13,6 +13,7 @@ const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold
 
 const OrderDetails = ({ location }) => {
   const user = useContext(UserContext)
+  //   console.log(location.state)
 
   return (
     <Layout>
@@ -39,11 +40,11 @@ const OrderDetails = ({ location }) => {
             marginBottom: "17.5px",
           }}
         >
-          Order #{location && location.state.node.orderNumber}
+          Order #{location.state.node && location.state.node.orderNumber}
         </h2>
         <p style={{ marginBottom: "19.4px" }}>
           Placed on{" "}
-          {location &&
+          {location.state.node &&
             moment(location.state.node.processedAt.slice(0, 10)).format(
               "MMMM Do YYYY"
             )}
@@ -66,7 +67,7 @@ const OrderDetails = ({ location }) => {
           </thead>
 
           <tbody>
-            {location &&
+            {location.state.node &&
               location.state.node.lineItems.edges.map((product, index) => (
                 <tr key={index}>
                   <th
@@ -94,7 +95,7 @@ const OrderDetails = ({ location }) => {
                 Subtotal
               </th>
               <td className="text-right" data-label="Subtotal">
-                {location && location.state.node.subtotalPrice}
+                {location.state.node && location.state.node.subtotalPrice}
               </td>
             </tr>
             <tr>
@@ -102,7 +103,7 @@ const OrderDetails = ({ location }) => {
                 Shipping
               </th>
               <td className="text-right" data-label="Shipping (Standard)">
-                {location && location.state.node.totalShippingPrice}
+                {location.state.node && location.state.node.totalShippingPrice}
               </td>
             </tr>
             <tr>
@@ -110,7 +111,7 @@ const OrderDetails = ({ location }) => {
                 Tax
               </th>
               <td className="text-right" data-label="Tax">
-                {location && location.state.node.totalTax}
+                {location.state.node && location.state.node.totalTax}
               </td>
             </tr>
 
@@ -119,7 +120,7 @@ const OrderDetails = ({ location }) => {
                 Total
               </th>
               <td className="text-right" data-label="Total">
-                {location && location.state.node.totalPrice}
+                {location.state.node && location.state.node.totalPrice}
               </td>
             </tr>
           </tfoot>
@@ -135,8 +136,10 @@ const OrderDetails = ({ location }) => {
           >
             Shipping Address
           </h3>
-          <p>{location && location.state.node.shippingAddress.name}</p>
-          {location &&
+          <p>
+            {location.state.node && location.state.node.shippingAddress.name}
+          </p>
+          {location.state.node &&
             location.state.node.shippingAddress.formatted.map((line, index) => (
               <p key={index}>{line}</p>
             ))}

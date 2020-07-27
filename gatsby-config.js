@@ -61,5 +61,13 @@ module.exports = {
         url: `https://peaceful-turing-1274a7.netlify.app/`, // required!
       },
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Helvetica"],
+        },
+      },
+    },
   ],
 }

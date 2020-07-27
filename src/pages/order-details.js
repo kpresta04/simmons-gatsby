@@ -14,61 +14,60 @@ const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold
 const OrderDetails = ({ location }) => {
   const user = useContext(UserContext)
 
-  if (location === null || location === undefined) {
-    return <div></div>
-  } else {
-    return (
-      <Layout>
-        <div style={{ minHeight: "70vh" }}>
-          <Heading>My Account</Heading>
-          <Link
-            style={{
-              fontSize: "15px",
-              textAlign: "center",
-              justifyContent: "center",
-              display: "flex",
-              margin: "0 auto 3rem auto",
-            }}
-            to="/account"
-          >
-            Return to Account Details
-          </Link>
-          <h2
-            style={{
-              fontSize: " 1.33333em",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              fontWeight: "bold",
-              marginBottom: "17.5px",
-            }}
-          >
-            Order #{location.state.node.orderNumber}
-          </h2>
-          <p style={{ marginBottom: "19.4px" }}>
-            Placed on{" "}
-            {moment(location.state.node.processedAt.slice(0, 10)).format(
+  return (
+    <Layout>
+      <div style={{ minHeight: "70vh" }}>
+        <Heading>My Account</Heading>
+        <Link
+          style={{
+            fontSize: "15px",
+            textAlign: "center",
+            justifyContent: "center",
+            display: "flex",
+            margin: "0 auto 3rem auto",
+          }}
+          to="/account"
+        >
+          Return to Account Details
+        </Link>
+        <h2
+          style={{
+            fontSize: " 1.33333em",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            fontWeight: "bold",
+            marginBottom: "17.5px",
+          }}
+        >
+          Order #{location && location.state.node.orderNumber}
+        </h2>
+        <p style={{ marginBottom: "19.4px" }}>
+          Placed on{" "}
+          {location &&
+            moment(location.state.node.processedAt.slice(0, 10)).format(
               "MMMM Do YYYY"
             )}
-          </p>
-          <table className="order-table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
+        </p>
+        <table className="order-table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
 
-                <th className="text-right" scope="col">
-                  Price
-                </th>
-                <th className="text-right" scope="col">
-                  Quantity
-                </th>
-                <th className="text-right" scope="col">
-                  Total
-                </th>
-              </tr>
-            </thead>
+              <th className="text-right" scope="col">
+                Price
+              </th>
+              <th className="text-right" scope="col">
+                Quantity
+              </th>
+              <th className="text-right" scope="col">
+                Total
+              </th>
+            </tr>
+          </thead>
 
-            <tbody>
-              {location.state.node.lineItems.edges.map((product, index) => (
+          <tbody>
+            {location &&
+              location.state.node.lineItems.edges.map((product, index) => (
                 <tr key={index}>
                   <th
                     className="order-table__product"
@@ -88,65 +87,63 @@ const OrderDetails = ({ location }) => {
                   </td>
                 </tr>
               ))}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th className="small--hide" scope="row" colSpan="3">
-                  Subtotal
-                </th>
-                <td className="text-right" data-label="Subtotal">
-                  {location.state.node.subtotalPrice}
-                </td>
-              </tr>
-              <tr>
-                <th className="small--hide" scope="row" colSpan="3">
-                  Shipping
-                </th>
-                <td className="text-right" data-label="Shipping (Standard)">
-                  {location.state.node.totalShippingPrice}
-                </td>
-              </tr>
-              <tr>
-                <th className="small--hide" scope="row" colSpan="3">
-                  Tax
-                </th>
-                <td className="text-right" data-label="Tax">
-                  {location.state.node.totalTax}
-                </td>
-              </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th className="small--hide" scope="row" colSpan="3">
+                Subtotal
+              </th>
+              <td className="text-right" data-label="Subtotal">
+                {location && location.state.node.subtotalPrice}
+              </td>
+            </tr>
+            <tr>
+              <th className="small--hide" scope="row" colSpan="3">
+                Shipping
+              </th>
+              <td className="text-right" data-label="Shipping (Standard)">
+                {location && location.state.node.totalShippingPrice}
+              </td>
+            </tr>
+            <tr>
+              <th className="small--hide" scope="row" colSpan="3">
+                Tax
+              </th>
+              <td className="text-right" data-label="Tax">
+                {location && location.state.node.totalTax}
+              </td>
+            </tr>
 
-              <tr>
-                <th className="small--hide" scope="row" colSpan="3">
-                  Total
-                </th>
-                <td className="text-right" data-label="Total">
-                  {location.state.node.totalPrice}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-          <div style={{ marginBottom: "3rem" }}>
-            <h3
-              style={{
-                fontSize: "1.7em",
-                textTransform: "none",
-                letterSpacing: "0",
-                margin: "3rem 0 1rem 0",
-              }}
-            >
-              Shipping Address
-            </h3>
-            <p>{location.state.node.shippingAddress.name}</p>
-            {location.state.node.shippingAddress.formatted.map(
-              (line, index) => (
-                <p key={index}>{line}</p>
-              )
-            )}
-          </div>
+            <tr>
+              <th className="small--hide" scope="row" colSpan="3">
+                Total
+              </th>
+              <td className="text-right" data-label="Total">
+                {location && location.state.node.totalPrice}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <div style={{ marginBottom: "3rem" }}>
+          <h3
+            style={{
+              fontSize: "1.7em",
+              textTransform: "none",
+              letterSpacing: "0",
+              margin: "3rem 0 1rem 0",
+            }}
+          >
+            Shipping Address
+          </h3>
+          <p>{location && location.state.node.shippingAddress.name}</p>
+          {location &&
+            location.state.node.shippingAddress.formatted.map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
         </div>
-      </Layout>
-    )
-  }
+      </div>
+    </Layout>
+  )
 }
 
 export default OrderDetails

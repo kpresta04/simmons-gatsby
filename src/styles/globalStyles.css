@@ -118,7 +118,8 @@ input:focus {
   outline: none;
 }
 .cart th {
-  font-family: Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  font-family: "Roboto", Helvetica, "Helvetica Neue", Arial, "Lucida Grande",
+    sans-serif;
   font-weight: 400;
   font-size: 0.86667em;
   text-transform: uppercase;

@@ -59,7 +59,7 @@ function AnimatedSlideInComponent({
 
 export default props => (
   <StyledDiv
-    style={{ fontFamily: "Helvetica,Helvetica Neue,Arial,sans-serif" }}
+    style={{ fontFamily: "Varta, Helvetica,Helvetica Neue,Arial,sans-serif" }}
     className="App"
   >
     <AnimationReveal {...props} />

@@ -54,7 +54,7 @@ export default () => {
                       id="name-input"
                       type="text"
                       name="name"
-                      placeholder="E.g. John Doe"
+                      placeholder="John Doe"
                     />
                   </InputContainer>
                   <InputContainer>
@@ -63,7 +63,7 @@ export default () => {
                       id="email-input"
                       type="email"
                       name="email"
-                      placeholder="E.g. john@mail.com"
+                      placeholder="john@mail.com"
                     />
                   </InputContainer>
                 </Column>

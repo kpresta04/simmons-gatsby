@@ -13,9 +13,12 @@ import Img from "gatsby-image"
 export function ProductCard(props) {
   const linkHref = `/product/${props.handle}`
   return (
-    <div style={{ maxWidth: "240px", margin: "1.75rem" }} className="mx-2">
+    <div
+      style={{ maxWidth: "240px", margin: "1.75rem", fontWeight: "bold" }}
+      className="mx-2"
+    >
       <Link to={linkHref}>
-        <Img fixed={props.src}></Img>
+        <Img imgStyle={{ borderRadius: "8px" }} fixed={props.src}></Img>
         <h1>{props.title}</h1>
         <h1>${props.price}</h1>
       </Link>
@@ -29,7 +32,7 @@ export default function shop({ data }) {
   return (
     <AnimationRevealPage disabled>
       <Header />
-      <PageHeader>Featured Products</PageHeader>
+      <PageHeader>Products</PageHeader>
       <div
         style={{
           display: "flex",
@@ -38,7 +41,7 @@ export default function shop({ data }) {
           justifyContent: "center",
         }}
       >
-        {data.featuredProducts.products.map((product, index) => (
+        {data.allProducts.nodes.map((product, index) => (
           <ProductCard
             key={index}
             title={product.title}
@@ -57,6 +60,35 @@ export const query = graphql`
   query {
     featuredProducts: shopifyCollection(title: { eq: "Featured Products" }) {
       products {
+        title
+        handle
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fixed(
+                width: 240
+                height: 240
+                cropFocus: CENTER
+                fit: COVER
+                quality: 100
+              ) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    allProducts: allShopifyProduct(
+      filter: { availableForSale: { eq: true } }
+      sort: { fields: id, order: ASC }
+    ) {
+      nodes {
         title
         handle
         priceRange {

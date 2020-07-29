@@ -88,6 +88,7 @@ export default function Cart() {
                   </td>
                   <td className="cart__price text-right">
                     <div data-cart-item-price="">${item.variant.price}</div>
+                    <p className="md--hide">Qty: {item.quantity}</p>
 
                     {/* <div className="cart__qty medium-up--hide">
                     <label

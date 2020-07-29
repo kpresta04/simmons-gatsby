@@ -8,9 +8,13 @@ const Title = tw.h4`text-lg font-bold`
 const Header = tw.h1`text-3xl text-center my-12 font-bold`
 
 export default function Cart() {
-  const { isCartOpen, cart, checkout, removeProductFromCart } = useContext(
-    StoreContext
-  )
+  const {
+    isCartOpen,
+    cart,
+    checkout,
+    removeProductFromCart,
+    updateProductQuantity,
+  } = useContext(StoreContext)
 
   console.log(checkout.lineItems)
   console.log(checkout)
@@ -129,10 +133,17 @@ export default function Cart() {
                         type="number"
                         name="updates[]"
                         defaultValue={item.quantity}
-                        min="0"
-                        pattern="[0-9]*"
+                        min="1"
+                        pattern="[1-9]*"
                         onChange={e => {
-                          console.log(e.target.value)
+                          // console.log(e.target.value)
+                          const quantityInt = Number(e.target.value)
+
+                          if (quantityInt > 0) {
+                            updateProductQuantity(item.id, quantityInt)
+                          } else {
+                            removeProductFromCart(item.id)
+                          }
                         }}
                         data-quantity-input=""
                         data-quantity-item="1"

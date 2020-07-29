@@ -102,6 +102,17 @@ export const StoreProvider = ({ children }) => {
       console.log(error)
     }
   }
+  const updateProductQuantity = async (lineItemId, newQuantity) => {
+    try {
+      const newCheckout = await client.checkout.updateLineItems(checkout.id, [
+        { id: lineItemId, quantity: newQuantity },
+      ])
+
+      setCheckout(newCheckout)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <StoreContext.Provider
@@ -112,6 +123,7 @@ export const StoreProvider = ({ children }) => {
         toggleCartOpen,
         removeProductFromCart,
         isLoading,
+        updateProductQuantity,
       }}
     >
       {children}

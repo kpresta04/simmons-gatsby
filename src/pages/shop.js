@@ -9,6 +9,7 @@ import tw from "twin.macro"
 import { graphql, Link } from "gatsby"
 
 import Img from "gatsby-image"
+import { css } from "styled-components/macro" //eslint-disable-line
 
 import ArrowLeft from "~/images/arrow-left.svg"
 import ArrowRight from "~/images/arrow-right.svg"
@@ -35,8 +36,19 @@ const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
 export default function Shop({ data }) {
   console.log(data)
   const [currentPage, setCurrentPage] = useState(0)
-  const [selectedCollection, setSelectedCollection] = useState(data.allProducts)
+  const [selectedCollection, setSelectedCollection] = useState(
+    data.allProducts.nodes
+  )
 
+  const collectionDict = {
+    0: data.allProducts.nodes,
+    1: data.featuredProducts.products,
+    2: data.handGuns.products,
+
+    3: data.rifles.products,
+    4: data.shotGuns.products,
+    5: data.ammo.products,
+  }
   const pageDictionary = {
     0: {
       start: 0,
@@ -56,8 +68,8 @@ export default function Shop({ data }) {
     },
   }
 
-  console.log(pageDictionary[0].start)
-  console.log(pageDictionary[0].end)
+  // console.log(pageDictionary[0].start)
+  // console.log(pageDictionary[0].end)
 
   return (
     <AnimationRevealPage disabled>
@@ -71,7 +83,49 @@ export default function Shop({ data }) {
           justifyContent: "center",
         }}
       >
-        {data.allProducts.nodes.map((product, index) => {
+        <div
+          className="toolbar-wrapper"
+          style={{
+            borderBottom: "1px solid #ebebeb",
+            borderTop: "1px solid #ebebeb",
+            width: "80%",
+            marginBottom: "22px",
+            display: "inline-flex",
+          }}
+        >
+          <div
+            className="filter-wrapper"
+            style={{ display: "inline", width: "20rem" }}
+          >
+            <label
+              htmlFor="shop-filter"
+              css={tw`w-20 uppercase`}
+              className="filter-label"
+            >
+              Filter By
+            </label>
+            <select
+              id="shop-filter"
+              onChange={e => {
+                setCurrentPage(0)
+
+                const indexInt = Number(e.target.value)
+
+                setSelectedCollection(collectionDict[indexInt])
+              }}
+            >
+              <option value="0">All products</option>
+              <option value="1">Best selling</option>
+              <option value="2">Hand guns</option>
+
+              <option value="3">Rifles</option>
+              <option value="4">Shot guns</option>
+              <option value="5">Ammunition</option>
+            </select>
+          </div>
+        </div>
+
+        {selectedCollection.map((product, index) => {
           if (
             index <= pageDictionary[currentPage].end &&
             index >= pageDictionary[currentPage].start
@@ -87,7 +141,7 @@ export default function Shop({ data }) {
             )
           }
         })}
-        {selectedCollection.nodes.length > 8 && (
+        {selectedCollection.length > 8 && (
           <div
             style={{
               display: "flex",
@@ -116,11 +170,12 @@ export default function Shop({ data }) {
                 verticalAlign: "middle",
               }}
             >
-              Page {currentPage + 1} of {selectedCollection.nodes.length / 8}
+              Page {currentPage + 1} of{" "}
+              {Math.ceil(selectedCollection.length / 8)}
             </p>
             <ArrowButton
               onClick={e => {
-                if (currentPage < selectedCollection.nodes.length / 8 - 1) {
+                if (currentPage < selectedCollection.length / 8 - 1) {
                   setCurrentPage(currentPage + 1)
                 }
               }}
@@ -138,6 +193,110 @@ export default function Shop({ data }) {
 export const query = graphql`
   query {
     featuredProducts: shopifyCollection(title: { eq: "Featured Products" }) {
+      products {
+        title
+        handle
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fixed(
+                width: 240
+                height: 240
+                cropFocus: CENTER
+                fit: COVER
+                quality: 100
+              ) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    ammo: shopifyCollection(title: { eq: "Ammunition" }) {
+      products {
+        title
+        handle
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fixed(
+                width: 240
+                height: 240
+                cropFocus: CENTER
+                fit: COVER
+                quality: 100
+              ) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    handGuns: shopifyCollection(title: { eq: "Handguns" }) {
+      products {
+        title
+        handle
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fixed(
+                width: 240
+                height: 240
+                cropFocus: CENTER
+                fit: COVER
+                quality: 100
+              ) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    rifles: shopifyCollection(title: { eq: "Rifles" }) {
+      products {
+        title
+        handle
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images {
+          localFile {
+            childImageSharp {
+              fixed(
+                width: 240
+                height: 240
+                cropFocus: CENTER
+                fit: COVER
+                quality: 100
+              ) {
+                ...GatsbyImageSharpFixed_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    shotGuns: shopifyCollection(title: { eq: "Shotguns" }) {
       products {
         title
         handle

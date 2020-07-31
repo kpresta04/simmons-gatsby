@@ -82,7 +82,7 @@ export default function Shop({ data }) {
           style={{
             borderBottom: "1px solid #ebebeb",
             borderTop: "1px solid #ebebeb",
-            width: "100%",
+            width: "80%",
             maxWidth: "1080px",
             display: "inline-flex",
             flexWrap: "wrap",

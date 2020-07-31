@@ -76,24 +76,18 @@ export default function Shop({ data }) {
     <AnimationRevealPage disabled>
       <Header />
       <PageHeader>Products</PageHeader>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <div
           className="toolbar-wrapper"
           style={{
             borderBottom: "1px solid #ebebeb",
             borderTop: "1px solid #ebebeb",
-            width: "80%",
-            marginBottom: "22px",
+            width: "100%",
+            maxWidth: "1080px",
             display: "inline-flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
+            marginBottom: "22px",
           }}
         >
           <div
@@ -131,6 +125,9 @@ export default function Shop({ data }) {
             style={{ display: "flex", flexWrap: "wrap" }}
           >
             <form
+              onEmptied={e => {
+                console.log("reset")
+              }}
               onSubmit={e => {
                 e.preventDefault()
                 const searchTerm = document
@@ -176,7 +173,18 @@ export default function Shop({ data }) {
             </form>
           </div>
         </div>
+      </div>
 
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          maxWidth: "1280px",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          margin: "0 auto",
+        }}
+      >
         {selectedCollection.length === 0 && (
           <div css={tw`w-full flex my-20 justify-center h-32`}>
             <p css={tw`text-xl lg:text-4xl font-bold`}>No results found</p>

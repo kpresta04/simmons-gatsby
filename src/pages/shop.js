@@ -13,6 +13,7 @@ import { css } from "styled-components/macro" //eslint-disable-line
 
 import ArrowLeft from "~/images/arrow-left.svg"
 import ArrowRight from "~/images/arrow-right.svg"
+import SearchIcon from "~/images/search.svg"
 
 const ArrowButton = tw.button`border border-blue-900 bg-transparent p-3`
 
@@ -91,15 +92,17 @@ export default function Shop({ data }) {
             width: "80%",
             marginBottom: "22px",
             display: "inline-flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
           }}
         >
           <div
             className="filter-wrapper"
-            style={{ display: "inline", width: "20rem" }}
+            style={{ display: "flex", width: "fit-content" }}
           >
             <label
               htmlFor="shop-filter"
-              css={tw`w-20 uppercase`}
+              css={tw`w-20 uppercase flex items-center justify-center`}
               className="filter-label"
             >
               Filter By
@@ -123,7 +126,62 @@ export default function Shop({ data }) {
               <option value="5">Ammunition</option>
             </select>
           </div>
+          <div
+            id="search-form-div"
+            style={{ display: "flex", flexWrap: "wrap" }}
+          >
+            <form
+              onSubmit={e => {
+                e.preventDefault()
+                const searchTerm = document
+                  .querySelector("#search-input")
+                  .value.toLowerCase()
+                const results = data.allProducts.nodes.filter(item => {
+                  const lowerCaseTags = item.tags.map(tag => tag.toLowerCase())
+
+                  if (lowerCaseTags.includes(searchTerm)) {
+                    return item
+                  }
+                })
+
+                if (results.length > 0) {
+                  setSelectedCollection(results)
+                } else {
+                  setSelectedCollection([])
+                }
+              }}
+              name="search"
+              style={{ display: "flex", placeItems: "center", width: "100%" }}
+            >
+              <input
+                type="search"
+                placeholder="Search"
+                required
+                name="search-input"
+                id="search-input"
+                css={tw`h-10 w-full lg:w-64`}
+              ></input>
+              <button
+                id="search-button"
+                style={{
+                  width: "50px",
+                  cursor: "pointer",
+                  flex: "0 0 auto",
+                  display: "flex",
+                  placeItems: "center",
+                }}
+              >
+                <SearchIcon css={tw`bg-blue-900 text-white h-10 w-full p-3`} />
+              </button>
+            </form>
+          </div>
         </div>
+
+        {selectedCollection.length === 0 && (
+          <div css={tw`w-full flex my-20 justify-center h-32`}>
+            <p css={tw`text-xl lg:text-4xl font-bold`}>No results found</p>
+          </div>
+        )}
 
         {selectedCollection.map((product, index) => {
           if (

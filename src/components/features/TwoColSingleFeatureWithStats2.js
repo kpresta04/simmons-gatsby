@@ -9,6 +9,7 @@ import {
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
 import StatsIllustrationSrc from "../../images/stats-illustration.svg"
 import SvgDotPattern from "../../images/dot-pattern.svg"
+import { Link } from "gatsby"
 
 const Container = tw.div`relative`
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`
@@ -101,15 +102,15 @@ export default ({
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{heading}</Heading>
             <Description>{description}</Description>
-            <Statistics>
+            {/* <Statistics>
               {statistics.map((statistic, index) => (
                 <Statistic key={index}>
                   <Value>{statistic.value}</Value>
                   <Key>{statistic.key}</Key>
                 </Statistic>
               ))}
-            </Statistics>
-            <PrimaryButton as="a" href={primaryButtonUrl}>
+            </Statistics> */}
+            <PrimaryButton as={Link} to={primaryButtonUrl}>
               {primaryButtonText}
             </PrimaryButton>
           </TextContent>

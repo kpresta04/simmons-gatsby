@@ -85,9 +85,10 @@ export default ({ data }) => {
         buttonRounded={false}
         textOnLeft={false}
         primaryButtonText="Latest Offers"
+        primaryButtonUrl="/shop"
         imageSrc={data.handgun.childImageSharp.fluid.src}
         imageCss={imageCss}
-        imageDecoratorBlob={true}
+        imageDecoratorBlob={false}
         imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
       />
       {/* <TabGrid
@@ -128,13 +129,13 @@ export default ({ data }) => {
           },
         ]}
         primaryButtonText="Order Now"
-        primaryButtonUrl="https://order.now.com"
+        primaryButtonUrl="/shop"
         imageInsideDiv={false}
         // imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
         imageSrc={data.gunrack.childImageSharp.fluid.src}
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
-        imageDecoratorBlob={true}
+        imageDecoratorBlob={false}
         imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
         textOnLeft={true}
       />

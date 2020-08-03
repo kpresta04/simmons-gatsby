@@ -10,7 +10,7 @@ import ReactModalAdapter from "../../helpers/ReactModalAdapter.js"
 import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js"
 
 import DesignIllustration from "../../images/design-illustration.svg"
-
+import { Link } from "gatsby"
 const Container = tw.div`relative`
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-20 md:py-24`
 const LeftColumn = tw.div`relative lg:w-6/12 lg:pr-12 flex-shrink-0 text-center lg:text-left`
@@ -42,7 +42,7 @@ export default ({
   heading = "Modern React Templates, Just For You",
   description = "Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.",
   primaryButtonText = "Get Started",
-  primaryButtonUrl = "#",
+  primaryButtonUrl = "/shop",
   watchVideoButtonText = "Watch Video",
   watchVideoYoutubeUrl = "https://www.youtube.com/embed/_GuOjXYl5ew",
   imageSrc = DesignIllustration,
@@ -62,7 +62,7 @@ export default ({
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>
             <Actions>
-              <PrimaryButton as="a" href={primaryButtonUrl}>
+              <PrimaryButton as={Link} to={primaryButtonUrl}>
                 {primaryButtonText}
               </PrimaryButton>
             </Actions>

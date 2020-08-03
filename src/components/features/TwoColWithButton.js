@@ -9,6 +9,7 @@ import {
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
 import TeamIllustrationSrc from "../../images/team-illustration-2.svg"
 import SvgDotPattern from "../../images/dot-pattern.svg"
+import { Link } from "gatsby"
 
 const Container = tw.div`relative`
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center`
@@ -86,8 +87,8 @@ export default ({
             <Description>{description}</Description>
             <PrimaryButton
               buttonRounded={buttonRounded}
-              as="a"
-              href={primaryButtonUrl}
+              as={Link}
+              to={primaryButtonUrl}
             >
               {primaryButtonText}
             </PrimaryButton>

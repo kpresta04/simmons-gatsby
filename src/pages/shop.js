@@ -19,6 +19,9 @@ const ArrowButton = tw.button`border border-blue-900 bg-transparent p-3`
 
 export function ProductCard(props) {
   const linkHref = `/product/${props.handle}`
+  function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
   return (
     <div
       style={{ maxWidth: "240px", margin: "1.75rem", fontWeight: "bold" }}
@@ -27,7 +30,7 @@ export function ProductCard(props) {
       <Link to={linkHref}>
         <Img imgStyle={{ borderRadius: "8px" }} fixed={props.src}></Img>
         <h1>{props.title}</h1>
-        <h1>${props.price}</h1>
+        <h1>${numberWithCommas(props.price)}</h1>
       </Link>
     </div>
   )

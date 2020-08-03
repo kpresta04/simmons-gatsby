@@ -9,7 +9,9 @@ const ProductTemplate = ({ pageContext }) => {
   const { addProductToCart } = useContext(StoreContext)
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
   console.log(product)
-
+  function numberWithCommas(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
   const handleSelectVariant = e => {
     setSelectedVariant(product.variants[e.target.value])
   }
@@ -88,7 +90,7 @@ const ProductTemplate = ({ pageContext }) => {
               </div>
               <div style={{ display: "flex" }}>
                 <span css={tw`font-medium text-2xl text-gray-900`}>
-                  ${selectedVariant.price}
+                  ${numberWithCommas(selectedVariant.price)}
                 </span>
                 <button
                   onClick={() => addProductToCart(selectedVariant.shopifyId)}

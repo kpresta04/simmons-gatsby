@@ -4,9 +4,7 @@ import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
 import { Link } from "gatsby"
 
-import FacebookIcon from "../../images/facebook-icon.svg"
-import TwitterIcon from "../../images/twitter-icon.svg"
-import YoutubeIcon from "../../images/youtube-icon.svg"
+import InstagramIcon from "~/images/instagram.svg"
 
 const Container = tw.div`relative bg-gray-900 text-gray-100 -mx-8 -mb-8 px-8`
 const Content = tw.div`max-w-screen-xl mx-auto pt-16 pb-8`
@@ -51,14 +49,8 @@ export default () => {
             </LogoContainer>
             <CompanyAddress>700 S. Rogers Road, Olathe Kansas</CompanyAddress>
             <SocialLinksContainer>
-              <SocialLink href="https://facebook.com">
-                <FacebookIcon />
-              </SocialLink>
-              <SocialLink href="https://twitter.com">
-                <TwitterIcon />
-              </SocialLink>
-              <SocialLink href="https://youtube.com">
-                <YoutubeIcon />
+              <SocialLink href="https://www.instagram.com/simmonsgunrepair/">
+                <InstagramIcon />
               </SocialLink>
             </SocialLinksContainer>
           </CompanyColumn>
@@ -66,35 +58,36 @@ export default () => {
             <ColumnHeading>Quick Links</ColumnHeading>
             <LinkList>
               <LinkListItem>
+                <Link className={Linkstyle} to="/login">
+                  Log In
+                </Link>
+              </LinkListItem>
+              {/* <LinkListItem>
                 <Link className={Linkstyle} to="#">
                   Blog
                 </Link>
-              </LinkListItem>
+              </LinkListItem> */}
               <LinkListItem>
-                <Link className={Linkstyle} to="#">
+                <Link className={Linkstyle} to="/faq">
                   FAQs
                 </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link className={Linkstyle} to="#">
+                <Link className={Linkstyle} to="/contact">
                   Support
                 </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link className={Linkstyle} to="#">
+                <Link className={Linkstyle} to="/about">
                   About Us
                 </Link>
               </LinkListItem>
             </LinkList>
           </Column>
-          <Column>
+          {/* <Column>
             <ColumnHeading>Product</ColumnHeading>
             <LinkList>
-              <LinkListItem>
-                <Link className={Linkstyle} to="#">
-                  Log In
-                </Link>
-              </LinkListItem>
+             
               <LinkListItem>
                 <Link className={Linkstyle} to="#">
                   Personal
@@ -111,7 +104,7 @@ export default () => {
                 </Link>
               </LinkListItem>
             </LinkList>
-          </Column>
+          </Column> */}
           <Column>
             <ColumnHeading>Legal</ColumnHeading>
             <LinkList>
@@ -147,12 +140,12 @@ export default () => {
                 </a>
               </LinkListItem>
               <LinkListItem>
-                <Link className={Linkstyle} to="#">
+                <Link className={Linkstyle} to="/contact">
                   Sales
                 </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link className={Linkstyle} to="#">
+                <Link className={Linkstyle} to="/contact">
                   Report Abuse
                 </Link>
               </LinkListItem>

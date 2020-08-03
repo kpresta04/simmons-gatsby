@@ -224,3 +224,18 @@ select:hover {
   height: 55px;
   opacity: 1;
 }
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(54, 54, 54) !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(54, 54, 54) !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(54, 54, 54) !important;
+}

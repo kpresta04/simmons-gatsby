@@ -49,7 +49,11 @@ export default () => {
             </LogoContainer>
             <CompanyAddress>700 S. Rogers Road, Olathe Kansas</CompanyAddress>
             <SocialLinksContainer>
-              <SocialLink href="https://www.instagram.com/simmonsgunrepair/">
+              <SocialLink
+                rel="noopener"
+                target="_blank"
+                href="https://www.instagram.com/simmonsgunrepair/"
+              >
                 <InstagramIcon />
               </SocialLink>
             </SocialLinksContainer>
@@ -135,7 +139,12 @@ export default () => {
             <LinkList>
               <LinkListItem>(913) (782)-3131</LinkListItem>
               <LinkListItem>
-                <a className={Linkstyle} href="mailto:tpresta@simmonsguns.com">
+                <a
+                  className={Linkstyle}
+                  rel="noopener"
+                  target="_blank"
+                  href="mailto:tpresta@simmonsguns.com"
+                >
                   tpresta@simmonsguns.com
                 </a>
               </LinkListItem>

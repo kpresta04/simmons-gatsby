@@ -82,7 +82,6 @@ export default ({ data }) => {
             nisi ut aliquip ex ea commodo consequat.
           </Description>
         }
-        buttonRounded={false}
         textOnLeft={false}
         primaryButtonText="Latest Offers"
         primaryButtonUrl="/shop"

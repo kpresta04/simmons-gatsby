@@ -56,7 +56,6 @@ export default ({
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
   imageSrc,
-  buttonRounded = true,
   imageRounded = true,
   imageBorder = false,
   imageShadow = false,
@@ -85,11 +84,7 @@ export default ({
             <Subheading>{subheading}</Subheading>
             <Heading>{heading}</Heading>
             <Description>{description}</Description>
-            <PrimaryButton
-              buttonRounded={buttonRounded}
-              as={Link}
-              to={primaryButtonUrl}
-            >
+            <PrimaryButton as={Link} to={primaryButtonUrl}>
               {primaryButtonText}
             </PrimaryButton>
           </TextContent>

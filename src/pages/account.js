@@ -151,7 +151,7 @@ const Account = () => {
                 </tbody>
               </table>
             ) : (
-              <h1>No orders found.</h1>
+              !loading && <h1>No orders found.</h1>
             )}
 
             <Link to="/recover">Change password</Link>

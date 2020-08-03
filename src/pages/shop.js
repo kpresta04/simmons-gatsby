@@ -142,6 +142,8 @@ export default function Shop({ data }) {
                 })
 
                 if (results.length > 0) {
+                  setCurrentPage(0)
+
                   setSelectedCollection(results)
                 } else {
                   setSelectedCollection([])

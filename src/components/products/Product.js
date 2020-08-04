@@ -3,18 +3,27 @@ import StoreContext from "~/context/StoreContext"
 import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
 import ProductImages from "~/components/ProductImages/ProductImages"
+// import { graphql } from "gatsby"
+
+import Gallery from "@browniebroke/gatsby-image-gallery"
+import "@browniebroke/gatsby-image-gallery/dist/style.css"
 
 const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
   const { addProductToCart } = useContext(StoreContext)
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
   console.log(product)
+  // console.log(data)
   function numberWithCommas(x) {
     return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
   const handleSelectVariant = e => {
     setSelectedVariant(product.variants[e.target.value])
   }
+  const images = product.images.map(
+    node => node.localFile.childImageSharp.original.src
+  )
+
   return (
     <Layout>
       {/* <div style={{ minHeight: "50vh" }}>
@@ -27,15 +36,18 @@ const ProductTemplate = ({ pageContext }) => {
 
       <section css={tw`text-gray-700 overflow-hidden`}>
         <div css={tw`container px-5 py-24 mx-auto`}>
-          <div css={tw`lg:w-4/5 mx-auto flex flex-wrap`}>
+          <div css={tw` mx-auto flex flex-wrap justify-center`}>
             {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
-            <img
-              alt="Product"
-              style={{ maxHeight: "400px", maxWidth: "500px" }}
-              css={tw`lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded`}
-              src={product.images[0].localFile.childImageSharp.original.src}
-            />
-            <div css={tw`lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0`}>
+            <div style={{ maxHeight: "400px", maxWidth: "500px" }}>
+              <img
+                alt="Product"
+                css={tw`w-full lg:h-auto object-cover object-center rounded`}
+                src={product.images[0].localFile.childImageSharp.original.src}
+              />
+            </div>
+            <div
+              css={tw`md:w-3/4 lg:w-1/2 w-full xl:pl-10 lg:py-6 mt-6 lg:mt-0`}
+            >
               <h2 css={tw`text-sm text-gray-500 tracking-widest`}>SIMMONS</h2>
               <h1 css={tw`text-gray-900 text-3xl  font-medium mb-1`}>
                 {product.title}
@@ -43,7 +55,7 @@ const ProductTemplate = ({ pageContext }) => {
 
               <div
                 className="productDescription"
-                css={tw`leading-relaxed`}
+                css={tw`leading-relaxed md:w-11/12`}
                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
               />
               <div
@@ -107,4 +119,29 @@ const ProductTemplate = ({ pageContext }) => {
   )
 }
 
+// export const query = graphql`
+//   {
+//     shopifyProduct(
+//       shopifyId: { eq: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzUyOTE0NjU0NDE0MzE=" }
+//     ) {
+//       images {
+//         localFile {
+//           childImageSharp {
+//             thumb: fluid(
+//               maxWidth: 270
+//               maxHeight: 270
+//               quality: 100
+//               cropFocus: CENTER
+//             ) {
+//               ...GatsbyImageSharpFluid
+//             }
+//             full: fluid(maxWidth: 1024, quality: 100, cropFocus: CENTER) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 export default ProductTemplate

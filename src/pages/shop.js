@@ -24,11 +24,25 @@ export function ProductCard(props) {
   }
   return (
     <div
-      style={{ maxWidth: "240px", margin: "1.75rem", fontWeight: "bold" }}
+      style={{
+        width: "240px",
+        // maxHeight: "240px",
+        margin: "1.75rem",
+        fontWeight: "bold",
+      }}
       className="mx-2"
     >
       <Link to={linkHref}>
-        <Img imgStyle={{ borderRadius: "8px" }} fixed={props.src}></Img>
+        <Img
+          style={{ maxHeight: "200px", marginBottom: "1rem" }}
+          imgStyle={{
+            borderRadius: "8px",
+            width: "100%",
+            height: "auto",
+            maxHeight: "200px",
+          }}
+          fluid={props.src}
+        ></Img>
         <h1>{props.title}</h1>
         <h1>${numberWithCommas(props.price)}</h1>
       </Link>
@@ -205,7 +219,7 @@ export default function Shop({ data }) {
               <ProductCard
                 key={index}
                 title={product.title}
-                src={product.images[0].localFile.childImageSharp.fixed}
+                src={product.images[0].localFile.childImageSharp.fluid}
                 price={product.priceRange.minVariantPrice.amount}
                 handle={product.handle}
               />
@@ -275,14 +289,14 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(
-                width: 240
-                height: 240
+              fluid(
+                maxWidth: 500
+
                 cropFocus: CENTER
-                fit: COVER
+
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed_withWebp
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -301,14 +315,14 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(
-                width: 240
-                height: 240
+              fluid(
+                maxWidth: 500
+
                 cropFocus: CENTER
-                fit: COVER
+
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed_withWebp
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -327,14 +341,14 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(
-                width: 240
-                height: 240
+              fluid(
+                maxWidth: 500
+
                 cropFocus: CENTER
-                fit: COVER
+
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed_withWebp
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -353,14 +367,14 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(
-                width: 240
-                height: 240
+              fluid(
+                maxWidth: 500
+
                 cropFocus: CENTER
-                fit: COVER
+
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed_withWebp
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -379,14 +393,14 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(
-                width: 240
-                height: 240
+              fluid(
+                maxWidth: 500
+
                 cropFocus: CENTER
-                fit: COVER
+
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed_withWebp
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -409,14 +423,14 @@ export const query = graphql`
         images {
           localFile {
             childImageSharp {
-              fixed(
-                width: 240
-                height: 240
+              fluid(
+                maxWidth: 500
+
                 cropFocus: CENTER
-                fit: COVER
+
                 quality: 100
               ) {
-                ...GatsbyImageSharpFixed_withWebp
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

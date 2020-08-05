@@ -2,11 +2,10 @@ import React, { useContext, useState } from "react"
 import StoreContext from "~/context/StoreContext"
 import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
-import ProductImages from "~/components/ProductImages/ProductImages"
+// import ProductImages from "~/components/ProductImages/ProductImages"
 // import { graphql } from "gatsby"
 import CartToast from "~/components/misc/CartToast"
-import Gallery from "@browniebroke/gatsby-image-gallery"
-import "@browniebroke/gatsby-image-gallery/dist/style.css"
+import Carousel from "~/components/Carousel/Carousel"
 
 const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
@@ -29,7 +28,7 @@ const ProductTemplate = ({ pageContext }) => {
   const images = product.images.map(
     node => node.localFile.childImageSharp.original.src
   )
-  console.log(window)
+  // console.log(window)
   return (
     <Layout>
       {/* <div style={{ minHeight: "50vh" }}>
@@ -48,20 +47,26 @@ const ProductTemplate = ({ pageContext }) => {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
+                width: "100%",
 
                 maxWidth: "500px",
               }}
             >
-              <img
-                style={{ maxHeight: "500px" }}
-                alt="Product"
-                css={tw`w-full lg:h-auto object-cover object-center rounded`}
-                src={selectedImage}
-              />
-              {images.length > 1 &&
-                images.map((image, index) => (
+              {images.length > 1 ? (
+                <Carousel images={images} />
+              ) : (
+                <img
+                  style={{ maxHeight: "500px" }}
+                  alt="Product"
+                  css={tw`w-full lg:h-auto object-cover object-center rounded`}
+                  src={selectedImage}
+                />
+              )}
+
+              {/* images.map((image, index) => (
                   <div
-                    css={tw`border-transparent active:border-blue-800 hocus:cursor-pointer hocus:border-blue-800 border-2 border-solid`}
+                    className="thumbnailDiv"
+                    css={tw`hocus:cursor-pointer`}
                     style={{
                       height: "50px",
                       width: "50px",
@@ -76,7 +81,7 @@ const ProductTemplate = ({ pageContext }) => {
                   >
                     <img alt="product thumbnail" src={image} />
                   </div>
-                ))}
+                )) */}
             </div>
 
             <div

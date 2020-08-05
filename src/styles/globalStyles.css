@@ -239,3 +239,17 @@ select:hover {
   /* Microsoft Edge */
   color: rgb(54, 54, 54) !important;
 }
+.thumbnailDiv:hover {
+  outline: 2px solid rgba(9, 0, 61, 0.7);
+}
+/* .sliderImg {
+  max-width: 100%;
+  height: auto;
+} */
+
+.alice-carousel ul li img {
+  height: auto;
+  /* max-height: 500px; */
+  width: 100%;
+  object-fit: scale-down;
+}

@@ -3,6 +3,7 @@ import StoreContext from "~/context/StoreContext"
 import Layout from "~/components/Layout/Layout"
 import tw from "twin.macro"
 import PrimaryButton from "~/components/buttons/PrimaryButton.component.js"
+import NumberWithCommas from "~/components/misc/NumberWithCommas"
 
 const Title = tw.h4`text-lg font-bold`
 const Header = tw.h1`text-3xl text-center my-12 font-bold`
@@ -155,7 +156,10 @@ export default function Cart() {
                     className="cart__final-price text-right small--hide"
                     data-cart-item-line-price=""
                   >
-                    ${Number(item.quantity) * Number(item.variant.price)}
+                    $
+                    <NumberWithCommas
+                      numb={Number(item.quantity) * Number(item.variant.price)}
+                    />
                   </td>
                 </tr>
               ))}
@@ -164,7 +168,9 @@ export default function Cart() {
 
           <h3 style={{ margin: "3rem 0 2rem", textAlign: "right" }}>
             Subtotal{" "}
-            <span className="cart_subtotal">${checkout.totalPrice}</span>
+            <span className="cart_subtotal">
+              $<NumberWithCommas numb={checkout.totalPrice} />
+            </span>
             <br />
             <br />
             Shipping and tax calculated at checkout

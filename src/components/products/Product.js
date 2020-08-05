@@ -4,7 +4,7 @@ import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
 import ProductImages from "~/components/ProductImages/ProductImages"
 // import { graphql } from "gatsby"
-
+import CartToast from "~/components/misc/CartToast"
 import Gallery from "@browniebroke/gatsby-image-gallery"
 import "@browniebroke/gatsby-image-gallery/dist/style.css"
 
@@ -12,6 +12,12 @@ const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
   const { addProductToCart } = useContext(StoreContext)
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
+
+  const [displayToast, setDisplayToast] = useState(false)
+
+  const [selectedImage, setSelectedImage] = useState(
+    product.images[0].localFile.childImageSharp.original.src
+  )
   console.log(product)
   // console.log(data)
   function numberWithCommas(x) {
@@ -23,7 +29,7 @@ const ProductTemplate = ({ pageContext }) => {
   const images = product.images.map(
     node => node.localFile.childImageSharp.original.src
   )
-
+  console.log(window)
   return (
     <Layout>
       {/* <div style={{ minHeight: "50vh" }}>
@@ -38,13 +44,41 @@ const ProductTemplate = ({ pageContext }) => {
         <div css={tw`container px-5 py-24 mx-auto`}>
           <div css={tw` mx-auto flex flex-wrap justify-center`}>
             {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
-            <div style={{ maxHeight: "400px", maxWidth: "500px" }}>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+
+                maxWidth: "500px",
+              }}
+            >
               <img
+                style={{ maxHeight: "500px" }}
                 alt="Product"
                 css={tw`w-full lg:h-auto object-cover object-center rounded`}
-                src={product.images[0].localFile.childImageSharp.original.src}
+                src={selectedImage}
               />
+              {images.length > 1 &&
+                images.map((image, index) => (
+                  <div
+                    css={tw`border-transparent active:border-blue-800 hocus:cursor-pointer hocus:border-blue-800 border-2 border-solid`}
+                    style={{
+                      height: "50px",
+                      width: "50px",
+                      margin: "1em",
+                      marginLeft: "0",
+                    }}
+                    key={index}
+                    onClick={e => {
+                      console.log(e.target)
+                      setSelectedImage(image)
+                    }}
+                  >
+                    <img alt="product thumbnail" src={image} />
+                  </div>
+                ))}
             </div>
+
             <div
               css={tw`md:w-3/4 lg:w-1/2 w-full xl:pl-10 lg:py-6 mt-6 lg:mt-0`}
             >
@@ -107,11 +141,15 @@ const ProductTemplate = ({ pageContext }) => {
                   ${numberWithCommas(selectedVariant.price)}
                 </span>
                 <button
-                  onClick={() => addProductToCart(selectedVariant.shopifyId)}
+                  onClick={() => {
+                    setDisplayToast(true)
+                    addProductToCart(selectedVariant.shopifyId)
+                  }}
                   css={tw`flex ml-16 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded`}
                 >
                   Add to Cart
                 </button>
+                <CartToast open={displayToast} setOpen={setDisplayToast} />
               </div>
             </div>
           </div>

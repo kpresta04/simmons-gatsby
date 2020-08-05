@@ -149,8 +149,8 @@ const ProductTemplate = ({ pageContext }) => {
                 >
                   Add to Cart
                 </button>
-                <CartToast open={displayToast} setOpen={setDisplayToast} />
               </div>
+              <CartToast open={displayToast} setOpen={setDisplayToast} />
             </div>
           </div>
         </div>

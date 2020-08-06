@@ -76,7 +76,7 @@ const Account = () => {
   return (
     <Layout>
       <div style={{ minHeight: "70vh" }}>
-        {user.token.accessToken !== null ? (
+        {user.token && user.token.accessToken !== null ? (
           <div>
             {selectedOrder && (
               <OrderDetail selectOrder={selectOrder} order={selectedOrder} />

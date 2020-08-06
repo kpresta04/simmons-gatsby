@@ -56,9 +56,9 @@ const ProductTemplate = ({ pageContext }) => {
                 <Carousel images={images} />
               ) : (
                 <img
-                  style={{ maxHeight: "500px" }}
+                  // style={{ maxHeight: "500px" }}
                   alt="Product"
-                  css={tw`w-full lg:h-auto object-cover object-center rounded`}
+                  css={tw`w-full lg:h-auto object-scale-down object-top rounded`}
                   src={selectedImage}
                 />
               )}

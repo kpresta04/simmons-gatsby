@@ -39,6 +39,7 @@ export function ProductCard(props) {
             borderRadius: "8px",
             width: "100%",
             height: "auto",
+            objectFit: "scale-down",
             maxHeight: "200px",
           }}
           fluid={props.src}

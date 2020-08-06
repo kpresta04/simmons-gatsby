@@ -6,5 +6,5 @@ export default function NumberWithCommas({ numb = 0 }) {
 
   x = x.toString()
   x = x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  return <span>{x}</span>
+  return <span data-testid="item-price">{x}</span>
 }

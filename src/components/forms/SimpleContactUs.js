@@ -54,6 +54,7 @@ export default () => {
                       id="name-input"
                       type="text"
                       name="name"
+                      required
                       placeholder="John Doe"
                     />
                   </InputContainer>
@@ -62,6 +63,7 @@ export default () => {
                     <Input
                       id="email-input"
                       type="email"
+                      required
                       name="email"
                       placeholder="john@mail.com"
                     />
@@ -73,6 +75,7 @@ export default () => {
                     <TextArea
                       id="message-input"
                       name="message"
+                      required
                       placeholder="E.g. inquiries about products or repairs"
                     />
                   </InputContainer>

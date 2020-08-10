@@ -29,7 +29,7 @@ export default ({
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
+        "https://images.unsplash.com/photo-1596944070170-3dc2d6be0be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
       quote:
         "I like Simmons new shipping service.  I can now order online and get a box and container shipped right to me with a return label.  So easy to do businsess via the mail.",
       customerName: "Phillip Bradley",
@@ -51,7 +51,7 @@ export default ({
           {testimonials.map((testimonial, index) => (
             <TestimonialContainer key={index}>
               <Testimonial>
-                {/* <Image src={testimonial.imageSrc} /> */}
+                <Image src={testimonial.imageSrc} />
                 <Quote>"{testimonial.quote}"</Quote>
                 <CustomerName>- {testimonial.customerName}</CustomerName>
               </Testimonial>

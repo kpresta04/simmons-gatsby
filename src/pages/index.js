@@ -57,7 +57,7 @@ export default ({ data }) => {
             <wbr /> <HighlightedText>over 75 years.</HighlightedText>
           </>
         }
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        description="Simmons - for superb craftmanship you can trust."
         // imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         imageSrc={data.smithing.childImageSharp.fluid.src}
         imageCss={imageCss}
@@ -74,12 +74,9 @@ export default ({ data }) => {
         }
         description={
           <Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            <br />
-            <br />
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.
+            You don't need to be a local - you can shop with us no matter where
+            you live, and rest easy knowing our secure shipping box will protect
+            your firearm in transit.
           </Description>
         }
         textOnLeft={false}
@@ -108,6 +105,7 @@ export default ({ data }) => {
       /> */}
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
+        description="Our highly trained gunsmiths have the expertise to restore your firearm to the maximum standard.  Satisfaction guaranteed!"
         heading={
           <>
             Standard of <HighlightedText>Excellence</HighlightedText>

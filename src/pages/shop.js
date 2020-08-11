@@ -35,6 +35,7 @@ export function ProductCard(props) {
       <Link to={linkHref}>
         <Img
           style={{ maxHeight: "200px", marginBottom: "1rem" }}
+          placeholderStyle={{ opacity: "0" }}
           imgStyle={{
             borderRadius: "8px",
             width: "100%",

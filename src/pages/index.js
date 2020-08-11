@@ -57,7 +57,7 @@ export default ({ data }) => {
             <wbr /> <HighlightedText>over 75 years.</HighlightedText>
           </>
         }
-        description="Simmons - for superb craftmanship you can trust."
+        description=""
         // imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         imageSrc={data.smithing.childImageSharp.fluid.src}
         imageCss={imageCss}

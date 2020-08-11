@@ -8,7 +8,7 @@ Commissioned as a freelance project, I've designed and built this e-commerce web
 
 ## 🚀 Screenshot
 
-![Screenshot](/src/images/siteSS.png?raw=true "Simmons Gun Repair")
+![Screenshot](/src/images/siteSS2.png?raw=true "Simmons Gun Repair")
 
 ## Link to deployed site
 

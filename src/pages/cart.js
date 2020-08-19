@@ -17,8 +17,8 @@ export default function Cart() {
     updateProductQuantity,
   } = useContext(StoreContext)
 
-  console.log(checkout.lineItems)
-  console.log(checkout)
+  // console.log(checkout.lineItems)
+  // console.log(checkout)
   return (
     <Layout>
       <div
@@ -72,6 +72,11 @@ export default function Cart() {
                       <div>
                         <div className="list-view-item__title">
                           <Title>{item.title}</Title>
+                          <p style={{ fontWeight: "normal", fontSize: "1rem" }}>
+                            {item.variant.title !== "Default Title"
+                              ? item.variant.title
+                              : null}
+                          </p>
                         </div>
 
                         <p className="cart__remove">
@@ -179,7 +184,7 @@ export default function Cart() {
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              marginBottom: "3rem",
+              paddingBottom: "3rem",
             }}
           >
             <PrimaryButton>

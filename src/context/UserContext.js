@@ -150,7 +150,7 @@ expiresAt
       const response = await fetchGraphQL(mutation)
 
       let { data } = response.data
-      console.log(data)
+      // console.log(data)
       if (data.customerRecover.customerUserErrors.length > 0) {
         setErrorMessage(data.customerRecover.customerUserErrors[0].message)
         setIsLoading(false)

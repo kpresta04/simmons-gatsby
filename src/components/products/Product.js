@@ -10,7 +10,11 @@ import Carousel from "~/components/Carousel/Carousel"
 const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
   const { addProductToCart } = useContext(StoreContext)
-  const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
+  const minVariant = product.variants.filter(
+    variant => variant.price === product.priceRange.minVariantPrice.amount
+  )
+  // console.log(minVariant)
+  const [selectedVariant, setSelectedVariant] = useState(minVariant[0])
 
   const [displayToast, setDisplayToast] = useState(false)
 
@@ -102,11 +106,15 @@ const ProductTemplate = ({ pageContext }) => {
               >
                 <div css={tw`flex  items-center`}>
                   {product.variants.length > 1 && (
-                    <span css={tw`mr-3`}>Variant</span>
+                    <span css={tw`mr-3 capitalize`}>
+                      {product.variants[0].selectedOptions[0].name}
+                    </span>
                   )}
+
                   <div style={{ position: "relative" }}>
                     {product.variants.length > 1 && (
                       <select
+                        // defaultValue={minVariant[0].title}
                         onChange={handleSelectVariant}
                         css={tw`rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10`}
                       >
@@ -114,11 +122,17 @@ const ProductTemplate = ({ pageContext }) => {
                         <option>M</option>
                         <option>L</option>
                         <option>XL</option> */}
-                        {product.variants.map((variant, index) => (
-                          <option value={index} key={index}>
-                            {variant.title}
-                          </option>
-                        ))}
+                        {product.variants.map((variant, index) =>
+                          variant.title === minVariant[0].title ? (
+                            <option selected value={index} key={index}>
+                              {variant.title}
+                            </option>
+                          ) : (
+                            <option value={index} key={index}>
+                              {variant.title}
+                            </option>
+                          )
+                        )}
                       </select>
                     )}
                     {product.variants.length > 1 && (
@@ -143,7 +157,9 @@ const ProductTemplate = ({ pageContext }) => {
               </div>
               <div style={{ display: "flex" }}>
                 <span css={tw`font-medium text-2xl text-gray-900`}>
-                  ${numberWithCommas(selectedVariant.price)}
+                  {selectedVariant.price
+                    ? `$${numberWithCommas(selectedVariant.price)}`
+                    : null}
                 </span>
                 <button
                   onClick={() => {

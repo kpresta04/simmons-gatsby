@@ -23,6 +23,9 @@ exports.createPages = async ({ graphql, actions }) => {
               price
               title
               availableForSale
+              selectedOptions {
+                name
+              }
             }
             handle
             descriptionHtml

@@ -46,7 +46,11 @@ export function ProductCard(props) {
           fluid={props.src}
         ></Img>
         <h1>{props.title}</h1>
-        <h1>${numberWithCommas(props.price)}</h1>
+        {props.variants.length > 1 ? (
+          <h1>From ${numberWithCommas(props.price)}</h1>
+        ) : (
+          <h1>${numberWithCommas(props.price)}</h1>
+        )}
       </Link>
     </div>
   )
@@ -54,7 +58,7 @@ export function ProductCard(props) {
 
 const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
 export default function Shop({ data }) {
-  console.log(data)
+  // console.log(data)
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedCollection, setSelectedCollection] = useState(
     data.allProducts.nodes
@@ -221,11 +225,14 @@ export default function Shop({ data }) {
               <ProductCard
                 key={index}
                 title={product.title}
+                variants={product.variants}
                 src={product.images[0].localFile.childImageSharp.fluid}
                 price={product.priceRange.minVariantPrice.amount}
                 handle={product.handle}
               />
             )
+          } else {
+            return ""
           }
         })}
         {selectedCollection.length > 8 && (
@@ -281,6 +288,9 @@ export const query = graphql`
   query {
     featuredProducts: shopifyCollection(title: { eq: "Featured Products" }) {
       products {
+        variants {
+          title
+        }
         title
         handle
         priceRange {
@@ -307,6 +317,9 @@ export const query = graphql`
     }
     ammo: shopifyCollection(title: { eq: "Ammunition" }) {
       products {
+        variants {
+          title
+        }
         title
         handle
         priceRange {
@@ -333,6 +346,9 @@ export const query = graphql`
     }
     handGuns: shopifyCollection(title: { eq: "Handguns" }) {
       products {
+        variants {
+          title
+        }
         title
         handle
         priceRange {
@@ -359,6 +375,9 @@ export const query = graphql`
     }
     rifles: shopifyCollection(title: { eq: "Rifles" }) {
       products {
+        variants {
+          title
+        }
         title
         handle
         priceRange {
@@ -385,6 +404,9 @@ export const query = graphql`
     }
     shotGuns: shopifyCollection(title: { eq: "Shotguns" }) {
       products {
+        variants {
+          title
+        }
         title
         handle
         priceRange {
@@ -416,6 +438,9 @@ export const query = graphql`
       nodes {
         title
         handle
+        variants {
+          title
+        }
         priceRange {
           minVariantPrice {
             amount

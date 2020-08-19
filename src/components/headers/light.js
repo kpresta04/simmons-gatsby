@@ -69,7 +69,7 @@ const HeadComponent = (roundedHeaderButton = false) => {
   const identity = useIdentityContext()
   const user = useContext(UserContext)
 
-  console.log(user)
+  // console.log(user)
   // useEffect(() => {
   //   setQuantity(quantity + 1)
   // }, [checkout])

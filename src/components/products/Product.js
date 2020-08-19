@@ -21,7 +21,7 @@ const ProductTemplate = ({ pageContext }) => {
   const [selectedImage, setSelectedImage] = useState(
     product.images[0].localFile.childImageSharp.original.src
   )
-  console.log(product)
+  // console.log(product)
   // console.log(data)
   function numberWithCommas(x) {
     return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")

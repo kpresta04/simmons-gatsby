@@ -18,6 +18,7 @@ const Account = () => {
   const [loading, setLoading] = useState(true)
   const [orders, setOrders] = useState([])
   const [selectedOrder, selectOrder] = useState(null)
+  // console.log(user)
 
   useEffect(() => {
     if (user.token !== null) {
@@ -50,6 +51,7 @@ const Account = () => {
                   quantity
                   title
                        variant {
+                         title
                     price
                   }
                   
@@ -65,10 +67,12 @@ const Account = () => {
       const response = await fetchGraphQL(mutation)
 
       let { data } = response.data
-      // console.log(data)
+      const orderData = data.customer.orders.edges
+      orderData.reverse()
+      // console.log(orderData)
       setLoading(false)
 
-      setOrders(data.customer.orders.edges)
+      setOrders(orderData)
     } catch (error) {
       console.log(error)
     }
@@ -79,11 +83,15 @@ const Account = () => {
         {user.token && user.token.accessToken !== null ? (
           <div>
             {selectedOrder && (
-              <OrderDetail selectOrder={selectOrder} order={selectedOrder} />
+              <OrderDetail
+                selectOrder={selectOrder}
+                email={user.email}
+                order={selectedOrder}
+              />
             )}
             {!selectedOrder && (
               <div>
-                <Heading>My Account</Heading>
+                <Heading>My Account - {user.email}</Heading>
                 <button
                   style={{
                     fontSize: "15px",
@@ -153,7 +161,9 @@ const Account = () => {
                     </tbody>
                   </table>
                 ) : (
-                  !loading && <h1>No orders found.</h1>
+                  !loading && (
+                    <h1 style={{ marginBottom: "3rem" }}>No orders found.</h1>
+                  )
                 )}
 
                 <Link to="/recover">Change password</Link>

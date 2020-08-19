@@ -3,13 +3,16 @@ import moment from "moment"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
+import { prod } from "mathjs"
+import OrderTable from "~/components/OrderTable/OrderTable"
 
 const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold`
 
-export default function OrderDetail({ order, selectOrder }) {
+export default function OrderDetail({ order, selectOrder, email = "" }) {
+  // console.log(order)
   return (
     <div>
-      <Heading>My Account</Heading>
+      <Heading>My Account - {email}</Heading>
       <button
         style={{
           fontSize: "15px",
@@ -25,7 +28,14 @@ export default function OrderDetail({ order, selectOrder }) {
         Return to Account Details
       </button>
 
-      <div style={{ width: "fit-content", margin: "0 auto" }}>
+      <div
+        style={{
+          // width: "fit-content",
+          margin: "0 auto",
+          width: "100%",
+          maxWidth: "800px",
+        }}
+      >
         <h2
           style={{
             fontSize: " 1.33333em",
@@ -49,7 +59,10 @@ export default function OrderDetail({ order, selectOrder }) {
           {order.node !== undefined &&
             moment(order.node.processedAt.slice(0, 10)).format("MMMM Do YYYY")}
         </p>
-        <table className="order-table" style={{ margin: "0 auto" }}>
+        <table
+          className="order-table"
+          style={{ margin: "0 auto", width: "100%" }}
+        >
           <thead>
             <tr>
               <th scope="col">Product</th>
@@ -75,7 +88,14 @@ export default function OrderDetail({ order, selectOrder }) {
                     scope="row"
                     data-label="Product"
                   >
-                    {product.node.title}
+                    <span style={{ fontWeight: "bold" }}>
+                      {product.node.title}
+                    </span>
+                    <br />
+
+                    {product.node.variant.title !== "Default Title" ? (
+                      <p>{product.node.variant.title}</p>
+                    ) : null}
                   </th>
                   <td className="text-right" data-label="Price">
                     {product.node.variant.price}
@@ -91,7 +111,7 @@ export default function OrderDetail({ order, selectOrder }) {
           </tbody>
           <tfoot>
             <tr>
-              <th className="small--hide" scope="row" colSpan="3">
+              <th scope="row" colSpan="3">
                 Subtotal
               </th>
               <td className="text-right" data-label="Subtotal">
@@ -99,7 +119,7 @@ export default function OrderDetail({ order, selectOrder }) {
               </td>
             </tr>
             <tr>
-              <th className="small--hide" scope="row" colSpan="3">
+              <th scope="row" colSpan="3">
                 Shipping
               </th>
               <td className="text-right" data-label="Shipping (Standard)">
@@ -107,7 +127,7 @@ export default function OrderDetail({ order, selectOrder }) {
               </td>
             </tr>
             <tr>
-              <th className="small--hide" scope="row" colSpan="3">
+              <th scope="row" colSpan="3">
                 Tax
               </th>
               <td className="text-right" data-label="Tax">
@@ -116,7 +136,7 @@ export default function OrderDetail({ order, selectOrder }) {
             </tr>
 
             <tr>
-              <th className="small--hide" scope="row" colSpan="3">
+              <th scope="row" colSpan="3">
                 Total
               </th>
               <td className="text-right" data-label="Total">
@@ -125,12 +145,12 @@ export default function OrderDetail({ order, selectOrder }) {
             </tr>
           </tfoot>
         </table>
+        {/* <OrderTable orderData={order} /> */}
         <div
           style={{
             marginBottom: "3rem",
 
             display: "grid",
-            justifyContent: "center",
           }}
         >
           <h3

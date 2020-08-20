@@ -12,10 +12,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    maxWidth: "350px",
+    marginLeft: "3rem",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: "none",
+    outline: "none",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -45,7 +48,6 @@ export default function TransitionsModal() {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
-        style={{ maxWidth: "350px" }}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -103,7 +105,7 @@ export default function TransitionsModal() {
 
               <textarea
                 style={{ minHeight: "150px" }}
-                css={tw`w-full`}
+                css={tw`w-full outline-none`}
                 id="message-box"
                 name="message"
                 required

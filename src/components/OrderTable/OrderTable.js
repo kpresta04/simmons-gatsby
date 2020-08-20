@@ -189,7 +189,7 @@ const EnhancedTableToolbar = props => {
           id="tableTitle"
           component="div"
         >
-          Order #{props.orderNumber}
+          Simmons Services Full List
         </Typography>
       )}
 
@@ -206,7 +206,7 @@ const EnhancedTableToolbar = props => {
           </IconButton>
         </Tooltip>
       )} */}
-      <h1>{moment(props.processedAt.slice(0, 10)).format("MMMM Do YYYY")}</h1>
+      {/* <h1>{moment(props.processedAt.slice(0, 10)).format("MMMM Do YYYY")}</h1> */}
     </Toolbar>
   )
 }

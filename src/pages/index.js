@@ -65,7 +65,7 @@ export default ({ data }) => {
         imageDecoratorBlob={true}
         primaryButtonText="Shop Now"
       />
-      {/* <PopupModal /> */}
+      <PopupModal />
 
       <MainFeature
         subheading={<Subheading>Established In 1945</Subheading>}
@@ -139,58 +139,7 @@ export default ({ data }) => {
         imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
         textOnLeft={true}
       />
-      <form
-        id="popup-modal"
-        name="popup-modal"
-        method="post"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        css={tw`flex flex-wrap`}
-        // onSubmit={e => {
-        //   e.preventDefault()
-        //   setOpen(false)
-        //   setSent(true)
-        // }}
-      >
-        <input type="hidden" name="form-name" value="popup-modal" />
-        <label className="formLabel" htmlFor="name-input">
-          Name
-        </label>
-        <input
-          required
-          css={tw`w-full`}
-          name="name"
-          placeholder="John Doe"
-          id="name-input"
-          type="text"
-        ></input>
-        <label className="formLabel" htmlFor="email-input">
-          Email
-        </label>
-        <input
-          css={tw`w-full`}
-          required
-          name="email"
-          id="email-input"
-          type="email"
-          placeholder="john@mail.com"
-        ></input>
-        <label className="formLabel" htmlFor="message-box">
-          Your Message
-        </label>
 
-        <textarea
-          style={{ minHeight: "150px" }}
-          css={tw`w-full`}
-          id="message-box"
-          name="message"
-          required
-        ></textarea>
-        {/* <PrimaryButton type="submit" value="Submit">
-          Submit
-        </PrimaryButton> */}
-        <button type="submit">Submit</button>
-      </form>
       <Testimonial
         subheading=""
         heading={

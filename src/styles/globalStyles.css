@@ -227,18 +227,18 @@ select:hover {
 }
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: rgb(54, 54, 54) !important;
+  color: rgb(121, 120, 120) !important;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: rgb(54, 54, 54) !important;
+  color: rgb(121, 120, 120) !important;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: rgb(54, 54, 54) !important;
+  color: rgb(121, 120, 120) !important;
 }
 .thumbnailDiv:hover {
   outline: 2px solid rgba(9, 0, 61, 0.7);

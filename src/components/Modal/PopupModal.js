@@ -63,18 +63,18 @@ export default function TransitionsModal() {
             <h2 css={tw`text-xl font-bold text-blue-900 mb-4`}>Contact Us</h2>
             <form
               id="popup-modal"
-              name="modal-contact"
+              name="popup-modal"
               method="post"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
               css={tw`flex flex-wrap`}
-              onSubmit={e => {
-                e.preventDefault()
-                setOpen(false)
-                setSent(true)
-              }}
+              //   onSubmit={e => {
+              //     e.preventDefault()
+              //     setOpen(false)
+              //     setSent(true)
+              //   }}
             >
-              <input type="hidden" name="form-name" value="modal-contact" />
+              <input type="hidden" name="form-name" value="popup-modal" />
               <label className="formLabel" htmlFor="name-input">
                 Name
               </label>

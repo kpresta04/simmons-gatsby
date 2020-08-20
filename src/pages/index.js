@@ -5,14 +5,15 @@ import tw from "twin.macro"
 import { css } from "styled-components/macro" //eslint-disable-line
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import Hero from "../components/hero/TwoColumnWithVideo.js"
-import Features from "../components/features/ThreeColSimple.js"
+// import Features from "../components/features/ThreeColSimple.js"
 import MainFeature from "../components/features/TwoColWithButton.js"
 import MainFeature2 from "../components/features/TwoColSingleFeatureWithStats2.js"
-import TabGrid from "../components/cards/TabCardGrid.js"
+// import TabGrid from "../components/cards/TabCardGrid.js"
 import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
 import Footer from "../components/footers/FiveColumnDark.js"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
+import PopupModal from "~/components/Modal/PopupModal"
 
 export const query = graphql`
   query MyQuery {
@@ -42,7 +43,7 @@ export const query = graphql`
 export default ({ data }) => {
   const Subheading = tw.span`tracking-wider text-sm font-medium text-blue-900`
   const HighlightedText = tw.span`text-blue-700 inline-block`
-  const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`
+  // const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`
   const Description = tw.span`inline-block mt-8`
   const imageCss = tw`rounded-4xl`
   // const { addProductToCart } = useContext(StoreContext)
@@ -64,6 +65,7 @@ export default ({ data }) => {
         imageDecoratorBlob={true}
         primaryButtonText="Shop Now"
       />
+      <PopupModal />
       <MainFeature
         subheading={<Subheading>Established In 1945</Subheading>}
         heading={

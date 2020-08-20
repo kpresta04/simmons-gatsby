@@ -254,3 +254,16 @@ select:hover {
   width: 100%;
   object-fit: scale-down;
 }
+
+.formLabel {
+  @apply text-blue-700;
+}
+#popup-modal input,
+textarea {
+  padding: 10px 18px;
+  margin-bottom: 1rem;
+  @apply text-blue-900;
+}
+#popup-modal ::placeholder {
+  color: lightgray !important;
+}

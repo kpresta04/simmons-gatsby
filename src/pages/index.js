@@ -50,7 +50,7 @@ export default ({ data }) => {
   // const logoSmall = data.logoSmall.childImageSharp
 
   return (
-    <AnimationRevealPage disabled>
+    <AnimationRevealPage>
       <Hero
         heading={
           <>

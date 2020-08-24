@@ -10,7 +10,13 @@ require("dotenv").config({
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: "Simmons Gun Repair",
+    // titleTemplate: "%s · The Real Hero",
+    description: "Professional gunsmithing since 1945.",
+  },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-source-graphql",
       options: {

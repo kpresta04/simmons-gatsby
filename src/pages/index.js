@@ -14,6 +14,7 @@ import Footer from "../components/footers/FiveColumnDark.js"
 import { graphql } from "gatsby"
 // import Img from "gatsby-image"
 import PopupModal from "~/components/Modal/PopupModal"
+import SEO from "~/components/SEO/SEO"
 
 export const query = graphql`
   query MyQuery {
@@ -48,9 +49,11 @@ export default ({ data }) => {
   const imageCss = tw`rounded-4xl`
   // const { addProductToCart } = useContext(StoreContext)
   // const logoSmall = data.logoSmall.childImageSharp
+  console.log(data)
 
   return (
     <AnimationRevealPage>
+      <SEO />
       <Hero
         heading={
           <>

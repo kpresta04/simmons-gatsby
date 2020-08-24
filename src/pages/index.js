@@ -63,7 +63,7 @@ export default ({ data }) => {
         }
         description=""
         // imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
-        imageSrc={data.smithing.childImageSharp.fluid.src}
+        imageSrc={data.smithing.childImageSharp.fluid}
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Shop Now"
@@ -88,7 +88,7 @@ export default ({ data }) => {
         textOnLeft={false}
         primaryButtonText="Latest Offers"
         primaryButtonUrl="/shop"
-        imageSrc={data.handgun.childImageSharp.fluid.src}
+        imageSrc={data.handgun.childImageSharp.fluid}
         imageCss={imageCss}
         imageDecoratorBlob={false}
         imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
@@ -135,7 +135,7 @@ export default ({ data }) => {
         primaryButtonUrl="/shop"
         imageInsideDiv={false}
         // imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
-        imageSrc={data.gunrack.childImageSharp.fluid.src}
+        imageSrc={data.gunrack.childImageSharp.fluid}
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={false}

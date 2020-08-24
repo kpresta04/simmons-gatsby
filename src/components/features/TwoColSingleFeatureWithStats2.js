@@ -10,6 +10,7 @@ import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
 import StatsIllustrationSrc from "../../images/stats-illustration.svg"
 import SvgDotPattern from "../../images/dot-pattern.svg"
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 
 const Container = tw.div`relative`
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`
@@ -90,12 +91,7 @@ export default ({
     <Container>
       <TwoColumn css={!imageInsideDiv && tw`md:items-center`}>
         <ImageColumn css={imageContainerCss}>
-          {imageInsideDiv ? (
-            <Image imageSrc={imageSrc} css={imageCss} />
-          ) : (
-            <img src={imageSrc} css={imageCss} alt="" />
-          )}
-          {imageDecoratorBlob && <DecoratorBlob css={imageDecoratorBlobCss} />}
+          <Img fluid={imageSrc} css={imageCss} />
         </ImageColumn>
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>

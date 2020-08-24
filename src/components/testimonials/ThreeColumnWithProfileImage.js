@@ -51,7 +51,11 @@ export default ({
           {testimonials.map((testimonial, index) => (
             <TestimonialContainer key={index}>
               <Testimonial>
-                <Image src={testimonial.imageSrc} />
+                <Image
+                  loading="lazy"
+                  alt="Testimonial author"
+                  src={testimonial.imageSrc}
+                />
                 <Quote>"{testimonial.quote}"</Quote>
                 <CustomerName>- {testimonial.customerName}</CustomerName>
               </Testimonial>

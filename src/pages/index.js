@@ -49,7 +49,7 @@ export default ({ data }) => {
   const imageCss = tw`rounded-4xl`
   // const { addProductToCart } = useContext(StoreContext)
   // const logoSmall = data.logoSmall.childImageSharp
-  console.log(data)
+  // console.log(data)
 
   return (
     <AnimationRevealPage>

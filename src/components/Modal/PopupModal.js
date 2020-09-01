@@ -70,11 +70,13 @@ export default function TransitionsModal() {
               data-netlify="true"
               data-netlify-honeypot="bot-field"
               css={tw`flex flex-wrap`}
-              //   onSubmit={e => {
-              //     e.preventDefault()
-              //     setOpen(false)
-              //     setSent(true)
-              //   }}
+              onSubmit={e => {
+                e.preventDefault()
+
+                setOpen(false)
+                setSent(true)
+                localStorage.setItem("modalSubmitted", "true")
+              }}
             >
               <input type="hidden" name="form-name" value="popup-modal" />
               <label className="formLabel" htmlFor="name-input">

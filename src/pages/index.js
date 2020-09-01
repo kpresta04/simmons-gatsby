@@ -50,7 +50,7 @@ export default ({ data }) => {
   // const { addProductToCart } = useContext(StoreContext)
   // const logoSmall = data.logoSmall.childImageSharp
   // console.log(data)
-
+  const modalSubmitted = JSON.parse(localStorage.getItem("modalSubmitted"))
   return (
     <AnimationRevealPage>
       <SEO />
@@ -68,7 +68,7 @@ export default ({ data }) => {
         imageDecoratorBlob={true}
         primaryButtonText="Shop Now"
       />
-      <PopupModal />
+      {modalSubmitted !== true ? <PopupModal /> : null}
 
       <MainFeature
         subheading={<Subheading>Established In 1945</Subheading>}

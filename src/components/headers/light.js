@@ -90,6 +90,8 @@ const HeadComponent = (roundedHeaderButton = false) => {
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink to="/shop">Shop</NavLink>
+      <NavLink to="/services">Services</NavLink>
+
       <NavLink to="/about">About</NavLink>
       <NavLink to="/faq">FAQ</NavLink>
 

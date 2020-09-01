@@ -73,10 +73,10 @@ export default function TransitionsModal() {
               data-netlify-honeypot="bot-field"
               css={tw`flex flex-wrap`}
               onSubmit={e => {
-                e.preventDefault()
+                // e.preventDefault()
 
-                setOpen(false)
-                setSent(true)
+                // setOpen(false)
+                // setSent(true)
                 if (isBrowser) {
                   localStorage.setItem("modalSubmitted", "true")
                 }

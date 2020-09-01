@@ -50,7 +50,14 @@ export default ({ data }) => {
   // const { addProductToCart } = useContext(StoreContext)
   // const logoSmall = data.logoSmall.childImageSharp
   // console.log(data)
-  const modalSubmitted = JSON.parse(localStorage.getItem("modalSubmitted"))
+  const isBrowser = typeof window !== "undefined"
+  let modalSubmitted
+  if (isBrowser) {
+    modalSubmitted = JSON.parse(localStorage.getItem("modalSubmitted"))
+  } else {
+    modalSubmitted = false
+  }
+
   return (
     <AnimationRevealPage>
       <SEO />

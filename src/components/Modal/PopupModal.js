@@ -25,6 +25,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function TransitionsModal() {
+  const isBrowser = typeof window !== "undefined"
+
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
   const [sent, setSent] = React.useState(false)
@@ -75,7 +77,9 @@ export default function TransitionsModal() {
 
                 setOpen(false)
                 setSent(true)
-                localStorage.setItem("modalSubmitted", "true")
+                if (isBrowser) {
+                  localStorage.setItem("modalSubmitted", "true")
+                }
               }}
             >
               <input type="hidden" name="form-name" value="popup-modal" />

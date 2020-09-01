@@ -4,6 +4,7 @@ import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
 // import ProductImages from "~/components/ProductImages/ProductImages"
 // import { graphql } from "gatsby"
+import SEO from "~/components/SEO/SEO"
 import CartToast from "~/components/misc/CartToast"
 import Carousel from "~/components/Carousel/Carousel"
 
@@ -42,6 +43,10 @@ const ProductTemplate = ({ pageContext }) => {
         <h1>{product.title}</h1>
         <div>{product.description}</div>
       </div> */}
+      <SEO
+        pageDesc={product.description}
+        pageTitle={`${product.title}: Simmons Gun Repair`}
+      />
 
       <section css={tw`text-gray-700 overflow-hidden`}>
         <div css={tw`container px-5 py-24 mx-auto`}>

@@ -29,6 +29,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             handle
             descriptionHtml
+            description
             availableForSale
             priceRange {
               maxVariantPrice {

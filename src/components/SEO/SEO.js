@@ -1,15 +1,15 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 
-export default function SEO() {
+export default function SEO({
+  pageDesc = "Professional gunsmithing since 1945.",
+  pageTitle = "Simmons Gun Repair",
+}) {
   return (
     <Helmet>
       <meta charSet="utf-8" />
-      <meta
-        name="description"
-        content="Professional gunsmithing since 1945."
-      ></meta>
-      <title>Simmons Gun Repair</title>
+      <meta name="description" content={pageDesc}></meta>
+      <title>{pageTitle}</title>
     </Helmet>
   )
 }

@@ -13,7 +13,7 @@ import MenuIcon from "../../images/menu.svg"
 import CloseIcon from "../../images/x.svg"
 import CartIcon from "~/images/shopping-cart.svg"
 import UserContext from "~/context/UserContext"
-import { useIdentityContext } from "react-netlify-identity-widget"
+// import { useIdentityContext } from "react-netlify-identity-widget"
 // const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
 import "react-netlify-identity-widget/styles.css"
 
@@ -66,8 +66,17 @@ let links
 let className
 let collapseBreakpointClass = "lg"
 const HeadComponent = (roundedHeaderButton = false) => {
-  const identity = useIdentityContext()
+  // const identity = useIdentityContext()
   const user = useContext(UserContext)
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   // console.log(user)
   // useEffect(() => {

@@ -63,7 +63,7 @@ expiresAt
       const logInResponse = await fetchGraphQL(logInMutation)
 
       const { data } = logInResponse.data
-      console.log(data)
+      // console.log(data)
       if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
         setErrorMessage(
           data.customerAccessTokenCreate.customerUserErrors[0].message
@@ -118,7 +118,7 @@ expiresAt
       const response = await fetchGraphQL(mutation)
 
       let { data } = response.data
-      console.log(data)
+      // console.log(data)
       if (data.customerCreate.customerUserErrors.length > 0) {
         setErrorMessage(data.customerCreate.customerUserErrors[0].message)
         setIsLoading(false)
@@ -172,7 +172,7 @@ expiresAt
       const response = await fetchGraphQL(mutation)
 
       const { data } = response.data
-      console.log(data)
+      // console.log(data)
       if (data.customerResetByUrl.customerUserErrors.length > 0) {
         setErrorMessage(data.customerResetByUrl.customerUserErrors[0].message)
         return false

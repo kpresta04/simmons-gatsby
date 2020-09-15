@@ -72,6 +72,7 @@ export default function Shop({ data }) {
     3: data.rifles.products,
     4: data.shotGuns.products,
     5: data.ammo.products,
+    6: data.other.products,
   }
   const pageDictionary = {
     0: {
@@ -141,6 +142,7 @@ export default function Shop({ data }) {
               <option value="3">Rifles</option>
               <option value="4">Shot guns</option>
               <option value="5">Ammunition</option>
+              <option value="6">Other</option>
             </select>
           </div>
           <div
@@ -447,6 +449,35 @@ export const query = graphql`
           }
         }
         tags
+        images {
+          localFile {
+            childImageSharp {
+              fluid(
+                maxWidth: 500
+
+                cropFocus: CENTER
+
+                quality: 100
+              ) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+    other: shopifyCollection(title: { eq: "Other" }) {
+      products {
+        variants {
+          title
+        }
+        title
+        handle
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
         images {
           localFile {
             childImageSharp {

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import Header from "../components/headers/light"
 // import SEO from "../components/seo"
@@ -80,6 +80,13 @@ export default function Shop({ data, location }) {
         : data.allProducts.nodes
       : data.allProducts.nodes
   )
+  useEffect(() => {
+    if (isBrowser) {
+      if (location.state.category !== "undefined") {
+        setSelectedCollection(collectionDict[location.state.category])
+      }
+    }
+  }, [location.state.category])
 
   const pageDictionary = {
     0: {

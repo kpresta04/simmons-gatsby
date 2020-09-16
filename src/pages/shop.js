@@ -72,7 +72,7 @@ export default function Shop({ data, location }) {
   const isBrowser = typeof window !== undefined
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedCollection, setSelectedCollection] = useState(
-    isBrowswer
+    isBrowser
       ? location.state.category !== undefined
         ? collectionDict[location.state.category]
         : data.allProducts.nodes

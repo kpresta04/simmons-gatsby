@@ -69,10 +69,13 @@ export default function Shop({ data, location }) {
     5: data.ammo.products,
     6: data.other.products,
   }
+  const isBrowser = typeof window !== undefined
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedCollection, setSelectedCollection] = useState(
-    location.state.category !== undefined
-      ? collectionDict[location.state.category]
+    isBrowswer
+      ? location.state.category !== undefined
+        ? collectionDict[location.state.category]
+        : data.allProducts.nodes
       : data.allProducts.nodes
   )
   const getCollection = () => "hello"
@@ -137,11 +140,11 @@ export default function Shop({ data, location }) {
                 setSelectedCollection(collectionDict[indexInt])
               }}
             >
-              {location.state.category !== undefined && (
+              {isBrowser && location.state.category !== undefined ? (
                 <option value="" selected disabled hidden>
                   Category
                 </option>
-              )}
+              ) : null}
               <option value="0">All products</option>
               <option value="1">Best selling</option>
               <option value="2">Hand guns</option>

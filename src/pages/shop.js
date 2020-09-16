@@ -71,7 +71,9 @@ export default function Shop({ data, location }) {
   }
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedCollection, setSelectedCollection] = useState(
-    collectionDict[location.state.category] || data.allProducts.nodes
+    location.state.category !== undefined
+      ? collectionDict[location.state.category]
+      : data.allProducts.nodes
   )
   const getCollection = () => "hello"
   const pageDictionary = {
@@ -135,7 +137,7 @@ export default function Shop({ data, location }) {
                 setSelectedCollection(collectionDict[indexInt])
               }}
             >
-              {location.state.category && (
+              {location.state.category !== undefined && (
                 <option value="" selected disabled hidden>
                   Category
                 </option>

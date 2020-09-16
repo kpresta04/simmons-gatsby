@@ -15,7 +15,8 @@ import CartIcon from "~/images/shopping-cart.svg"
 import UserContext from "~/context/UserContext"
 // import { useIdentityContext } from "react-netlify-identity-widget"
 // const logo = "https://i.ibb.co/QFLj3Sq/logo-Small.png"
-import "react-netlify-identity-widget/styles.css"
+// import "react-netlify-identity-widget/styles.css"
+import HeaderMenu from "./headerMenu"
 
 const Header = tw.header`
   flex justify-between items-center
@@ -30,6 +31,11 @@ export const NavLinks = tw.div`inline-block`
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
 export const NavLink = styled(Link)`
+  ${tw`text-xl! my-2 lg:text-base lg:mx-6 lg:my-0 
+  font-semibold tracking-wide transition duration-300
+  pb-1 border-b-2 border-transparent hover:border-blue-900 hocus:text-blue-800`}
+`
+export const NavButton = styled.button`
   ${tw`text-xl! my-2 lg:text-base lg:mx-6 lg:my-0 
   font-semibold tracking-wide transition duration-300
   pb-1 border-b-2 border-transparent hover:border-blue-900 hocus:text-blue-800`}
@@ -68,15 +74,6 @@ let collapseBreakpointClass = "lg"
 const HeadComponent = (roundedHeaderButton = false) => {
   // const identity = useIdentityContext()
   const user = useContext(UserContext)
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
 
   // console.log(user)
   // useEffect(() => {
@@ -98,7 +95,8 @@ const HeadComponent = (roundedHeaderButton = false) => {
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink to="/shop">Shop</NavLink>
+      {/* <NavLink to="/shop">Shop</NavLink> */}
+      <HeaderMenu />
       <NavLink to="/services">Services</NavLink>
 
       <NavLink to="/about">About</NavLink>

@@ -57,13 +57,8 @@ export function ProductCard(props) {
 }
 
 const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
-export default function Shop({ data }) {
+export default function Shop({ data, location }) {
   // console.log(data)
-  const [currentPage, setCurrentPage] = useState(0)
-  const [selectedCollection, setSelectedCollection] = useState(
-    data.allProducts.nodes
-  )
-
   const collectionDict = {
     0: data.allProducts.nodes,
     1: data.featuredProducts.products,
@@ -74,6 +69,11 @@ export default function Shop({ data }) {
     5: data.ammo.products,
     6: data.other.products,
   }
+  const [currentPage, setCurrentPage] = useState(0)
+  const [selectedCollection, setSelectedCollection] = useState(
+    collectionDict[location.state.category] || data.allProducts.nodes
+  )
+  const getCollection = () => "hello"
   const pageDictionary = {
     0: {
       start: 0,
@@ -135,6 +135,11 @@ export default function Shop({ data }) {
                 setSelectedCollection(collectionDict[indexInt])
               }}
             >
+              {location.state.category && (
+                <option value="" selected disabled hidden>
+                  Category
+                </option>
+              )}
               <option value="0">All products</option>
               <option value="1">Best selling</option>
               <option value="2">Hand guns</option>

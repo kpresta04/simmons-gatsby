@@ -6,9 +6,6 @@ import "./dropDown.css"
 
 const ButtonMenu = () => (
   <div className="dropdown-content">
-    <Link to="/shop" state={{ category: 0 }}>
-      All products
-    </Link>
     <Link to="/shop" state={{ category: 1 }}>
       Best selling
     </Link>

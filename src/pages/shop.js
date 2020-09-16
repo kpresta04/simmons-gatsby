@@ -59,6 +59,7 @@ export function ProductCard(props) {
 const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
 export default function Shop({ data, location }) {
   // console.log(data)
+
   const collectionDict = {
     0: data.allProducts.nodes,
     1: data.featuredProducts.products,
@@ -70,17 +71,15 @@ export default function Shop({ data, location }) {
     6: data.other.products,
   }
   const isBrowser = typeof window !== "undefined"
-  const checkBrowser = () => {
-    let defaultCol = data.allProducts.nodes
-    if (isBrowser) {
-      location.state.category !== "undefined"
-        ? (defaultCol = collectionDict[location.state.category])
-        : (defaultCol = data.allProducts.nodes)
-    }
-    return defaultCol
-  }
+
   const [currentPage, setCurrentPage] = useState(0)
-  const [selectedCollection, setSelectedCollection] = useState(checkBrowser())
+  const [selectedCollection, setSelectedCollection] = useState(
+    isBrowser
+      ? location.state.category
+        ? collectionDict[location.state.category]
+        : data.allProducts.nodes
+      : data.allProducts.nodes
+  )
 
   const pageDictionary = {
     0: {
@@ -143,10 +142,12 @@ export default function Shop({ data, location }) {
                 setSelectedCollection(collectionDict[indexInt])
               }}
             >
-              {isBrowser && location.state.category !== "undefined" ? (
-                <option value="" selected disabled hidden>
-                  Category
-                </option>
+              {isBrowser ? (
+                location.state.category !== "undefined" ? (
+                  <option value="" selected disabled hidden>
+                    Category
+                  </option>
+                ) : null
               ) : null}
               <option value="0">All products</option>
               <option value="1">Best selling</option>

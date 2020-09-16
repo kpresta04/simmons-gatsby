@@ -70,15 +70,18 @@ export default function Shop({ data, location }) {
     6: data.other.products,
   }
   const isBrowser = typeof window !== undefined
+  const checkBrowser = () => {
+    let defaultCol = data.allProducts.nodes
+    if (isBrowser) {
+      location.state.category !== undefined
+        ? (defaultCol = collectionDict[location.state.category])
+        : (defaultCol = data.allProducts.nodes)
+    }
+    return defaultCol
+  }
   const [currentPage, setCurrentPage] = useState(0)
-  const [selectedCollection, setSelectedCollection] = useState(
-    isBrowser
-      ? location.state.category !== undefined
-        ? collectionDict[location.state.category]
-        : data.allProducts.nodes
-      : data.allProducts.nodes
-  )
-  const getCollection = () => "hello"
+  const [selectedCollection, setSelectedCollection] = useState(checkBrowser())
+
   const pageDictionary = {
     0: {
       start: 0,

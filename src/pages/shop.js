@@ -69,11 +69,11 @@ export default function Shop({ data, location }) {
     5: data.ammo.products,
     6: data.other.products,
   }
-  const isBrowser = typeof window !== undefined
+  const isBrowser = typeof window !== "undefined"
   const checkBrowser = () => {
     let defaultCol = data.allProducts.nodes
     if (isBrowser) {
-      location.state.category !== undefined
+      location.state.category !== "undefined"
         ? (defaultCol = collectionDict[location.state.category])
         : (defaultCol = data.allProducts.nodes)
     }
@@ -143,7 +143,7 @@ export default function Shop({ data, location }) {
                 setSelectedCollection(collectionDict[indexInt])
               }}
             >
-              {isBrowser && location.state.category !== undefined ? (
+              {isBrowser && location.state.category !== "undefined" ? (
                 <option value="" selected disabled hidden>
                   Category
                 </option>

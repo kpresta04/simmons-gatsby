@@ -57,36 +57,40 @@ export function ProductCard(props) {
 }
 
 const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
-export default function Shop({ data, location }) {
-  // console.log(data)
+export default function Shop(props) {
+  // console.log(props.data)
 
   const collectionDict = {
-    0: data.allProducts.nodes,
-    1: data.featuredProducts.products,
-    2: data.handGuns.products,
+    0: props.data.allProducts.nodes,
+    1: props.data.featuredProducts.products,
+    2: props.data.handGuns.products,
 
-    3: data.rifles.products,
-    4: data.shotGuns.products,
-    5: data.ammo.products,
-    6: data.other.products,
+    3: props.data.rifles.products,
+    4: props.data.shotGuns.products,
+    5: props.data.ammo.products,
+    6: props.data.other.products,
   }
   const isBrowser = typeof window !== "undefined"
+  const getDefaultState = () => {
+    let dfState = []
+    if (props.location.state.category) {
+      dfState = collectionDict[props.location.state.category]
+      // console.log(dfState)
+      return dfState
+    } else {
+      dfState = props.data.allProducts.nodes
+      // console.log(dfState)
+      return dfState
+    }
+  }
+  const defaultState = getDefaultState()
 
   const [currentPage, setCurrentPage] = useState(0)
-  const [selectedCollection, setSelectedCollection] = useState(
-    isBrowser
-      ? location.state.category
-        ? collectionDict[location.state.category]
-        : data.allProducts.nodes
-      : data.allProducts.nodes
-  )
+  const [selectedCollection, setSelectedCollection] = useState(defaultState)
+
   useEffect(() => {
-    if (isBrowser) {
-      if (location.state.category !== "undefined") {
-        setSelectedCollection(collectionDict[location.state.category])
-      }
-    }
-  }, [location.state.category])
+    setSelectedCollection(defaultState)
+  }, [defaultState])
 
   const pageDictionary = {
     0: {
@@ -150,7 +154,7 @@ export default function Shop({ data, location }) {
               }}
             >
               {isBrowser ? (
-                location.state.category !== "undefined" ? (
+                props.location.state.category !== "undefined" ? (
                   <option value="" selected disabled hidden>
                     Category
                   </option>
@@ -179,7 +183,7 @@ export default function Shop({ data, location }) {
                 const searchTerm = document
                   .querySelector("#search-input")
                   .value.toLowerCase()
-                const results = data.allProducts.nodes.filter(item => {
+                const results = props.data.allProducts.nodes.filter(item => {
                   const lowerCaseTags = item.tags.map(tag => tag.toLowerCase())
 
                   if (lowerCaseTags.includes(searchTerm)) {
@@ -233,32 +237,33 @@ export default function Shop({ data, location }) {
           margin: "0 auto",
         }}
       >
-        {selectedCollection.length === 0 && (
+        {selectedCollection && selectedCollection.length === 0 && (
           <div css={tw`w-full flex my-20 justify-center h-32`}>
             <p css={tw`text-xl lg:text-4xl font-bold`}>No results found</p>
           </div>
         )}
 
-        {selectedCollection.map((product, index) => {
-          if (
-            index <= pageDictionary[currentPage].end &&
-            index >= pageDictionary[currentPage].start
-          ) {
-            return (
-              <ProductCard
-                key={index}
-                title={product.title}
-                variants={product.variants}
-                src={product.images[0].localFile.childImageSharp.fluid}
-                price={product.priceRange.minVariantPrice.amount}
-                handle={product.handle}
-              />
-            )
-          } else {
-            return ""
-          }
-        })}
-        {selectedCollection.length > 8 && (
+        {selectedCollection &&
+          selectedCollection.map((product, index) => {
+            if (
+              index <= pageDictionary[currentPage].end &&
+              index >= pageDictionary[currentPage].start
+            ) {
+              return (
+                <ProductCard
+                  key={index}
+                  title={product.title}
+                  variants={product.variants}
+                  src={product.images[0].localFile.childImageSharp.fluid}
+                  price={product.priceRange.minVariantPrice.amount}
+                  handle={product.handle}
+                />
+              )
+            } else {
+              return ""
+            }
+          })}
+        {selectedCollection && selectedCollection.length > 8 && (
           <div
             style={{
               display: "flex",

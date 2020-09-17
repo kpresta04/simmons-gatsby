@@ -73,10 +73,16 @@ export default function Shop(props) {
   const isBrowser = typeof window !== "undefined"
   const getDefaultState = () => {
     let dfState = []
-    if (props.location.state.category) {
-      dfState = collectionDict[props.location.state.category]
-      // console.log(dfState)
-      return dfState
+    if (isBrowser) {
+      if (props.location.state.category) {
+        dfState = collectionDict[props.location.state.category]
+        // console.log(dfState)
+        return dfState
+      } else {
+        dfState = props.data.allProducts.nodes
+        // console.log(dfState)
+        return dfState
+      }
     } else {
       dfState = props.data.allProducts.nodes
       // console.log(dfState)

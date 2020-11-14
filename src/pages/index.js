@@ -73,7 +73,7 @@ export default ({ data }) => {
         imageSrc={data.smithing.childImageSharp.fluid}
         imageCss={imageCss}
         imageDecoratorBlob={true}
-        primaryButtonText="Shop Now"
+        primaryButtonText="Shop Products"
       />
       {modalSubmitted !== true ? <PopupModal /> : null}
 

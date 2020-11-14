@@ -40,18 +40,17 @@ export const StoreProvider = ({ children }) => {
     }
   }
   const initializeCheckout = async () => {
+    let newCheckout = null
     try {
       const currentCheckoutId = isBrowser
         ? localStorage.getItem("checkout_id")
         : null
 
-      let newCheckout = null
-
       if (currentCheckoutId) {
         //if checkout id exists
         newCheckout = await client.checkout.fetch(currentCheckoutId)
 
-        if (newCheckout && newCheckout.completedAt) {
+        if (newCheckout === null || newCheckout.completedAt) {
           newCheckout = await getNewId()
         }
       } else {
@@ -62,6 +61,10 @@ export const StoreProvider = ({ children }) => {
       setCheckout(newCheckout)
     } catch (error) {
       console.log(error)
+      localStorage.removeItem("checkout_id")
+      newCheckout = await getNewId()
+
+      setCheckout(newCheckout)
     }
   }
   useEffect(() => {

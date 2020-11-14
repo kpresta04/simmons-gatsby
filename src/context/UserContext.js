@@ -25,6 +25,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (isBrowser) {
       const savedSession = JSON.parse(localStorage.getItem("user_object"))
+      console.log(savedSession)
 
       if (savedSession) {
         setUserEmail(savedSession.email)

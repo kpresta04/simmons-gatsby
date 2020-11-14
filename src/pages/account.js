@@ -18,7 +18,7 @@ const Account = () => {
   const [loading, setLoading] = useState(true)
   const [orders, setOrders] = useState([])
   const [selectedOrder, selectOrder] = useState(null)
-  // console.log(user)
+  console.log(user)
 
   useEffect(() => {
     if (user.token !== null) {

@@ -51,11 +51,11 @@ export const StoreProvider = ({ children }) => {
         //if checkout id exists
         newCheckout = await client.checkout.fetch(currentCheckoutId)
 
-        if (newCheckout.completedAt) {
+        if (newCheckout && newCheckout.completedAt) {
           newCheckout = await getNewId()
         }
       } else {
-        //else create a new one
+        //   //else create a new one
         newCheckout = await getNewId()
       }
 

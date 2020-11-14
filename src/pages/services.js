@@ -32,7 +32,7 @@ export default function Services() {
             <tr>
               <td colSpan="2">  
 			*/}
-        <Heading>Simmons Services & Pricing </Heading>
+        <Heading>Gunsmithing Services & Pricing </Heading>
         <table
           width="356"
           style={{ margin: "3rem auto", width: "100%", maxWidth: "1000px" }}

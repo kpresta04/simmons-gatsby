@@ -32,7 +32,7 @@ export default function Services() {
             <tr>
               <td colSpan="2">  
 			*/}
-        <Heading>Simmons Services - Full List</Heading>
+        <Heading>Simmons Services & Pricing </Heading>
         <table
           width="356"
           style={{ margin: "3rem auto", width: "100%", maxWidth: "1000px" }}
@@ -49,6 +49,18 @@ export default function Services() {
           <tbody>
             <tr>
               <td colSpan="2" width="292">
+                LABOR (GUNSMITHING)
+              </td>
+              <td width="64">$100/HR</td>
+            </tr>
+            <tr>
+              <td colSpan="2" width="292">
+                LABOR (O/U & SXS GUNSMITHING)
+              </td>
+              <td width="64">$120/HR</td>
+            </tr>
+            <tr>
+              <td colSpan="2" width="292">
                 APPRAISAL (Written out estimate of value)
               </td>
               <td width="64">$45.00</td>
@@ -57,7 +69,7 @@ export default function Services() {
               <td colSpan="2" width="292">
                 BARREL-DENTS REMOVED( AT CUSTOMER RISK)
               </td>
-              <td width="64">$95.00</td>
+              <td width="64">$105.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -77,28 +89,28 @@ export default function Services() {
                 BLUE OVER/UNDER
               </td>
 
-              <td width="64">$485.00</td>
+              <td width="64">$495.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 BLUE RECEIVER
               </td>
 
-              <td width="64">$180.00</td>
+              <td width="64">$190.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 BLUE SINGLE BARREL
               </td>
 
-              <td width="64">$180.00</td>
+              <td width="64">$190.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 BLUE SINGLE BARREL GUN
               </td>
 
-              <td width="64">$315.00</td>
+              <td width="64">$335.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -112,7 +124,7 @@ export default function Services() {
                 BLUE SXS
               </td>
 
-              <td width="64">$485.00</td>
+              <td width="64">$495.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -126,14 +138,14 @@ export default function Services() {
                 BLUE-RUST BARREL
               </td>
 
-              <td width="64">$70.00</td>
+              <td width="64">$90.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 BORE SIGHT
               </td>
 
-              <td width="64">$25.00</td>
+              <td width="64">$45.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -161,35 +173,35 @@ export default function Services() {
                 CHARGE FOR SHIPPING COD
               </td>
 
-              <td width="64">$15.00</td>
+              <td width="64">$25.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 CHECK HEADSPACE&nbsp;
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$65.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 CHOKE -OPEN CHOKE
               </td>
 
-              <td width="64">$80.00</td>
+              <td width="64">$95.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 CHOKE TUBE SIEZED-REMOVE FROM BBL
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$65.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 CHOKE TUBES TRU CHOKE TUBES
               </td>
 
-              <td width="64">$220.00</td>
+              <td width="64">$295.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -203,7 +215,7 @@ export default function Services() {
                 CHOKE-POLY CHOKE-INSTALLED
               </td>
 
-              <td width="64">$185.00</td>
+              <td width="64">$195.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -259,7 +271,7 @@ export default function Services() {
                 CROWN BARREL SHOTGUN
               </td>
 
-              <td width="64">$30.00</td>
+              <td width="64">$45.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -273,21 +285,21 @@ export default function Services() {
                 CUT &amp; CROWN AND RE-BEAD BARREL
               </td>
 
-              <td width="64">$70.00</td>
+              <td width="64">$145.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 CUT &amp; CROWN BARREL SHOTGUN
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$120.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 CUT &amp; CROWN RIFLE BARREL
               </td>
 
-              <td width="64">$140.00</td>
+              <td width="64">$150.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -301,21 +313,21 @@ export default function Services() {
                 DELUXE CLEANING ON WOOD
               </td>
 
-              <td width="64">$135.00</td>
+              <td width="64">$145.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 DEPOSIT
               </td>
 
-              <td width="64">$0.00</td>
+              <td width="64">$45.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 DIAGNOSTIC&nbsp;&nbsp;&nbsp;
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$55.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -377,23 +389,21 @@ export default function Services() {
                 FINISH STOCK &amp; FOREND
               </td>
 
-              <td width="64">$325.00</td>
+              <td width="64">$335.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 FINISH STOCK- RIFLE&nbsp;
               </td>
 
-              <td width="64">$425.00</td>
+              <td width="64">$445.00</td>
             </tr>
 
             <tr>
               <td colSpan="2" width="292">
-                FINISH STOCK &amp; FOREND -SXS OR&nbsp; O/U&nbsp; &nbsp; &nbsp;
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                FINISH STOCK &amp; FOREND -SXS OR&nbsp; O/U&
               </td>
-              <td width="64">$525.00</td>
+              <td width="64">$545.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -421,7 +431,7 @@ export default function Services() {
                 GOLD PLATE TRIGGER
               </td>
 
-              <td width="64">$9 0.00</td>
+              <td width="64">$90.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -435,19 +445,19 @@ export default function Services() {
                 HANDLING / PACKING
               </td>
 
-              <td width="64">$25.00</td>
+              <td width="64">$15.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 HAZARDOUS WASTE / DISPOSAL / TEST FIRE
               </td>
-              <td width="64">$15.00</td>
+              <td width="64">$10.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 HAZARDOUS WASTE/ DISPOSAL / TEST FIRE&nbsp; AMMO PROVIDED
               </td>
-              <td width="64">$5.00</td>
+              <td width="64">$0.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -458,14 +468,11 @@ export default function Services() {
             </tr>
             <tr>
               <td colSpan="2" width="292">
-                <p>HOURLY RATE O/U &amp; SXS</p>
-                <p>
-                  INSPECTION, CHECKED HEADSPACE,TIMNG
-                  GUN.&nbsp;&nbsp;&nbsp;&nbsp;
-                </p>
+                {/* <p>HOURLY RATE O/U &amp; SXS</p> */}
+                <p>INSPECTION, CHECKED HEADSPACE,TIMNG GUN.</p>
               </td>
               <td width="64">
-                <p>$120.00/hr</p>
+                {/* <p>$120.00/hr</p> */}
                 <p>$150.00</p>
               </td>
             </tr>
@@ -478,7 +485,7 @@ export default function Services() {
               <td colSpan="2" width="292">
                 JEWEL BOLT/CARRIER, MEDIUM FANCY WOOD
               </td>
-              <td width="64">$1,575.00</td>
+              <td width="64">$1,675.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -492,14 +499,14 @@ export default function Services() {
                 JEWELL BOLT AND CARRIER
               </td>
 
-              <td width="64">$90.00</td>
+              <td width="64">$120.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 LENGTHEN FORCING CONE
               </td>
 
-              <td width="64">$90.00</td>
+              <td width="64">$110.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -526,14 +533,14 @@ export default function Services() {
               <td colSpan="2" width="292">
                 MONOBLOCK SEPERATION REPAIR &amp; BLUE
               </td>
-              <td width="64">$395.00</td>
+              <td width="64">$485.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 MOUNT SCOPE AND BORE SIGHT
               </td>
 
-              <td width="64">$75.00</td>
+              <td width="64">$95.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -547,7 +554,7 @@ export default function Services() {
                 MUZZLE BREAK PROVIDED
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$55.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -561,7 +568,7 @@ export default function Services() {
                 PAD-INSTALL SPACER AND FIT
               </td>
 
-              <td width="64">$25.00</td>
+              <td width="64">$45.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -575,7 +582,7 @@ export default function Services() {
                 PAD-SHORTEN STOCK AND RESET PAD
               </td>
 
-              <td width="64">$125.00</td>
+              <td width="64">$135.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -590,7 +597,7 @@ export default function Services() {
                 PATTERN CHECK BY TEST FIRE
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$95.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -629,17 +636,24 @@ export default function Services() {
             </tr>
             <tr>
               <td colSpan="2" width="292">
+                RELINE/SLEEVER BARREL
+              </td>
+
+              <td width="64">$310.00</td>
+            </tr>
+            <tr>
+              <td colSpan="2" width="292">
                 REPAIR CRACK IN BUTT STOCK
               </td>
 
-              <td width="64">$75.00</td>
+              <td width="64">$95.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 SAFETY CHECK ON GUN
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$55.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -667,7 +681,7 @@ export default function Services() {
                 SIGHT FRT&nbsp; &amp; CTR INSTALL
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$50.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -681,7 +695,7 @@ export default function Services() {
                 SIGHT HI VIZ-INSTALL&nbsp;
               </td>
 
-              <td width="64">$30.00</td>
+              <td width="64">$45.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
@@ -723,34 +737,34 @@ export default function Services() {
                 SLING SWIVELS INSTALL
               </td>
 
-              <td width="64">$60.00</td>
+              <td width="64">$80.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 SOLDER FOREND LUG
               </td>
 
-              <td width="64">$90.00</td>
+              <td width="64">$110.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 SOLDER SIDE RIBS
               </td>
 
-              <td width="64">$220.00</td>
+              <td width="64">$525.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 SOLDER SOLID RIB
               </td>
 
-              <td width="64">$180.00</td>
+              <td width="64">$525.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 SOLDER VENT RIB &amp; REBLUE BARREL ONLY
               </td>
-              <td width="64">$360.00</td>
+              <td width="64">$450.00</td>
             </tr>
             {/* <tr>
               <td colSpan="2" width="292">&nbsp;</td>
@@ -788,63 +802,84 @@ export default function Services() {
                 ULTRA PORTING SHOTGUN
               </td>
 
-              <td width="64">$180.00</td>
+              <td width="64">$190.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENT RIB AND REBLUE
               </td>
 
-              <td width="64">$435.00</td>
+              <td width="64">$455.00</td>
+            </tr>
+            <tr>
+              <td colSpan="2" width="292">
+                VENT RIB NO REBLUE
+              </td>
+
+              <td width="64">$165.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENT RIB BBL ONLY REBLUE
               </td>
 
-              <td width="64">$325.00</td>
+              <td width="64">$345.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENT RIB REPAIR &amp; BLUE
               </td>
 
-              <td width="64">$225.00</td>
+              <td width="64">$245.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
-                VENT RIB-OLYMPIC &amp; REBLUE
+                VENT RIB-OLYMPIC
               </td>
 
-              <td width="64">$590.00</td>
+              <td width="64">$165.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENT RIB-REMOVE&nbsp; RIB
               </td>
 
-              <td width="64">$50.00</td>
+              <td width="64">$75.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENT RIB-RIB &amp; REBLUE OVER/UNDER
               </td>
 
-              <td width="64">$585.00</td>
+              <td width="64">$615.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENT RIB-RIB AND REBLUE O/U BARREL
               </td>
 
-              <td width="64">$435.00</td>
+              <td width="64">$450.00</td>
             </tr>
             <tr>
               <td colSpan="2" width="292">
                 VENTILATED RIB-STRAIGHTED
               </td>
 
-              <td width="64">$45.00</td>
+              <td width="64">$55.00</td>
+            </tr>
+            <tr>
+              <td colSpan="2" width="292">
+                WOOD MEDIUM FANCY
+              </td>
+
+              <td width="64">$750.00</td>
+            </tr>
+            <tr>
+              <td colSpan="2" width="292">
+                WOOD UPGRADE FANCY
+              </td>
+
+              <td width="64">$1050.00</td>
             </tr>
             {/* <tr>
               <td>&nbsp;</td>

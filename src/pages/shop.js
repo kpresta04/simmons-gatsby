@@ -20,7 +20,12 @@ const ArrowButton = tw.button`border border-blue-900 bg-transparent p-3`
 export function ProductCard(props) {
   const linkHref = `/product/${props.handle}`
   function numberWithCommas(x) {
-    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    let y = Number(x).toFixed(2)
+    if (y.includes(".00")) {
+      y = Math.floor(Number(y))
+    }
+
+    return String(y).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
   return (
     <div
@@ -73,16 +78,10 @@ export default function Shop(props) {
   const isBrowser = typeof window !== "undefined"
   const getDefaultState = () => {
     let dfState = []
-    if (isBrowser) {
-      if (props.location.state.category) {
-        dfState = collectionDict[props.location.state.category]
-        // console.log(dfState)
-        return dfState
-      } else {
-        dfState = props.data.allProducts.nodes
-        // console.log(dfState)
-        return dfState
-      }
+    if (isBrowser && props.location.state.category) {
+      dfState = collectionDict[props.location.state.category]
+      // console.log(dfState)
+      return dfState
     } else {
       dfState = props.data.allProducts.nodes
       // console.log(dfState)

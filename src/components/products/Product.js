@@ -12,7 +12,9 @@ const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
   const { addProductToCart } = useContext(StoreContext)
   const minVariant = product.variants.filter(
-    variant => variant.price === product.priceRange.minVariantPrice.amount
+    variant =>
+      Number(variant.price) ===
+      Number(product.priceRange.minVariantPrice.amount)
   )
   // console.log(minVariant)
   const [selectedVariant, setSelectedVariant] = useState(minVariant[0])

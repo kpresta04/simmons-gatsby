@@ -21,9 +21,9 @@ export function ProductCard(props) {
   const linkHref = `/product/${props.handle}`
   function numberWithCommas(x) {
     let y = Number(x).toFixed(2)
-    if (y.includes(".00")) {
-      y = Math.floor(Number(y))
-    }
+    // if (y.includes(".00")) {
+    //   y = Math.floor(Number(y))
+    // }
 
     return String(y).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }

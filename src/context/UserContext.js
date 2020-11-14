@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import fetchGraphQL from "~/utils/fetchGraphQL"
 import { navigate } from "gatsby"
+import moment from "moment"
 
 const defaultContext = {
   email: null,
@@ -25,9 +26,11 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (isBrowser) {
       const savedSession = JSON.parse(localStorage.getItem("user_object"))
-      console.log(savedSession)
+      const isExpired = moment(savedSession.token.expiresAt).isBefore(
+        Date.now()
+      )
 
-      if (savedSession) {
+      if (savedSession && !isExpired) {
         setUserEmail(savedSession.email)
         setUserID(savedSession.id)
         setUserToken(savedSession.token)

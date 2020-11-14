@@ -87,7 +87,7 @@ export const StoreProvider = ({ children }) => {
       )
       // Buy Now Button Code
       // window.open(newCheckout.webUrl, "_blank")
-      console.log(newCheckout.webUrl)
+      // console.log(newCheckout.webUrl)
       setCheckout(newCheckout)
       setLoading(false)
     } catch (e) {

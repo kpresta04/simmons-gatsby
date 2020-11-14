@@ -64,7 +64,7 @@ export default ({
             <Paragraph>{description}</Paragraph>
             <Actions>
               <PrimaryButton style={{ marginLeft: 0 }} as={Link} to="/services">
-                View Services
+                Gunsmithing
               </PrimaryButton>
               <PrimaryButton as={Link} to={primaryButtonUrl}>
                 {primaryButtonText}

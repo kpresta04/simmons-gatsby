@@ -26,9 +26,9 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (isBrowser) {
       const savedSession = JSON.parse(localStorage.getItem("user_object"))
-      const isExpired = moment(savedSession.token.expiresAt).isBefore(
-        Date.now()
-      )
+      const isExpired = savedSession
+        ? moment(savedSession.token.expiresAt).isBefore(Date.now())
+        : null
 
       if (savedSession && !isExpired) {
         setUserEmail(savedSession.email)

@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
@@ -106,6 +106,12 @@ export default ({
   data,
 }) => {
   const user = useContext(UserContext)
+  // console.log(user)
+  useEffect(() => {
+    if (user.errorMessage) {
+      user.clearErrorMessage()
+    }
+  }, [])
   // const [errorMessage, setErrorMessage] = useState(null)
 
   // const signUpFunc = async () => {

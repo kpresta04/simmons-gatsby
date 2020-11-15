@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import { Container as ContainerBase } from "../components/misc/Layouts"
 import tw from "twin.macro"
@@ -103,9 +103,14 @@ const SubmitButtonIcon = LoginIcon
 const signupUrl = "/signup"
 export default ({ data }) => {
   // const [errorMessage, setErrorMessage] = useState(null)
+
   const user = useContext(UserContext)
   // console.log(user)
-
+  useEffect(() => {
+    if (user.errorMessage) {
+      user.clearErrorMessage()
+    }
+  }, [])
   // useEffect(() => {
   //   const renewToken = async user_metadata => {
   //     const renewTokenMutation = `

@@ -69,9 +69,7 @@ expiresAt
       const { data } = logInResponse.data
       // console.log(data)
       if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
-        setErrorMessage(
-          data.customerAccessTokenCreate.customerUserErrors[0].message
-        )
+        setErrorMessage("Incorrect email or password")
         setIsLoading(false)
       } else {
         setUserEmail(email)
@@ -163,6 +161,9 @@ expiresAt
       console.log(error)
     }
   }
+  const clearErrorMessage = () => {
+    setErrorMessage(null)
+  }
 
   const resetPasswordByURL = async (pw, reset_url) => {
     const mutation = `mutation {
@@ -204,6 +205,7 @@ expiresAt
         signUpUser,
         sendPasswordRecoveryEmail,
         resetPasswordByURL,
+        clearErrorMessage,
       }}
     >
       {children}

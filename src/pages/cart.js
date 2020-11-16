@@ -30,7 +30,7 @@ export default function Cart() {
         <Header>Cart</Header>
         {checkout.lineItems.length > 0 ? (
           <div style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}>
-            <table className="cart">
+            <table style={{ width: "100%" }} className="cart">
               <thead className="cart__row cart__row--heading">
                 <tr>
                   <th scope="col">Product</th>
@@ -102,7 +102,32 @@ export default function Cart() {
                     </td>
                     <td className="cart__price text-right">
                       <div data-cart-item-price="">${item.variant.price}</div>
-                      <p className="md--hide">Qty: {item.quantity}</p>
+                      {/* <p className="md--hide">Qty: {item.quantity}</p> */}
+                      <label htmlFor="updatesCartSmall">Qty:</label>
+
+                      <input
+                        style={{ width: "2.5rem", marginLeft: ".5rem" }}
+                        className="md--hide"
+                        type="number"
+                        name="updatesCartSmall"
+                        defaultValue={item.quantity}
+                        min="1"
+                        pattern="[1-9]*"
+                        onChange={e => {
+                          // console.log(e.target.value)
+                          const quantityInt = Number(e.target.value)
+
+                          if (quantityInt > 0) {
+                            updateProductQuantity(item.id, quantityInt)
+                          }
+                          //  else {
+                          //   removeProductFromCart(item.id)
+                          // }
+                        }}
+                        data-quantity-input=""
+                        data-quantity-item="1"
+                        data-quantity-input-desktop=""
+                      />
 
                       {/* <div className="cart__qty medium-up--hide">
                     <label
@@ -151,9 +176,10 @@ export default function Cart() {
 
                             if (quantityInt > 0) {
                               updateProductQuantity(item.id, quantityInt)
-                            } else {
-                              removeProductFromCart(item.id)
                             }
+                            //  else {
+                            //   removeProductFromCart(item.id)
+                            // }
                           }}
                           data-quantity-input=""
                           data-quantity-item="1"

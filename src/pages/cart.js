@@ -103,7 +103,9 @@ export default function Cart() {
                     <td className="cart__price text-right">
                       <div data-cart-item-price="">${item.variant.price}</div>
                       {/* <p className="md--hide">Qty: {item.quantity}</p> */}
-                      <label htmlFor="updatesCartSmall">Qty:</label>
+                      <label className="md--hide" htmlFor="updatesCartSmall">
+                        Qty:
+                      </label>
 
                       <input
                         style={{ width: "2.5rem", marginLeft: ".5rem" }}

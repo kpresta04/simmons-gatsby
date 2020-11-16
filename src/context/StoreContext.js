@@ -71,14 +71,14 @@ export const StoreProvider = ({ children }) => {
     initializeCheckout()
   }, [])
 
-  const addProductToCart = async variantId => {
+  const addProductToCart = async (variantId, quantity = 1) => {
     try {
       setLoading(true)
       // const newCheckout = await client.checkout.create()
       const lineItems = [
         {
           variantId,
-          quantity: 1,
+          quantity,
         },
       ]
       const newCheckout = await client.checkout.addLineItems(

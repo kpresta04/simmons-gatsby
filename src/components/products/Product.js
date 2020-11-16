@@ -59,7 +59,7 @@ const ProductTemplate = ({ pageContext }) => {
                 display: "flex",
                 flexWrap: "wrap",
                 width: "100%",
-
+                maxHeight: "500px",
                 maxWidth: "500px",
               }}
             >
@@ -162,21 +162,43 @@ const ProductTemplate = ({ pageContext }) => {
                   </div>
                 </div>
               </div>
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span css={tw`font-medium text-2xl text-gray-900`}>
                   {selectedVariant.price
                     ? `$${numberWithCommas(selectedVariant.price)}`
                     : null}
                 </span>
+
                 <button
                   onClick={() => {
-                    setDisplayToast(true)
-                    addProductToCart(selectedVariant.shopifyId)
+                    const Qty = Number(document.querySelector("#cartQty").value)
+                    if (Qty >= 1) {
+                      setDisplayToast(true)
+                      addProductToCart(selectedVariant.shopifyId, Qty)
+                    }
                   }}
                   css={tw`flex ml-16 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded`}
                 >
                   Add to Cart
                 </button>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <label htmlFor="updatesCartSmall">Qty:</label>
+
+                <input
+                  id="cartQty"
+                  style={{
+                    width: "3rem",
+                    height: "1.5rem",
+                    padding: "5px 4px",
+                    marginLeft: ".5rem",
+                  }}
+                  type="number"
+                  name="updatesCartSmall"
+                  defaultValue="1"
+                  min="1"
+                  pattern="[1-9]*"
+                />
               </div>
               <CartToast open={displayToast} setOpen={setDisplayToast} />
             </div>

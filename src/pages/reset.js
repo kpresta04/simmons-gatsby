@@ -84,7 +84,7 @@ export default function Reset() {
 
         {successful && (
           <h1 style={{ textAlign: "center", marginTop: "3rem" }}>
-            Password was reset successfully!
+            Password was reset successfully! You can now log in.
           </h1>
         )}
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import SEO from "~/components/SEO/SEO"
 
 import Header from "../components/headers/light"
 // import SEO from "../components/seo"
@@ -122,6 +123,10 @@ export default function Shop(props) {
   return (
     <AnimationRevealPage disabled>
       <Header />
+      <SEO
+        pageDesc="Browse the latest products at Simmons Gun Repair"
+        pageTitle={"Shop - Simmons Gun Repair"}
+      />
       <PageHeader>Products</PageHeader>
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <div

@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "~/components/Layout/Layout"
+import SEO from "~/components/SEO/SEO"
 import tw from "twin.macro"
 
 const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold`
@@ -7,6 +8,11 @@ const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold
 export default function Services() {
   return (
     <Layout>
+      <SEO
+        pageDesc="Full list of professional Gunsmithing services and prices at Simmons Gun Repair"
+        pageTitle={"Gunsmithing Services - Simmons Gun Repair"}
+      />
+
       <div style={{ minHeight: "70vh" }}>
         {/* <table width="637">
           <tbody>

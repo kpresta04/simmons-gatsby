@@ -8,7 +8,7 @@ export default function LogInButton({ setDialog }) {
   const user = useContext(UserContext)
 
   if (!user.email) {
-    return <NavLink to="/login">Login</NavLink>
+    return <NavLink to="/signup">Sign Up</NavLink>
   } else {
     return (
       <NavLink to="/account">Account</NavLink>

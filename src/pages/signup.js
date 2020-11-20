@@ -280,19 +280,19 @@ export default ({
 
                   <p tw="mt-6 text-xs text-gray-600 text-center">
                     By signing up you agree to abide by Simmons's{" "}
-                    <a
-                      href={tosUrl}
+                    <Link
+                      to="/terms"
                       tw="border-b border-gray-500 border-dotted"
                     >
                       Terms of Service
-                    </a>{" "}
+                    </Link>{" "}
                     and its{" "}
-                    <a
-                      href={privacyPolicyUrl}
+                    <Link
+                      to="/privacy"
                       tw="border-b border-gray-500 border-dotted"
                     >
                       Privacy Policy
-                    </a>
+                    </Link>
                   </p>
 
                   <p tw="mt-8 text-sm text-gray-600 text-center">

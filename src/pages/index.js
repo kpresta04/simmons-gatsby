@@ -53,7 +53,7 @@ export default ({ data }) => {
   const isBrowser = typeof window !== "undefined"
   let modalSubmitted
   if (isBrowser) {
-    modalSubmitted = JSON.parse(localStorage.getItem("modalSubmitted"))
+    modalSubmitted = JSON.parse(sessionStorage.getItem("modalSubmitted"))
   } else {
     modalSubmitted = false
   }

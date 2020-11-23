@@ -98,6 +98,7 @@ const HeadComponent = (roundedHeaderButton = false) => {
       {/* <NavLink to="/shop">Shop</NavLink> */}
       <HeaderMenu />
       <NavLink to="/services">Services</NavLink>
+      <NavLink to="/build-classes">Build an AR</NavLink>
 
       <NavLink to="/about">About</NavLink>
       <NavLink to="/faq">FAQ</NavLink>

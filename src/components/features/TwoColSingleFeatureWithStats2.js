@@ -6,9 +6,10 @@ import {
   SectionHeading,
   Subheading as SubheadingBase,
 } from "../misc/Headings.js"
+import PhoneIcon from "~/images/phone-call.svg"
+
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
-import StatsIllustrationSrc from "../../images/stats-illustration.svg"
-import SvgDotPattern from "../../images/dot-pattern.svg"
+import StatsIllustrationSrc from "~/images/stats-illustration.svg"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 
@@ -29,7 +30,7 @@ const Image = styled.div(props => [
 ])
 const TextContent = tw.div`lg:py-8 text-center md:text-left`
 
-const Subheading = tw(SubheadingBase)`text-center md:text-left`
+const Subheading = tw(SubheadingBase)`text-center text-blue-700 md:text-left`
 const Heading = tw(
   SectionHeading
 )`mt-4 font-black text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`
@@ -42,21 +43,17 @@ const Key = tw.div`font-medium text-blue-700`
 
 const PrimaryButton = tw(
   PrimaryButtonBase
-)`mt-8 md:mt-10 text-sm inline-block mx-auto md:mx-0`
-
-const DecoratorBlob = styled(SvgDotPattern)(props => [
-  tw`w-20 h-20 absolute right-0 bottom-0 transform translate-x-1/2 translate-y-1/2 fill-current text-primary-500 -z-10`,
-])
+)`mt-8 md:mt-10 text-sm  mx-auto md:mx-0`
 
 export default ({
-  subheading = "Our Track Record",
+  subheading = "Learn with the Pros",
   heading = (
     <>
-      We have been doing this <wbr /> since{" "}
-      <span tw="text-primary-500">1999.</span>
+      Simmons AR-15 Building Class
+      {/* <span tw="text-primary-500">1999.</span> */}
     </>
   ),
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  description = "Come build your very own AR-15 with the guidance of our smiths! Approximately 2-hour class with social time at the end. Call now for class dates and times and to sign up for the next class!",
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
   imageSrc = StatsIllustrationSrc,
@@ -106,8 +103,27 @@ export default ({
                 </Statistic>
               ))}
             </Statistics> */}
-            <PrimaryButton as={Link} to={primaryButtonUrl}>
-              {primaryButtonText}
+            <PrimaryButton
+              className="callNowButton"
+              style={{
+                width: "10rem",
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "space-evenly",
+              }}
+              as="a"
+              href="tel:9137823131"
+            >
+              <span
+                style={{
+                  height: "24px",
+                  fontSize: "1rem",
+                }}
+              >
+                Call Now
+              </span>
+
+              <PhoneIcon />
             </PrimaryButton>
           </TextContent>
         </TextColumn>

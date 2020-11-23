@@ -63,10 +63,18 @@ export default ({
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>
             <Actions>
-              <PrimaryButton style={{ marginLeft: 0 }} as={Link} to="/services">
+              <PrimaryButton
+                style={{ marginLeft: 0, width: "10rem", textAlign: "center" }}
+                as={Link}
+                to="/services"
+              >
                 Gunsmithing
               </PrimaryButton>
-              <PrimaryButton as={Link} to={primaryButtonUrl}>
+              <PrimaryButton
+                style={{ width: "10rem", textAlign: "center" }}
+                as={Link}
+                to={primaryButtonUrl}
+              >
                 {primaryButtonText}
               </PrimaryButton>
             </Actions>

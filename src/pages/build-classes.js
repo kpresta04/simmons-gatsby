@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "~/components/Layout/Layout"
 import StatsWithImage2 from "~/components/features/TwoColSingleFeatureWithStats2"
 import SEO from "~/components/SEO/SEO"
+import { graphql } from "gatsby"
 
 export const query = graphql`
   {

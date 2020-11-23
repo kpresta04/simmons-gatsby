@@ -20,7 +20,7 @@ const RightColumn = tw.div`relative mt-12 lg:mt-0 flex flex-col justify-center w
 const Heading = tw.h1`font-black text-3xl md:text-5xl leading-snug max-w-3xl`
 const Paragraph = tw.p`my-5 lg:my-8 text-sm lg:text-base font-medium text-gray-600 max-w-lg mx-auto lg:mx-0`
 
-const Actions = tw.div`flex items-center sm:flex-row justify-center lg:justify-start mt-8`
+const Actions = tw.div`flex items-center flex-wrap sm:flex-row justify-center lg:justify-start mt-8`
 
 const IllustrationContainer = tw.div`flex justify-center md:justify-end items-center relative max-w-3xl lg:max-w-none`
 
@@ -76,6 +76,14 @@ export default ({
                 to={primaryButtonUrl}
               >
                 {primaryButtonText}
+              </PrimaryButton>
+              <PrimaryButton
+                style={{ width: "10rem", textAlign: "center" }}
+                as={Link}
+                to="/shop"
+                css={tw`lg:ml-0`}
+              >
+                Shop Now
               </PrimaryButton>
             </Actions>
           </LeftColumn>

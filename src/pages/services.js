@@ -475,7 +475,7 @@ export default function Services() {
             <tr>
               <td colSpan="2" width="292">
                 {/* <p>HOURLY RATE O/U &amp; SXS</p> */}
-                <p>INSPECTION, CHECKED HEADSPACE,TIMNG GUN.</p>
+                <p>INSPECTION, CHECKED HEADSPACE, TIMNG GUN.</p>
               </td>
               <td width="64">
                 {/* <p>$120.00/hr</p> */}
@@ -488,8 +488,9 @@ export default function Services() {
               </td>
             </tr> */}
             <tr>
-              <td colSpan="2" width="292">
-                JEWEL BOLT/CARRIER, MEDIUM FANCY WOOD
+              <td style={{ fontWeight: "bold" }} colSpan="2" width="292">
+                INTERNET SPECIAL: SIMMONS FLOATING RIB, REBLUE, JEWEL
+                BOLT/CARRIER, MEDIUM FANCY WOOD
               </td>
               <td width="64">$1,675.00</td>
             </tr>

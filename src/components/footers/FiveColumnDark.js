@@ -154,8 +154,8 @@ export default () => {
                 </Link>
               </LinkListItem>
               <LinkListItem>
-                <Link className={Linkstyle} to="/services">
-                  Services
+                <Link className={Linkstyle} to="/vip">
+                  VIP Club
                 </Link>
               </LinkListItem>
             </LinkList>

@@ -37,9 +37,9 @@ export default function TransitionsModal() {
 
   const handleClose = () => {
     setOpen(false)
-    if (isBrowser) {
-      sessionStorage.setItem("modalSubmitted", "true")
-    }
+    // if (isBrowser) {
+    //   sessionStorage.setItem("modalSubmitted", "true")
+    // }
   }
 
   return (

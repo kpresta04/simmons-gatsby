@@ -15,7 +15,7 @@ export default function Services() {
         url:
           "https://cdn.contentful.com/spaces/bi7okob4zwzp/environments/master/entries?content_type=simmonsService&limit=1000&order=sys.createdAt",
         headers: {
-          Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+          Authorization: "Bearer gBVUbCYoA86BUph_aXBVNGWM6tTuaw3mBmeAbXaIqq0",
           "Content-Type": "application/json",
         },
       })

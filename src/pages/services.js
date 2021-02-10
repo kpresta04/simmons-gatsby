@@ -75,7 +75,16 @@ export default function Services() {
           <tbody>
             {serviceList.map((item, index) => (
               <tr key={index}>
-                <td colSpan="2" width="292">
+                <td
+                  colSpan="2"
+                  width="292"
+                  css={
+                    item.fields.name ===
+                    "INTERNET SPECIAL: SIMMONS FLOATING RIB, REBLUE, JEWEL BOLT/CARRIER, MEDIUM FANCY WOOD"
+                      ? tw`font-bold`
+                      : tw`font-normal`
+                  }
+                >
                   {item.fields.name}
                 </td>
                 <td width="64">{item.fields.price}</td>

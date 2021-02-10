@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Layout from "~/components/Layout/Layout"
 import SEO from "~/components/SEO/SEO"
 import tw from "twin.macro"
-import axios from "axios"
+import { graphql } from "gatsby"
 
 const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold`
 
-export default function Services() {
-  const [serviceList, setServiceList] = useState([])
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios({
-        method: "get",
-        url:
-          "https://cdn.contentful.com/spaces/bi7okob4zwzp/environments/master/entries?content_type=simmonsService&limit=1000&order=sys.createdAt",
-        headers: {
-          Authorization: "Bearer gBVUbCYoA86BUph_aXBVNGWM6tTuaw3mBmeAbXaIqq0",
-          "Content-Type": "application/json",
-        },
-      })
-
-      // console.log(data.items)
-      setServiceList(data.items)
+export const query = graphql`
+  query {
+    services: allContentfulSimmonsService(
+      limit: 1000
+      sort: { fields: createdAt }
+    ) {
+      edges {
+        node {
+          name
+          price
+        }
+      }
     }
-    fetchData()
-  }, [])
+  }
+`
+export default function Services({ data }) {
+  const [serviceList, setServiceList] = useState(data.services.edges)
 
   return (
     <Layout>
@@ -33,31 +31,7 @@ export default function Services() {
         pageTitle={"Gunsmithing Services - Simmons Gun Repair"}
       />
 
-      <div style={{ minHeight: "100vh" }}>
-        {/* <table width="637">
-          <tbody>
-            <tr>
-              <td width="441">
-                <strong>Description</strong>
-              </td>
-              {/* <td width="92">&nbsp;</td> */}
-        {/* <td width="104">
-                <strong>Price</strong>
-              </td>
-            </tr>
-            {/* <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr> 
-            <tr>
-              <td colSpan="2">  
-			*/}
+      <div style={{ minHeight: "70vh" }}>
         <Heading>Gunsmithing Services & Pricing </Heading>
         <table
           width="356"
@@ -79,15 +53,15 @@ export default function Services() {
                   colSpan="2"
                   width="292"
                   css={
-                    item.fields.name ===
+                    item.node.name ===
                     "INTERNET SPECIAL: SIMMONS FLOATING RIB, REBLUE, JEWEL BOLT/CARRIER, MEDIUM FANCY WOOD"
                       ? tw`font-bold`
                       : tw`font-normal`
                   }
                 >
-                  {item.fields.name}
+                  {item.node.name}
                 </td>
-                <td width="64">{item.fields.price}</td>
+                <td width="64">{item.node.price}</td>
               </tr>
             ))}
           </tbody>

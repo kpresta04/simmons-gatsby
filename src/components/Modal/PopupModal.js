@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade"
 import tw, { css } from "twin.macro"
 import { PrimaryButton } from "~/components/misc/Buttons"
 import MessageToast from "~/components/misc/MessageToast"
+import "~/styles/popup.css"
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     outline: "none",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    position: "relative",
   },
 }))
 
@@ -66,6 +68,9 @@ export default function TransitionsModal() {
             <p id="transition-modal-description">
               react-transition-group animates me.
             </p> */}
+            <div className="popup-x" onClick={handleClose}>
+              X
+            </div>
             <h1 css={tw`text-3xl text-blue-900 mb-6`}>How Can We Help?</h1>
             <h2 css={tw`text-xl font-bold text-blue-900 mb-4`}>Contact Us</h2>
             <form

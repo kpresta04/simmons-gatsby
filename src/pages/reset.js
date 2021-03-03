@@ -5,7 +5,7 @@ import UserContext from "~/context/UserContext"
 import tw from "twin.macro"
 import styled from "styled-components"
 import { css } from "styled-components/macro" //eslint-disable-line
-
+import { Link } from "gatsby"
 const isBrowser = typeof window !== "undefined"
 
 const Heading = tw.h1`text-2xl text-center xl:text-3xl font-extrabold mb-12`
@@ -84,7 +84,8 @@ export default function Reset() {
 
         {successful && (
           <h1 style={{ textAlign: "center", marginTop: "3rem" }}>
-            Password was reset successfully! You can now log in.
+            Password was reset successfully! You can now{" "}
+            <Link to="/login">log in.</Link>
           </h1>
         )}
       </div>

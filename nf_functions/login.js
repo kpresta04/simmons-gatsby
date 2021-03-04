@@ -1,4 +1,4 @@
-import fetchGraphQL from "../src/utils/fetchGraphQL"
+require("../src/utils/fetchGraphQL")
 
 exports.handler = async function (event, context) {
   return {

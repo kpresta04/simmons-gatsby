@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import fetchGraphQL from "~/utils/fetchGraphQL"
 import { navigate } from "gatsby"
 import moment from "moment"
+import axios from "axios"
 
 const defaultContext = {
   email: null,

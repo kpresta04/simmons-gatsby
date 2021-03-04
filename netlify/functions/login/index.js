@@ -1,5 +1,7 @@
+const axios = require("axios")
+
 const fetchGraphQL = query =>
-  fetch({
+  axios({
     method: "post",
     url: `https://${process.env.GATSBY_SHOPIFY_URI}/api/graphql`,
     headers: {
@@ -7,7 +9,7 @@ const fetchGraphQL = query =>
         process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
       "Content-Type": "application/graphql",
     },
-    body: JSON.stringify(query),
+    body: query,
   })
 
 exports.handler = async function (event, context) {
@@ -28,7 +30,7 @@ expiresAt
 }
 }
 }`
-  const response = await fetchGraphQL(logInMutation).then(res => res.json())
+  const response = await fetchGraphQL(logInMutation)
   return {
     statusCode: 200,
     body: JSON.stringify(response),

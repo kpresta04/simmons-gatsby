@@ -1,4 +1,4 @@
-require("axios")
+import axios from "axios"
 
 const fetchGraphQL = query =>
   axios({

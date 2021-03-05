@@ -37,6 +37,6 @@ exports.handler = async function (event, context) {
   }
   return {
     statusCode: 200,
-    body: devent.body,
+    body: event.body,
   }
 }

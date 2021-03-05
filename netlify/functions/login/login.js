@@ -32,11 +32,11 @@ exports.handler = async function (event, context) {
   // }`
   //   const response = await fetchGraphQL(logInMutation)
   const response = {
-    username: event.body.username,
+    username: event.body.email,
     password: event.body.password,
   }
   return {
     statusCode: 200,
-    body: event.body,
+    body: process.env.GATSBY_SHOPIFY_URI,
   }
 }

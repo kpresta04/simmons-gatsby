@@ -9,34 +9,31 @@ const fetchGraphQL = query =>
         process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
       "Content-Type": "application/graphql",
     },
-    body: query,
+    data: query,
   })
 
 exports.handler = async function (event, context) {
-  //   const logInMutation = `
-  // 	mutation  {
-  // customerAccessTokenCreate(input: {
-  // email: "${event.body.email}",
-  // password: "${event.body.password}"
-  // }) {
-  // customerUserErrors {
-  // code
-  // field
-  // message
-  // }
-  // customerAccessToken {
-  // accessToken
-  // expiresAt
-  // }
-  // }
-  // }`
-  //   const response = await fetchGraphQL(logInMutation)
-  const response = {
-    username: event.body.email,
-    password: event.body.password,
+  const logInMutation = `
+  	mutation  {
+  customerAccessTokenCreate(input: {
+  email: "${event.body.email}",
+  password: "${event.body.password}"
+  }) {
+  customerUserErrors {
+  code
+  field
+  message
   }
+  customerAccessToken {
+  accessToken
+  expiresAt
+  }
+  }
+  }`
+  const response = await fetchGraphQL(logInMutation)
+
   return {
     statusCode: 200,
-    body: process.env.GATSBY_SHOPIFY_URI,
+    body: response,
   }
 }

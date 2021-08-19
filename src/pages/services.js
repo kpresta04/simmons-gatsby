@@ -22,7 +22,16 @@ export const query = graphql`
   }
 `
 export default function Services({ data }) {
-  const [serviceList, setServiceList] = useState(data.services.edges)
+  const nodes = []
+  for (const el of data.services.edges) {
+    const { node } = el
+    if (node.name && node.price) {
+      nodes.push(node)
+    }
+  }
+
+  const sorted = nodes.sort((a, b) => a.name.localeCompare(b.name))
+  const [serviceList, setServiceList] = useState(sorted)
 
   return (
     <Layout>
@@ -35,7 +44,12 @@ export default function Services({ data }) {
         <Heading>Gunsmithing Services & Pricing </Heading>
         <table
           width="356"
-          style={{ margin: "3rem auto", width: "100%", maxWidth: "1000px" }}
+          style={{
+            margin: "3rem auto",
+            width: "100%",
+            maxWidth: "1000px",
+            textTransform: "uppercase",
+          }}
         >
           <thead>
             <tr>
@@ -53,15 +67,15 @@ export default function Services({ data }) {
                   colSpan="2"
                   width="292"
                   css={
-                    item.node.name ===
+                    item.name ===
                     "INTERNET SPECIAL: SIMMONS FLOATING RIB, REBLUE, JEWEL BOLT/CARRIER, MEDIUM FANCY WOOD"
                       ? tw`font-bold`
                       : tw`font-normal`
                   }
                 >
-                  {item.node.name}
+                  {item.name}
                 </td>
-                <td width="64">{item.node.price}</td>
+                <td width="64">{item.price}</td>
               </tr>
             ))}
           </tbody>

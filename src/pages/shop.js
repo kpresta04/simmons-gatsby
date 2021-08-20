@@ -97,25 +97,54 @@ export default function Shop(props) {
   useEffect(() => {
     setSelectedCollection(defaultState)
   }, [defaultState])
+  const pageDictionary = {}
+  for (let i = 0; i < 100; i++) {
+    let start = i * 7
+    start += i
 
-  const pageDictionary = {
-    0: {
-      start: 0,
-      end: 7,
-    },
-    1: {
-      start: 8,
-      end: 15,
-    },
-    2: {
-      start: 16,
-      end: 23,
-    },
-    3: {
-      start: 24,
-      end: 31,
-    },
+    let end = start + 7
+
+    pageDictionary[i] = {
+      start: i === 0 ? 0 : start,
+
+      end: i === 0 ? 7 : end,
+    }
   }
+
+  // const pageDictionary = {
+  //   0: {
+  //     start: 0,
+  //     end: 7,
+  //   },
+  //   1: {
+  //     start: 8,
+  //     end: 15,
+  //   },
+  //   2: {
+  //     start: 16,
+  //     end: 23,
+  //   },
+  //   3: {
+  //     start: 24,
+  //     end: 31,
+  //   },
+  //   4: {
+  //     start: 32,
+  //     end: 39,
+  //   },
+  //   5: {
+  //     start: 40,
+  //     end: 47,
+  //   },
+  //   6: {
+  //     start: 48,
+  //     end: 55,
+  //   },
+  //   7: {
+  //     start: 56,
+  //     end: 63,
+  //   },
+  // }
 
   // console.log(pageDictionary[0].start)
   // console.log(pageDictionary[0].end)

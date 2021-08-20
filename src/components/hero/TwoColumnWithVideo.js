@@ -85,6 +85,14 @@ export default ({
               >
                 Shop Now
               </PrimaryButton>
+              <PrimaryButton
+                style={{ width: "10rem", textAlign: "center" }}
+                as={Link}
+                to="/vip"
+                css={tw`lg:ml-0`}
+              >
+                VIP Club
+              </PrimaryButton>
             </Actions>
           </LeftColumn>
           <RightColumn>

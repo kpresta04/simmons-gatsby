@@ -143,9 +143,9 @@ export default () => {
                   className={Linkstyle}
                   rel="noopener"
                   target="_blank"
-                  href="mailto:tpresta@simmonsguns.com"
+                  href="mailto:infosimmonsguns@gmail.com"
                 >
-                  tpresta@simmonsguns.com
+                  infosimmonsguns@gmail.com
                 </a>
               </LinkListItem>
               <LinkListItem>
@@ -164,7 +164,7 @@ export default () => {
         <Divider />
         <CopyrightAndCompanyInfoRow>
           <CopyrightNotice>
-            &copy; Copyright 2020, Simmons Gun Repair
+            &copy; Copyright {new Date().getFullYear()}, Simmons Gun Repair
           </CopyrightNotice>
           {/* <CompanyInfo>An Internet Company.</CompanyInfo> */}
         </CopyrightAndCompanyInfoRow>

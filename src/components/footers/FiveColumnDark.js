@@ -166,7 +166,6 @@ export default () => {
           <CopyrightNotice>
             &copy; Copyright {new Date().getFullYear()}, Simmons Gun Repair
           </CopyrightNotice>
-          {/* <CompanyInfo>An Internet Company.</CompanyInfo> */}
         </CopyrightAndCompanyInfoRow>
       </Content>
     </Container>

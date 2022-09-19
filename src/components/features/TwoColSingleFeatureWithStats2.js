@@ -6,12 +6,12 @@ import {
   SectionHeading,
   Subheading as SubheadingBase,
 } from "../misc/Headings.js"
+import { InlineWidget } from "react-calendly"
 import PhoneIcon from "~/images/phone-call.svg"
-
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
 import StatsIllustrationSrc from "~/images/stats-illustration.svg"
-import { Link } from "gatsby"
 import Img from "gatsby-image"
+import "./feat.css"
 
 const Container = tw.div`relative`
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`
@@ -28,7 +28,7 @@ const Image = styled.div(props => [
   `background-image: url("${props.imageSrc}");`,
   tw`rounded bg-contain bg-no-repeat bg-center h-full`,
 ])
-const TextContent = tw.div`lg:py-8 text-center md:text-left`
+const TextContent = tw.div`text-center md:text-left`
 
 const Subheading = tw(SubheadingBase)`text-center text-blue-700 md:text-left`
 const Heading = tw(
@@ -40,6 +40,7 @@ const Statistics = tw.div`flex flex-col items-center sm:block text-center md:tex
 const Statistic = tw.div`text-left sm:inline-block sm:mr-12 last:mr-0 mt-4`
 const Value = tw.div`font-bold text-lg sm:text-xl lg:text-2xl text-secondary-500 tracking-wide`
 const Key = tw.div`font-medium text-blue-700`
+const CalendlyDiv = tw.div`w-10`
 
 const PrimaryButton = tw(
   PrimaryButtonBase
@@ -86,15 +87,17 @@ export default ({
 
   return (
     <Container>
-      <TwoColumn css={!imageInsideDiv && tw`md:items-center`}>
+      <TwoColumn
+        style={{ minHeight: "1000px" }}
+        css={!imageInsideDiv && tw`md:items-center`}
+      >
         <ImageColumn css={imageContainerCss}>
           <Img fluid={imageSrc} css={imageCss} />
         </ImageColumn>
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>
-            {subheading && <Subheading>{subheading}</Subheading>}
-            <Heading>{heading}</Heading>
-            <Description>{description}</Description>
+            {/* {subheading && <Subheading>{subheading}</Subheading>} */}
+
             {/* <Statistics>
               {statistics.map((statistic, index) => (
                 <Statistic key={index}>
@@ -103,28 +106,20 @@ export default ({
                 </Statistic>
               ))}
             </Statistics> */}
-            <PrimaryButton
-              className="callNowButton"
-              style={{
-                width: "10rem",
-                textAlign: "center",
-                display: "flex",
-                justifyContent: "space-evenly",
-              }}
-              as="a"
-              href="tel:9137823131"
-            >
-              <span
-                style={{
-                  height: "24px",
-                  fontSize: "1rem",
-                }}
-              >
-                Call Now
-              </span>
 
-              <PhoneIcon />
-            </PrimaryButton>
+            <CalendlyDiv
+              id="calendly"
+              style={{
+                width: "100%",
+              }}
+            >
+              <InlineWidget
+                styles={{
+                  height: "1200px",
+                }}
+                url="https://calendly.com/simmonsgunrepair/ar-15build"
+              />
+            </CalendlyDiv>
           </TextContent>
         </TextColumn>
       </TwoColumn>

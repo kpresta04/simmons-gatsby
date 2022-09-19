@@ -46,9 +46,6 @@ export default function TransitionsModal() {
 
   return (
     <div>
-      {/* <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button> */}
       <MessageToast sent={sent} setSent={setSent} />
       <Modal
         aria-labelledby="transition-modal-title"
@@ -64,10 +61,6 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {/* <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p> */}
             <div className="popup-x" onClick={handleClose}>
               X
             </div>
@@ -116,7 +109,6 @@ export default function TransitionsModal() {
               <label className="formLabel" htmlFor="message-box">
                 Your Message
               </label>
-
               <textarea
                 style={{ minHeight: "150px" }}
                 css={tw`w-full outline-none`}

@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade"
 import tw, { css } from "twin.macro"
 import { PrimaryButton } from "~/components/misc/Buttons"
 import MessageToast from "~/components/misc/MessageToast"
+import { PopupWidget } from "react-calendly"
 import "~/styles/popup.css"
 
 const useStyles = makeStyles(theme => ({
@@ -66,6 +67,18 @@ export default function TransitionsModal() {
             </div>
             <h1 css={tw`text-3xl text-blue-900 mb-6`}>How Can We Help?</h1>
             <h2 css={tw`text-xl font-bold text-blue-900 mb-4`}>Contact Us</h2>
+            <p style={{ marginBottom: "1rem" }}>
+              Fill out this form or{" "}
+              <a
+                style={{ textDecoration: "underline" }}
+                href="https://calendly.com/simmonsgunrepair/connect-with-gunsmith"
+                target="_blank"
+                rel="noopener"
+              >
+                click here to book a virtual meeting{" "}
+              </a>
+              with a gunsmith directly
+            </p>
             <form
               id="popup-modal"
               name="popup-modal"

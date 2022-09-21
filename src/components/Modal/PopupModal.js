@@ -75,9 +75,9 @@ export default function TransitionsModal() {
                 target="_blank"
                 rel="noopener"
               >
-                click here to book a virtual meeting{" "}
-              </a>
-              with a gunsmith directly
+                click here to book a virtual meeting
+              </a>{" "}
+              with a gunsmith directly.
             </p>
             <form
               id="popup-modal"

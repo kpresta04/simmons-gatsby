@@ -65,6 +65,7 @@ export default ({
   imageInsideDiv = true,
   statistics = null,
   textOnLeft = false,
+  calendly = false,
 }) => {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
   //Change the statistics variable as you like, add or delete objects
@@ -96,30 +97,34 @@ export default ({
         </ImageColumn>
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>
-            {/* {subheading && <Subheading>{subheading}</Subheading>} */}
-
-            {/* <Statistics>
-              {statistics.map((statistic, index) => (
-                <Statistic key={index}>
-                  <Value>{statistic.value}</Value>
-                  <Key>{statistic.key}</Key>
-                </Statistic>
-              ))}
-            </Statistics> */}
-
-            <CalendlyDiv
-              id="calendly"
-              style={{
-                width: "100%",
-              }}
-            >
-              <InlineWidget
-                styles={{
-                  height: "1200px",
+            {calendly ? (
+              <CalendlyDiv
+                id="calendly"
+                style={{
+                  width: "100%",
                 }}
-                url="https://calendly.com/simmonsgunrepair/ar-15build"
-              />
-            </CalendlyDiv>
+              >
+                <InlineWidget
+                  styles={{
+                    height: "1200px",
+                  }}
+                  url="https://calendly.com/simmonsgunrepair/ar-15build"
+                />
+              </CalendlyDiv>
+            ) : (
+              <>
+                <Heading>{heading}</Heading>
+                {/* <Subheading>{subheading}</Subheading> */}
+                <Statistics>
+                  {statistics.map((statistic, index) => (
+                    <Statistic key={index}>
+                      <Value>{statistic.value}</Value>
+                      <Key>{statistic.key}</Key>
+                    </Statistic>
+                  ))}
+                </Statistics>
+              </>
+            )}
           </TextContent>
         </TextColumn>
       </TwoColumn>

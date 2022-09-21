@@ -24,6 +24,7 @@ export default function BuildClasses({ data }) {
       />
       <StatsWithImage2
         imageSrc={data.buildPhoto.childImageSharp.fluid}
+        calendly="true"
       ></StatsWithImage2>
     </Layout>
   )

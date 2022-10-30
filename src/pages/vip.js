@@ -12,6 +12,7 @@ export default function VIP() {
       />
       <div id="vipDiv">
         <iframe
+          title="VIP Club"
           src="https://slicktext.com/widget/v2/2001eb4d7217bd6b93e1703cc06009b7"
           width="401"
           height="1000"

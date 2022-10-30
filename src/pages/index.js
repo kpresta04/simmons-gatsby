@@ -64,8 +64,8 @@ export default ({ data }) => {
       <Hero
         heading={
           <>
-            Professional gunsmithing for
-            <wbr /> <HighlightedText>over 75 years.</HighlightedText>
+            Professional Gunsmithing in Kansas City for
+            <wbr /> <HighlightedText>Over 75 years.</HighlightedText>
           </>
         }
         description=""
@@ -82,15 +82,16 @@ export default ({ data }) => {
         subheading={<Subheading>Established In 1945</Subheading>}
         heading={
           <>
-            Serving Customers
-            <HighlightedText>Nationwide</HighlightedText>
+            Serving Customers At Our Olathe Gun Shop
+            <HighlightedText>& Nationwide</HighlightedText>
           </>
         }
         description={
           <Description>
-            You don't need to be a local - you can shop with us no matter where
-            you live, and rest easy knowing our secure shipping box will protect
-            your firearm in transit.
+            While we are honored to serve the Kansas City community from our
+            Olathe gun shop, you don't need to be a local - you can shop with us
+            no matter where you live, and rest easy knowing our secure shipping
+            box will protect your firearm in transit.
           </Description>
         }
         textOnLeft={false}

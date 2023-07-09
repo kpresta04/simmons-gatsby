@@ -65,7 +65,7 @@ module.exports = {
         shopName: `simmons-gun-repairs`,
         // The storefront access token
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-        apiVersion: "2020-04",
+        apiVersion: process.env.SHOPIFY_API_VERSION || "2023-07",
       },
     },
     {

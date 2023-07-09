@@ -10,7 +10,6 @@ import tw from "twin.macro"
 import { graphql, Link } from "gatsby"
 
 import Img from "gatsby-image"
-import { css } from "styled-components/macro" //eslint-disable-line
 
 import ArrowLeft from "~/images/arrow-left.svg"
 import ArrowRight from "~/images/arrow-right.svg"
@@ -22,9 +21,6 @@ export function ProductCard(props) {
   const linkHref = `/product/${props.handle}`
   function numberWithCommas(x) {
     let y = Number(x).toFixed(2)
-    // if (y.includes(".00")) {
-    //   y = Math.floor(Number(y))
-    // }
 
     return String(y).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
@@ -110,44 +106,6 @@ export default function Shop(props) {
       end: i === 0 ? 7 : end,
     }
   }
-
-  // const pageDictionary = {
-  //   0: {
-  //     start: 0,
-  //     end: 7,
-  //   },
-  //   1: {
-  //     start: 8,
-  //     end: 15,
-  //   },
-  //   2: {
-  //     start: 16,
-  //     end: 23,
-  //   },
-  //   3: {
-  //     start: 24,
-  //     end: 31,
-  //   },
-  //   4: {
-  //     start: 32,
-  //     end: 39,
-  //   },
-  //   5: {
-  //     start: 40,
-  //     end: 47,
-  //   },
-  //   6: {
-  //     start: 48,
-  //     end: 55,
-  //   },
-  //   7: {
-  //     start: 56,
-  //     end: 63,
-  //   },
-  // }
-
-  // console.log(pageDictionary[0].start)
-  // console.log(pageDictionary[0].end)
 
   return (
     <AnimationRevealPage disabled>
@@ -353,7 +311,7 @@ export default function Shop(props) {
 
 export const query = graphql`
   query {
-    featuredProducts: shopifyCollection(title: { eq: "Featured Products" }) {
+    featuredProducts: collection(title: { eq: "Featured Products" }) {
       products {
         variants {
           title
@@ -382,7 +340,7 @@ export const query = graphql`
         }
       }
     }
-    ammo: shopifyCollection(title: { eq: "Ammunition" }) {
+    ammo: collection(title: { eq: "Ammunition" }) {
       products {
         variants {
           title
@@ -411,7 +369,7 @@ export const query = graphql`
         }
       }
     }
-    handGuns: shopifyCollection(title: { eq: "Handguns" }) {
+    handGuns: collection(title: { eq: "Handguns" }) {
       products {
         variants {
           title
@@ -440,7 +398,7 @@ export const query = graphql`
         }
       }
     }
-    rifles: shopifyCollection(title: { eq: "Rifles" }) {
+    rifles: collection(title: { eq: "Rifles" }) {
       products {
         variants {
           title
@@ -469,7 +427,7 @@ export const query = graphql`
         }
       }
     }
-    shotGuns: shopifyCollection(title: { eq: "Shotguns" }) {
+    shotGuns: collection(title: { eq: "Shotguns" }) {
       products {
         variants {
           title
@@ -531,7 +489,7 @@ export const query = graphql`
         }
       }
     }
-    other: shopifyCollection(title: { eq: "Other" }) {
+    other: collection(title: { eq: "Other" }) {
       products {
         variants {
           title

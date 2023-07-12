@@ -4,39 +4,30 @@ exports.createPages = async ({ graphql, actions }) => {
   // Query for all products in Shopify
   const result = await graphql(`
     query {
-      allShopifyProduct(sort: { fields: [title] }) {
+      products(first: 10, sortKey: TITLE) {
         edges {
           node {
-            images {
-              localFile {
-                childImageSharp {
-                  original {
-                    src
+            id
+            title
+            handle
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
                   }
                 }
               }
             }
-            title
-            shopifyId
-            variants {
-              shopifyId
-              price
-              title
-              availableForSale
-              selectedOptions {
-                name
-              }
-            }
-            handle
-            descriptionHtml
-            description
-            availableForSale
-            priceRange {
-              maxVariantPrice {
-                amount
-              }
-              minVariantPrice {
-                amount
+            images(first: 10) {
+              edges {
+                node {
+                  id
+                  url
+                }
               }
             }
           }
@@ -44,9 +35,10 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+  console.log(result.data.products)
   // Iterate over all products and create a new page using a template
   // The product "handle" is generated automatically by Shopify
-  result.data.allShopifyProduct.edges.forEach(({ node }) => {
+  result.data.products.edges.forEach(({ node }) => {
     createPage({
       path: `/product/${node.handle}`,
       component: path.resolve(`./src/components/products/Product.js`),

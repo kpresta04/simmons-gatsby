@@ -6,11 +6,13 @@ export default function ProductImages({ shopifyId }) {
   console.log(shopifyId)
 
   const { shopifyProductVariant } = useStaticQuery(
-    graphql`
-      query($shopifyId: String) {
-        shopifyProductVariant(shopifyId: { eq: $shopifyId }) {
-          image {
-            originalSrc
+    `
+      query($shopifyId: ID!) {
+        node(id: $shopifyId) {
+          ... on ProductVariant {
+            image {
+              originalSrc
+            }
           }
         }
       }
@@ -22,7 +24,7 @@ export default function ProductImages({ shopifyId }) {
     // <Img fluid={shopifyProductVariant.image.localFile.childImageSharp.fluid} />
     <img
       alt="Product"
-      css={tw`lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded`}
+      css={tw`object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto`}
       src={shopifyProductVariant.image.originalSrc}
     />
   )

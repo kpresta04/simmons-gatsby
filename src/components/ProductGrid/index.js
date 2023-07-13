@@ -9,10 +9,9 @@ const ProductGrid = () => {
   const {
     store: { checkout },
   } = useContext(StoreContext)
-  const { allShopifyProduct } = useStaticQuery(
-    graphql`
-      query {
-        allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
+  const { allShopifyProduct } = `
+      query productGrid {
+        products(query: "[createdAt]", first: 10) {
           edges {
             node {
               id
@@ -20,25 +19,25 @@ const ProductGrid = () => {
               handle
               createdAt
               images {
-                id
-                originalSrc
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 910) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                    }
-                  }
+                nodes {
+                  id
+                  originalSrc
                 }
               }
-              variants {
-                price
+            }
+          }
+          nodes {
+            variants {
+              nodes {
+                price {
+                  amount
+                }
               }
             }
           }
         }
       }
     `
-  )
 
   const getPrice = price =>
     Intl.NumberFormat(undefined, {

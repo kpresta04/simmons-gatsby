@@ -70,21 +70,21 @@ export default ({
               >
                 Gunsmithing
               </PrimaryButton>
-              <PrimaryButton
+              {/* <PrimaryButton
                 style={{ width: "10rem", textAlign: "center" }}
                 as={Link}
                 to={primaryButtonUrl}
               >
                 {primaryButtonText}
-              </PrimaryButton>
-              <PrimaryButton
+              </PrimaryButton> */}
+              {/* <PrimaryButton
                 style={{ width: "10rem", textAlign: "center" }}
                 as={Link}
                 to="/shop"
                 css={tw`lg:ml-0`}
               >
                 Shop Now
-              </PrimaryButton>
+              </PrimaryButton> */}
               <PrimaryButton
                 style={{ width: "10rem", textAlign: "center" }}
                 as={Link}

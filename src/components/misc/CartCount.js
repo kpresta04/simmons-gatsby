@@ -4,7 +4,7 @@ import StoreContext from "~/context/StoreContext"
 export default function CartCount() {
   const { checkout } = useContext(StoreContext)
   // const [quantity, setQuantity] = useState(0)
-  const quantity = checkout.lineItems.reduce((total, item) => {
+  const quantity = checkout?.lineItems?.reduce((total, item) => {
     return total + item.quantity
   }, 0)
 

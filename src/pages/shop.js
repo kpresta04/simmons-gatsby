@@ -135,7 +135,7 @@ export default function Shop(props) {
           >
             <label
               htmlFor="shop-filter"
-              css={tw`w-20 uppercase flex items-center justify-center`}
+              css={tw`flex items-center justify-center w-20 uppercase`}
               className="filter-label"
             >
               Filter By
@@ -205,7 +205,7 @@ export default function Shop(props) {
                 required
                 name="search-input"
                 id="search-input"
-                css={tw`h-10 w-full lg:w-64`}
+                css={tw`w-full h-10 lg:w-64`}
               ></input>
               <button
                 id="search-button"
@@ -217,7 +217,7 @@ export default function Shop(props) {
                   placeItems: "center",
                 }}
               >
-                <SearchIcon css={tw`bg-blue-900 text-white h-10 w-full p-3`} />
+                <SearchIcon css={tw`w-full h-10 p-3 text-white bg-blue-900`} />
               </button>
             </form>
           </div>
@@ -235,8 +235,8 @@ export default function Shop(props) {
         }}
       >
         {selectedCollection && selectedCollection.length === 0 && (
-          <div css={tw`w-full flex my-20 justify-center h-32`}>
-            <p css={tw`text-xl lg:text-4xl font-bold`}>No results found</p>
+          <div css={tw`flex justify-center w-full h-32 my-20`}>
+            <p css={tw`text-xl font-bold lg:text-4xl`}>No results found</p>
           </div>
         )}
 
@@ -309,209 +309,230 @@ export default function Shop(props) {
   )
 }
 
-export const query = graphql`
-  query {
-    featuredProducts: collection(title: { eq: "Featured Products" }) {
-      products {
-        variants {
-          title
-        }
-        title
-        handle
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      }
-    }
-    ammo: collection(title: { eq: "Ammunition" }) {
-      products {
-        variants {
-          title
-        }
-        title
-        handle
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      }
-    }
-    handGuns: collection(title: { eq: "Handguns" }) {
-      products {
-        variants {
-          title
-        }
-        title
-        handle
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      }
-    }
-    rifles: collection(title: { eq: "Rifles" }) {
-      products {
-        variants {
-          title
-        }
-        title
-        handle
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      }
-    }
-    shotGuns: collection(title: { eq: "Shotguns" }) {
-      products {
-        variants {
-          title
-        }
-        title
-        handle
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      }
-    }
-    allProducts: allShopifyProduct(
-      filter: { availableForSale: { eq: true } }
-      sort: { fields: id, order: ASC }
+export const query = `
+  {
+    featuredProducts: collections(
+      first: 1
+      query: "title:'Featured Products'"
     ) {
-      nodes {
-        title
-        handle
-        variants {
-          title
-        }
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        tags
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
+      edges {
+        node {
+          products(first: 10) {
+            edges {
+              node {
+                title
+                handle
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 10) {
+                  edges {
+                    node {
+                      originalSrc
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
     }
-    other: collection(title: { eq: "Other" }) {
-      products {
-        variants {
-          title
-        }
-        title
-        handle
-        priceRange {
-          minVariantPrice {
-            amount
+    ammo: collections(first: 1, query: "title:'Ammunition'") {
+      edges {
+        node {
+          products(first: 10) {
+            edges {
+              node {
+                title
+                handle
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 10) {
+                  edges {
+                    node {
+                      originalSrc
+                    }
+                  }
+                }
+              }
+            }
           }
         }
-        images {
-          localFile {
-            childImageSharp {
-              fluid(
-                maxWidth: 500
-
-                cropFocus: CENTER
-
-                quality: 100
-              ) {
-                ...GatsbyImageSharpFluid_withWebp
+      }
+    }
+    handGuns: collections(first: 1, query: "title:'Handguns'") {
+      edges {
+        node {
+          products(first: 10) {
+            edges {
+              node {
+                title
+                handle
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 10) {
+                  edges {
+                    node {
+                      originalSrc
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    rifles: collections(first: 1, query: "title:'Rifles'") {
+      edges {
+        node {
+          products(first: 10) {
+            edges {
+              node {
+                title
+                handle
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 10) {
+                  edges {
+                    node {
+                      originalSrc
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    shotGuns: collections(first: 1, query: "title:'Shotguns'") {
+      edges {
+        node {
+          products(first: 10) {
+            edges {
+              node {
+                title
+                handle
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 10) {
+                  edges {
+                    node {
+                      originalSrc
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allProducts: products(first: 10, query: "availableForSale:true") {
+      edges {
+        node {
+          title
+          handle
+          variants(first: 10) {
+            edges {
+              node {
+                title
+              }
+            }
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+          images(first: 10) {
+            edges {
+              node {
+                originalSrc
+              }
+            }
+          }
+        }
+      }
+    }
+    other: collections(first: 1, query: "title:'Other'") {
+      edges {
+        node {
+          products(first: 10) {
+            edges {
+              node {
+                title
+                handle
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 10) {
+                  edges {
+                    node {
+                      originalSrc
+                    }
+                  }
+                }
               }
             }
           }

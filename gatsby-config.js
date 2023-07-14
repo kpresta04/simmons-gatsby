@@ -58,16 +58,16 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-source-shopify`,
-      options: {
-        // The domain name of your Shopify shop.
-        shopName: `simmons-gun-repairs`,
-        // The storefront access token
-        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
-        apiVersion: process.env.SHOPIFY_API_VERSION || "2023-07",
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-shopify`,
+    //   options: {
+    //     // The domain name of your Shopify shop.
+    //     shopName: `simmons-gun-repairs`,
+    //     // The storefront access token
+    //     accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+    //     apiVersion: process.env.SHOPIFY_API_VERSION || "2023-07",
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-netlify-identity`,
       options: {

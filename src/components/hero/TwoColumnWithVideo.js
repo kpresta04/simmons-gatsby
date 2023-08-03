@@ -11,7 +11,8 @@ import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js"
 
 import DesignIllustration from "../../images/design-illustration.svg"
 import { Link } from "gatsby"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
+import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 const Container = tw.div`relative`
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-20 md:py-24`
 const LeftColumn = tw.div`relative lg:w-6/12 lg:pr-12 flex-shrink-0 text-center lg:text-left`
@@ -31,7 +32,7 @@ const StyledModal = styled(ReactModalAdapter)`
     ${tw`fixed inset-0 z-50`}
   }
   &.mainHeroModal__content {
-    ${tw`xl:mx-auto m-4 sm:m-16 max-w-screen-xl absolute inset-0 flex justify-center items-center rounded-lg bg-gray-200 outline-none`}
+    ${tw`absolute inset-0 flex items-center justify-center max-w-screen-xl m-4 bg-gray-200 rounded-lg outline-none xl:mx-auto sm:m-16`}
   }
   .content {
     ${tw`w-full lg:p-16`}
@@ -46,13 +47,15 @@ export default ({
   primaryButtonUrl = "/shop",
   watchVideoButtonText = "Watch Video",
   watchVideoYoutubeUrl = "https://www.youtube.com/embed/_GuOjXYl5ew",
-  imageSrc = DesignIllustration,
+  image = DesignIllustration,
   imageCss = null,
   imageDecoratorBlob = false,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const toggleModal = () => setModalIsOpen(!modalIsOpen)
+
+  // console.log(image)
 
   return (
     <>
@@ -97,10 +100,10 @@ export default ({
           </LeftColumn>
           <RightColumn>
             <IllustrationContainer>
-              <Img
+              <GatsbyImage
                 css={imageCss}
                 style={{ width: "100%", height: "auto" }}
-                fluid={imageSrc}
+                image={image}
                 alt="Hero"
               />
             </IllustrationContainer>

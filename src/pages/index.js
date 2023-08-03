@@ -13,6 +13,7 @@ import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.
 import Footer from "../components/footers/FiveColumnDark.js"
 import { graphql } from "gatsby"
 // import Img from "gatsby-image"
+import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 import PopupModal from "~/components/Modal/PopupModal"
 import SEO from "~/components/SEO/SEO"
 
@@ -20,23 +21,17 @@ export const query = graphql`
   query MyQuery {
     smithing: file(relativePath: { eq: "smithing.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 425, quality: 100) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData
       }
     }
     handgun: file(relativePath: { eq: "handgun.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 425, quality: 100) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData
       }
     }
     gunrack: file(relativePath: { eq: "gunrack.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 425, quality: 100) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData
       }
     }
   }
@@ -58,6 +53,10 @@ export default ({ data }) => {
     modalSubmitted = false
   }
 
+  const smithingImage = getImage(data.smithing)
+  const handgunImage = getImage(data.handgun)
+  const gunrackImage = getImage(data.gunrack)
+  console.log(smithingImage)
   return (
     <AnimationRevealPage>
       <SEO />
@@ -70,7 +69,7 @@ export default ({ data }) => {
         }
         description=""
         // imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
-        imageSrc={data.smithing.childImageSharp.fluid}
+        image={smithingImage}
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Shipping"
@@ -97,10 +96,10 @@ export default ({ data }) => {
         textOnLeft={false}
         primaryButtonText="Latest Offers"
         primaryButtonUrl="/shop"
-        imageSrc={data.handgun.childImageSharp.fluid}
+        image={handgunImage}
         imageCss={imageCss}
         imageDecoratorBlob={false}
-        imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
+        imageDecoratorBlobCss={tw`-translate-x-1/2 opacity-25 left-1/2 md:w-32 md:h-32`}
       />
       {/* <TabGrid
         heading={
@@ -144,11 +143,11 @@ export default ({ data }) => {
         primaryButtonUrl="/shop"
         imageInsideDiv={false}
         // imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
-        imageSrc={data.gunrack.childImageSharp.fluid}
+        image={gunrackImage}
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
-        imageContainerCss={tw`md:w-1/2 h-auto`}
+        imageContainerCss={tw`h-auto md:w-1/2`}
         imageDecoratorBlob={false}
-        imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
+        imageDecoratorBlobCss={tw`-translate-x-1/2 opacity-25 left-1/2 md:w-32 md:h-32`}
         textOnLeft={true}
       />
 

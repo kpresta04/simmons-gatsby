@@ -65,6 +65,8 @@ module.exports = {
         // The domain name of your Shopify shop.
         storeUrl: process.env.GATSBY_SHOPIFY_URI,
         password: process.env.GATSBY_SHOPIFY_ADMIN_TOKEN,
+        shopifyConnections: ["collections"],
+        salesChannel: process.env.SHOPIFY_APP_ID, // Optional but recommended
       },
     },
     {

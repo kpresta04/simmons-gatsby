@@ -9,7 +9,7 @@ import AnimationRevealPage from "../helpers/AnimationRevealPage"
 import tw from "twin.macro"
 import { graphql, Link } from "gatsby"
 
-import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import ArrowLeft from "~/images/arrow-left.svg"
 import ArrowRight from "~/images/arrow-right.svg"
@@ -35,7 +35,7 @@ export function ProductCard(props) {
       className="mx-2"
     >
       <Link to={linkHref}>
-        <Img
+        <GatsbyImage
           style={{ maxHeight: "200px", marginBottom: "1rem" }}
           placeholderStyle={{ opacity: "0" }}
           imgStyle={{
@@ -45,8 +45,8 @@ export function ProductCard(props) {
             objectFit: "scale-down",
             maxHeight: "200px",
           }}
-          fluid={props.src}
-        ></Img>
+          image={props.image}
+        ></GatsbyImage>
         <h1>{props.title}</h1>
         {props.variants.length > 1 ? (
           <h1>From ${numberWithCommas(props.price)}</h1>
@@ -60,11 +60,11 @@ export function ProductCard(props) {
 
 const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
 export default function Shop(props) {
-  console.log(props)
+  console.log(props.data.featured.products)
 
   const collectionDict = {
     0: props.data.allProducts.nodes,
-    1: props.data.featuredProducts.products,
+    1: props.data.featured.products,
     2: props.data.handGuns.products,
 
     3: props.data.rifles.products,
@@ -72,6 +72,7 @@ export default function Shop(props) {
     5: props.data.ammo.products,
     6: props.data.other.products,
   }
+
   const isBrowser = typeof window !== "undefined"
   const getDefaultState = () => {
     let dfState = []
@@ -246,13 +247,14 @@ export default function Shop(props) {
               index <= pageDictionary[currentPage].end &&
               index >= pageDictionary[currentPage].start
             ) {
+              const image = getImage(product.media[0].image)
               return (
                 <ProductCard
                   key={index}
                   title={product.title}
                   variants={product.variants}
-                  src={product.images[0].localFile.childImageSharp.fluid}
-                  price={product.priceRange.minVariantPrice.amount}
+                  image={image}
+                  price={product.priceRangeV2.minVariantPrice.amount}
                   handle={product.handle}
                 />
               )

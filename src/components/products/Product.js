@@ -10,21 +10,19 @@ import Carousel from "~/components/Carousel/Carousel"
 
 const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
+  console.log(product.media)
   const { addProductToCart } = useContext(StoreContext)
   const minVariant = product.variants.filter(
     variant =>
       Number(variant.price) ===
-      Number(product.priceRange.minVariantPrice.amount)
+      Number(product.priceRangeV2.minVariantPrice.amount)
   )
   // console.log(minVariant)
   const [selectedVariant, setSelectedVariant] = useState(minVariant[0])
 
   const [displayToast, setDisplayToast] = useState(false)
 
-  const [selectedImage, setSelectedImage] = useState(
-    product.images[0].localFile.childImageSharp.original.src
-  )
-  // console.log(product)
+  const [selectedImage, setSelectedImage] = useState(product.media[0].image.src)
   // console.log(data)
   function numberWithCommas(x) {
     return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -32,10 +30,8 @@ const ProductTemplate = ({ pageContext }) => {
   const handleSelectVariant = e => {
     setSelectedVariant(product.variants[e.target.value])
   }
-  const images = product.images.map(
-    node => node.localFile.childImageSharp.original.src
-  )
-  // console.log(window)
+  const images = product.media.map(node => node.image.src)
+  // console.log(product)
   return (
     <Layout>
       {/* <div style={{ minHeight: "50vh" }}>
@@ -50,9 +46,9 @@ const ProductTemplate = ({ pageContext }) => {
         pageTitle={`${product.title}: Simmons Gun Repair`}
       />
 
-      <section css={tw`text-gray-700 overflow-hidden`}>
+      <section css={tw`overflow-hidden text-gray-700`}>
         <div css={tw`container px-5 py-24 mx-auto`}>
-          <div css={tw` mx-auto flex flex-wrap justify-center`}>
+          <div css={tw`flex flex-wrap justify-center mx-auto `}>
             {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
             <div
               style={{
@@ -69,7 +65,7 @@ const ProductTemplate = ({ pageContext }) => {
                 <img
                   // style={{ maxHeight: "500px" }}
                   alt="Product"
-                  css={tw`w-full lg:h-auto object-scale-down object-top rounded`}
+                  css={tw`object-scale-down object-top w-full rounded lg:h-auto`}
                   src={selectedImage}
                 />
               )}
@@ -96,10 +92,10 @@ const ProductTemplate = ({ pageContext }) => {
             </div>
 
             <div
-              css={tw`md:w-3/4 lg:w-1/2 w-full xl:pl-10 lg:py-6 mt-6 lg:mt-0`}
+              css={tw`w-full mt-6 md:w-3/4 lg:w-1/2 xl:pl-10 lg:py-6 lg:mt-0`}
             >
-              <h2 css={tw`text-sm text-gray-500 tracking-widest`}>SIMMONS</h2>
-              <h1 css={tw`text-gray-900 text-3xl  font-medium mb-1`}>
+              <h2 css={tw`text-sm tracking-widest text-gray-500`}>SIMMONS</h2>
+              <h1 css={tw`mb-1 text-3xl font-medium text-gray-900`}>
                 {product.title}
               </h1>
 
@@ -109,9 +105,9 @@ const ProductTemplate = ({ pageContext }) => {
                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
               />
               <div
-                css={tw`flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5`}
+                css={tw`flex items-center pb-5 mt-6 mb-5 border-b-2 border-gray-200`}
               >
-                <div css={tw`flex  items-center`}>
+                <div css={tw`flex items-center`}>
                   {product.variants.length > 1 && (
                     <span css={tw`mr-3 capitalize`}>
                       {product.variants[0].selectedOptions[0].name}
@@ -123,7 +119,7 @@ const ProductTemplate = ({ pageContext }) => {
                       <select
                         // defaultValue={minVariant[0].title}
                         onChange={handleSelectVariant}
-                        css={tw`rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10`}
+                        css={tw`py-2 pl-3 pr-10 text-base border border-gray-400 rounded appearance-none focus:outline-none focus:border-indigo-500`}
                       >
                         {/* <option>SM</option>
                         <option>M</option>
@@ -144,7 +140,7 @@ const ProductTemplate = ({ pageContext }) => {
                     )}
                     {product.variants.length > 1 && (
                       <span
-                        css={tw`absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center`}
+                        css={tw`absolute top-0 right-0 flex items-center justify-center w-10 h-full text-center text-gray-600 pointer-events-none`}
                       >
                         <svg
                           fill="none"
@@ -163,10 +159,12 @@ const ProductTemplate = ({ pageContext }) => {
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span css={tw`font-medium text-2xl text-gray-900`}>
-                  {selectedVariant.price
-                    ? `$${numberWithCommas(selectedVariant.price)}`
-                    : null}
+                <span css={tw`text-2xl font-medium text-gray-900`}>
+                  {
+                    selectedVariant.price
+                    // ? `$${numberWithCommas(selectedVariant.price)}`
+                    // : null}
+                  }
                 </span>
 
                 <button
@@ -177,7 +175,7 @@ const ProductTemplate = ({ pageContext }) => {
                       addProductToCart(selectedVariant.shopifyId, Qty)
                     }
                   }}
-                  css={tw`flex ml-16 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded`}
+                  css={tw`flex px-6 py-2 ml-16 text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600`}
                 >
                   Add to Cart
                 </button>

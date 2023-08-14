@@ -25,8 +25,11 @@ const ProductTemplate = ({ pageContext }) => {
   const [selectedImage, setSelectedImage] = useState(product.media[0].image.src)
   // console.log(data)
   function numberWithCommas(x) {
-    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    // return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
+  const options = { style: "currency", currency: "USD" }
+  const numberFormat = new Intl.NumberFormat("en-US", options)
+
   const handleSelectVariant = e => {
     setSelectedVariant(product.variants[e.target.value])
   }
@@ -160,11 +163,9 @@ const ProductTemplate = ({ pageContext }) => {
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span css={tw`text-2xl font-medium text-gray-900`}>
-                  {
-                    selectedVariant.price
-                    // ? `$${numberWithCommas(selectedVariant.price)}`
-                    // : null}
-                  }
+                  {selectedVariant.price
+                    ? `${numberFormat.format(selectedVariant.price)}`
+                    : null}
                 </span>
 
                 <button

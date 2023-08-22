@@ -17,9 +17,6 @@ export default function Cart() {
     updateProductQuantity,
   } = useContext(StoreContext)
 
-  // console.log(checkout.lineItems)
-  // // console.log(checkout)
-  // console.log(cart)
   return (
     <Layout>
       <div
@@ -78,7 +75,7 @@ export default function Cart() {
                               style={{ fontWeight: "normal", fontSize: "1rem" }}
                             >
                               {item.variant.title !== "Default Title"
-                                ? item.variant.title
+                                ? item.title
                                 : null}
                             </p>
                           </div>
@@ -101,7 +98,9 @@ export default function Cart() {
                       </div>
                     </td>
                     <td className="text-right cart__price">
-                      <div data-cart-item-price="">${item.variant.price}</div>
+                      <div data-cart-item-price="">
+                        ${item.variant.price.amount}
+                      </div>
                       {/* <p className="md--hide">Qty: {item.quantity}</p> */}
                       <label className="md--hide" htmlFor="updatesCartSmall">
                         Qty:
@@ -196,7 +195,8 @@ export default function Cart() {
                       $
                       <NumberWithCommas
                         numb={
-                          Number(item.quantity) * Number(item.variant.price)
+                          Number(item.quantity) *
+                          Number(item.variant.price.amount)
                         }
                       />
                     </td>
@@ -208,7 +208,7 @@ export default function Cart() {
             <h3 style={{ margin: "3rem 0 2rem", textAlign: "right" }}>
               Subtotal{" "}
               <span className="cart_subtotal">
-                $<NumberWithCommas numb={checkout.totalPrice} />
+                $<NumberWithCommas numb={checkout.totalPrice.amount} />
               </span>
               <br />
               <br />

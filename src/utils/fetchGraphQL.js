@@ -6,7 +6,7 @@ const fetchGraphQL = query =>
     url: `https://${process.env.GATSBY_SHOPIFY_URI}/api/graphql`,
     headers: {
       "X-Shopify-Storefront-Access-Token":
-        process.env.GATSBY_SHOPIFY_ADMIN_TOKEN,
+        process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
       "Content-Type": "application/graphql",
     },
     data: query,

@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react"
 import StoreContext from "~/context/StoreContext"
 import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
-// import ProductImages from "~/components/ProductImages/ProductImages"
-// import { graphql } from "gatsby"
 import SEO from "~/components/SEO/SEO"
 import CartToast from "~/components/misc/CartToast"
 import Carousel from "~/components/Carousel/Carousel"
@@ -17,16 +15,13 @@ const ProductTemplate = ({ pageContext }) => {
       Number(variant.price) ===
       Number(product.priceRangeV2.minVariantPrice.amount)
   )
-  // console.log(minVariant)
+
   const [selectedVariant, setSelectedVariant] = useState(minVariant[0])
 
   const [displayToast, setDisplayToast] = useState(false)
 
   const [selectedImage, setSelectedImage] = useState(product.media[0].image.src)
-  // console.log(data)
-  function numberWithCommas(x) {
-    // return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  }
+
   const options = { style: "currency", currency: "USD" }
   const numberFormat = new Intl.NumberFormat("en-US", options)
 
@@ -34,7 +29,7 @@ const ProductTemplate = ({ pageContext }) => {
     setSelectedVariant(product.variants[e.target.value])
   }
   const images = product.media.map(node => node.image.src)
-  // console.log(product)
+
   return (
     <Layout>
       {/* <div style={{ minHeight: "50vh" }}>

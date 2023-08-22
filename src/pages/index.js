@@ -56,7 +56,7 @@ export default ({ data }) => {
   const smithingImage = getImage(data.smithing)
   const handgunImage = getImage(data.handgun)
   const gunrackImage = getImage(data.gunrack)
-  console.log(smithingImage)
+
   return (
     <AnimationRevealPage>
       <SEO />

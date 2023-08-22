@@ -317,9 +317,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount
@@ -341,9 +343,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount
@@ -365,9 +369,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount
@@ -389,9 +395,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount
@@ -413,9 +421,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount
@@ -437,9 +447,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount
@@ -464,8 +476,10 @@ export const query = graphql`
       nodes {
         title
         handle
+        shopifyId
         variants {
           title
+          shopifyId
         }
         priceRangeV2 {
           minVariantPrice {
@@ -490,9 +504,11 @@ export const query = graphql`
       products {
         variants {
           title
+          shopifyId
         }
         title
         handle
+        shopifyId
         priceRangeV2 {
           minVariantPrice {
             amount

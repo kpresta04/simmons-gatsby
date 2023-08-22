@@ -18,7 +18,7 @@ export default function Cart() {
   } = useContext(StoreContext)
 
   // console.log(checkout.lineItems)
-  // console.log(checkout)
+  // // console.log(checkout)
   // console.log(cart)
   return (
     <Layout>
@@ -100,7 +100,7 @@ export default function Cart() {
                         </div>
                       </div>
                     </td>
-                    <td className="cart__price text-right">
+                    <td className="text-right cart__price">
                       <div data-cart-item-price="">${item.variant.price}</div>
                       {/* <p className="md--hide">Qty: {item.quantity}</p> */}
                       <label className="md--hide" htmlFor="updatesCartSmall">
@@ -155,7 +155,7 @@ export default function Cart() {
                     />
                   </div> */}
                     </td>
-                    <td className="cart__quantity-td text-right small--hide">
+                    <td className="text-right cart__quantity-td small--hide">
                       <div className="cart__qty">
                         {/* <label
                       htmlFor="updates_large_34647472832663:170b5e18aa7da4f68a54bff755974c1f"
@@ -190,7 +190,7 @@ export default function Cart() {
                       </div>
                     </td>
                     <td
-                      className="cart__final-price text-right small--hide"
+                      className="text-right cart__final-price small--hide"
                       data-cart-item-line-price=""
                     >
                       $

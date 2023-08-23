@@ -67,8 +67,8 @@ export default ({ data }) => {
         image={smithingImage}
         imageCss={imageCss}
         imageDecoratorBlob={true}
-        primaryButtonText="Shipping"
-        primaryButtonUrl="/product/shipping-box"
+        primaryButtonText="Shipping Box"
+        primaryButtonUrl="/product/gun-shipping-box"
       />
       {modalSubmitted !== true ? <PopupModal /> : null}
 

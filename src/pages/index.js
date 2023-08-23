@@ -2,17 +2,14 @@ import React, { useContext } from "react"
 import "tailwindcss/dist/base.css"
 import "../styles/globalStyles.css"
 import tw from "twin.macro"
-import { css } from "styled-components/macro" //eslint-disable-line
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js"
 import Hero from "../components/hero/TwoColumnWithVideo.js"
-// import Features from "../components/features/ThreeColSimple.js"
 import MainFeature from "../components/features/TwoColWithButton.js"
 import MainFeature2 from "../components/features/TwoColSingleFeatureWithStats2.js"
-// import TabGrid from "../components/cards/TabCardGrid.js"
 import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
 import Footer from "../components/footers/FiveColumnDark.js"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
+import { getImage } from "gatsby-plugin-image"
 import PopupModal from "~/components/Modal/PopupModal"
 import SEO from "~/components/SEO/SEO"
 
@@ -96,22 +93,7 @@ export default ({ data }) => {
         imageDecoratorBlob={false}
         imageDecoratorBlobCss={tw`-translate-x-1/2 opacity-25 left-1/2 md:w-32 md:h-32`}
       />
-      {/* <TabGrid
-        heading={
-          <>
-            Latest <HighlightedText> products</HighlightedText>
-          </>
-        }
-      /> 
-      {/* <Features
-        heading={
-          <>
-            Amazing <HighlightedText>Services.</HighlightedText>
-          </>
-        }
-        imageContainerCss={tw`p-2!`}
-        imageCss={tw`w-20! h-20!`}
-      /> */}
+
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
         description="Our highly trained gunsmiths have the expertise to restore your firearm to the maximum standard.  Satisfaction guaranteed!"

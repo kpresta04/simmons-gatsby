@@ -17,9 +17,6 @@ export default function Cart() {
     updateProductQuantity,
   } = useContext(StoreContext)
 
-  // console.log(checkout.lineItems)
-  // console.log(checkout)
-  // console.log(cart)
   return (
     <Layout>
       <div
@@ -78,7 +75,7 @@ export default function Cart() {
                               style={{ fontWeight: "normal", fontSize: "1rem" }}
                             >
                               {item.variant.title !== "Default Title"
-                                ? item.variant.title
+                                ? item.title
                                 : null}
                             </p>
                           </div>
@@ -100,8 +97,10 @@ export default function Cart() {
                         </div>
                       </div>
                     </td>
-                    <td className="cart__price text-right">
-                      <div data-cart-item-price="">${item.variant.price}</div>
+                    <td className="text-right cart__price">
+                      <div data-cart-item-price="">
+                        ${item.variant.price.amount}
+                      </div>
                       {/* <p className="md--hide">Qty: {item.quantity}</p> */}
                       <label className="md--hide" htmlFor="updatesCartSmall">
                         Qty:
@@ -155,7 +154,7 @@ export default function Cart() {
                     />
                   </div> */}
                     </td>
-                    <td className="cart__quantity-td text-right small--hide">
+                    <td className="text-right cart__quantity-td small--hide">
                       <div className="cart__qty">
                         {/* <label
                       htmlFor="updates_large_34647472832663:170b5e18aa7da4f68a54bff755974c1f"
@@ -190,13 +189,14 @@ export default function Cart() {
                       </div>
                     </td>
                     <td
-                      className="cart__final-price text-right small--hide"
+                      className="text-right cart__final-price small--hide"
                       data-cart-item-line-price=""
                     >
                       $
                       <NumberWithCommas
                         numb={
-                          Number(item.quantity) * Number(item.variant.price)
+                          Number(item.quantity) *
+                          Number(item.variant.price.amount)
                         }
                       />
                     </td>
@@ -208,7 +208,7 @@ export default function Cart() {
             <h3 style={{ margin: "3rem 0 2rem", textAlign: "right" }}>
               Subtotal{" "}
               <span className="cart_subtotal">
-                $<NumberWithCommas numb={checkout.totalPrice} />
+                $<NumberWithCommas numb={checkout.totalPrice.amount} />
               </span>
               <br />
               <br />

@@ -1,15 +1,12 @@
 import React from "react"
 import moment from "moment"
 import tw from "twin.macro"
-import styled from "styled-components"
-import { css } from "styled-components/macro" //eslint-disable-line
-import { prod } from "mathjs"
-import OrderTable from "~/components/OrderTable/OrderTable"
 
 const Heading = tw.h1`text-3xl xl:text-4xl text-center mt-12 mb-6 font-extrabold`
 
 export default function OrderDetail({ order, selectOrder, email = "" }) {
-  // console.log(order)
+  console.log(order)
+
   return (
     <div>
       <Heading>My Account - {email}</Heading>
@@ -30,7 +27,6 @@ export default function OrderDetail({ order, selectOrder, email = "" }) {
 
       <div
         style={{
-          // width: "fit-content",
           margin: "0 auto",
           width: "100%",
           maxWidth: "800px",
@@ -93,18 +89,20 @@ export default function OrderDetail({ order, selectOrder, email = "" }) {
                     </span>
                     <br />
 
-                    {product.node.variant.title !== "Default Title" ? (
-                      <p>{product.node.variant.title}</p>
+                    {product.node.variant?.title !== "Default Title" ? (
+                      <p>{product.node.variant?.title}</p>
                     ) : null}
                   </th>
                   <td className="text-right" data-label="Price">
-                    {product.node.variant.price}
+                    ${product.node.originalTotalPrice.amount}
                   </td>
                   <td className="text-right" data-label="Quantity">
                     {product.node.quantity}
                   </td>
                   <td className="text-right" data-label="Total">
-                    {product.node.variant.price * product.node.quantity}
+                    $
+                    {Number(product.node.originalTotalPrice.amount) *
+                      product.node.quantity}
                   </td>
                 </tr>
               ))}
@@ -115,7 +113,9 @@ export default function OrderDetail({ order, selectOrder, email = "" }) {
                 Subtotal
               </th>
               <td className="text-right" data-label="Subtotal">
-                {order.node !== undefined && order.node.subtotalPrice}
+                $
+                {order.node !== undefined &&
+                  order.node.currentSubtotalPrice?.amount}
               </td>
             </tr>
             <tr>
@@ -123,7 +123,9 @@ export default function OrderDetail({ order, selectOrder, email = "" }) {
                 Shipping
               </th>
               <td className="text-right" data-label="Shipping (Standard)">
-                {order.node !== undefined && order.node.totalShippingPrice}
+                $
+                {order.node !== undefined &&
+                  order.node.totalShippingPriceV2?.amount}
               </td>
             </tr>
             <tr>
@@ -131,7 +133,8 @@ export default function OrderDetail({ order, selectOrder, email = "" }) {
                 Tax
               </th>
               <td className="text-right" data-label="Tax">
-                {order.node !== undefined && order.node.totalTax}
+                $
+                {order.node !== undefined && order.node.currentTotalTax?.amount}
               </td>
             </tr>
 
@@ -140,7 +143,9 @@ export default function OrderDetail({ order, selectOrder, email = "" }) {
                 Total
               </th>
               <td className="text-right" data-label="Total">
-                {order.node !== undefined && order.node.totalPrice}
+                $
+                {order.node !== undefined &&
+                  order.node.currentTotalPrice?.amount}
               </td>
             </tr>
           </tfoot>

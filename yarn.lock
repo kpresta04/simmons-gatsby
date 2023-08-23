@@ -19375,10 +19375,10 @@ shift-left@^0.1.5:
   resolved "https://registry.yarnpkg.com/shift-left/-/shift-left-0.1.5.tgz#4a61a9d0412b1b32f9abbd97f72466c9c74a6be1"
   integrity sha512-55d8QaP1YmuL1D52fhgq8CT1tXksM/2WPZ6980RtkMbl0Cze++kuJy50GLMnXwostk/YG9hasaJmP3r+d3yUtQ==
 
-shopify-buy@^2.10.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.20.0.tgz#b6455e78c01e28b0ddca61fb0c5a15ab66720a2c"
-  integrity sha512-xe6VlqJtI/c8BYeH2hhOw7gZSsbHUeGFUwVyAzQOR422Ml4UXTFld0GcbW88tkR/Vgy2tj592EL2paCws2fZzQ==
+shopify-buy@^2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.20.1.tgz#82ad1be59d4cd1a4f2f1972e004a198723059241"
+  integrity sha512-8hIaHQld8V4hKOhYJ+LxXDpt/Y5evYM3EB9v7ZDXap+tbRqyWQq/YjgTqjh1cTM7t3BMWylhxqsFx+NR9YQ9yw==
 
 side-channel@^1.0.4:
   version "1.0.4"

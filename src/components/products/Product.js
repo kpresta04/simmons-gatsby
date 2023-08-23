@@ -2,58 +2,45 @@ import React, { useContext, useState } from "react"
 import StoreContext from "~/context/StoreContext"
 import Layout from "../Layout/Layout"
 import tw, { css } from "twin.macro"
-// import ProductImages from "~/components/ProductImages/ProductImages"
-// import { graphql } from "gatsby"
 import SEO from "~/components/SEO/SEO"
 import CartToast from "~/components/misc/CartToast"
 import Carousel from "~/components/Carousel/Carousel"
 
 const ProductTemplate = ({ pageContext }) => {
   const { product } = pageContext
+
   const { addProductToCart } = useContext(StoreContext)
   const minVariant = product.variants.filter(
     variant =>
       Number(variant.price) ===
-      Number(product.priceRange.minVariantPrice.amount)
+      Number(product.priceRangeV2.minVariantPrice.amount)
   )
-  // console.log(minVariant)
+
   const [selectedVariant, setSelectedVariant] = useState(minVariant[0])
 
   const [displayToast, setDisplayToast] = useState(false)
 
-  const [selectedImage, setSelectedImage] = useState(
-    product.images[0].localFile.childImageSharp.original.src
-  )
-  // console.log(product)
-  // console.log(data)
-  function numberWithCommas(x) {
-    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  }
+  const [selectedImage, setSelectedImage] = useState(product.media[0].image.src)
+
+  const options = { style: "currency", currency: "USD" }
+  const numberFormat = new Intl.NumberFormat("en-US", options)
+
   const handleSelectVariant = e => {
     setSelectedVariant(product.variants[e.target.value])
   }
-  const images = product.images.map(
-    node => node.localFile.childImageSharp.original.src
-  )
-  // console.log(window)
+  const images =
+    product.media.filter(val => val["image"]).map(node => node.image?.src) ?? []
+
   return (
     <Layout>
-      {/* <div style={{ minHeight: "50vh" }}>
-        <button onClick={() => addProductToCart(product.variants[0].shopifyId)}>
-          Add To Cart
-        </button>
-        <h1>{product.title}</h1>
-        <div>{product.description}</div>
-      </div> */}
       <SEO
         pageDesc={product.description}
         pageTitle={`${product.title}: Simmons Gun Repair`}
       />
 
-      <section css={tw`text-gray-700 overflow-hidden`}>
+      <section css={tw`overflow-hidden text-gray-700`}>
         <div css={tw`container px-5 py-24 mx-auto`}>
-          <div css={tw` mx-auto flex flex-wrap justify-center`}>
-            {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
+          <div css={tw`flex flex-wrap justify-center mx-auto `}>
             <div
               style={{
                 display: "flex",
@@ -67,39 +54,18 @@ const ProductTemplate = ({ pageContext }) => {
                 <Carousel images={images} />
               ) : (
                 <img
-                  // style={{ maxHeight: "500px" }}
                   alt="Product"
-                  css={tw`w-full lg:h-auto object-scale-down object-top rounded`}
+                  css={tw`object-scale-down object-top w-full rounded lg:h-auto`}
                   src={selectedImage}
                 />
               )}
-
-              {/* images.map((image, index) => (
-                  <div
-                    className="thumbnailDiv"
-                    css={tw`hocus:cursor-pointer`}
-                    style={{
-                      height: "50px",
-                      width: "50px",
-                      margin: "1em",
-                      marginLeft: "0",
-                    }}
-                    key={index}
-                    onClick={e => {
-                      console.log(e.target)
-                      setSelectedImage(image)
-                    }}
-                  >
-                    <img alt="product thumbnail" src={image} />
-                  </div>
-                )) */}
             </div>
 
             <div
-              css={tw`md:w-3/4 lg:w-1/2 w-full xl:pl-10 lg:py-6 mt-6 lg:mt-0`}
+              css={tw`w-full mt-6 md:w-3/4 lg:w-1/2 xl:pl-10 lg:py-6 lg:mt-0`}
             >
-              <h2 css={tw`text-sm text-gray-500 tracking-widest`}>SIMMONS</h2>
-              <h1 css={tw`text-gray-900 text-3xl  font-medium mb-1`}>
+              <h2 css={tw`text-sm tracking-widest text-gray-500`}>SIMMONS</h2>
+              <h1 css={tw`mb-1 text-3xl font-medium text-gray-900`}>
                 {product.title}
               </h1>
 
@@ -109,9 +75,9 @@ const ProductTemplate = ({ pageContext }) => {
                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
               />
               <div
-                css={tw`flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5`}
+                css={tw`flex items-center pb-5 mt-6 mb-5 border-b-2 border-gray-200`}
               >
-                <div css={tw`flex  items-center`}>
+                <div css={tw`flex items-center`}>
                   {product.variants.length > 1 && (
                     <span css={tw`mr-3 capitalize`}>
                       {product.variants[0].selectedOptions[0].name}
@@ -121,14 +87,9 @@ const ProductTemplate = ({ pageContext }) => {
                   <div style={{ position: "relative" }}>
                     {product.variants.length > 1 && (
                       <select
-                        // defaultValue={minVariant[0].title}
                         onChange={handleSelectVariant}
-                        css={tw`rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10`}
+                        css={tw`py-2 pl-3 pr-10 text-base border border-gray-400 rounded appearance-none focus:outline-none focus:border-indigo-500`}
                       >
-                        {/* <option>SM</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option> */}
                         {product.variants.map((variant, index) =>
                           variant.title === minVariant[0].title ? (
                             <option selected value={index} key={index}>
@@ -144,7 +105,7 @@ const ProductTemplate = ({ pageContext }) => {
                     )}
                     {product.variants.length > 1 && (
                       <span
-                        css={tw`absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center`}
+                        css={tw`absolute top-0 right-0 flex items-center justify-center w-10 h-full text-center text-gray-600 pointer-events-none`}
                       >
                         <svg
                           fill="none"
@@ -163,9 +124,9 @@ const ProductTemplate = ({ pageContext }) => {
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span css={tw`font-medium text-2xl text-gray-900`}>
+                <span css={tw`text-2xl font-medium text-gray-900`}>
                   {selectedVariant.price
-                    ? `$${numberWithCommas(selectedVariant.price)}`
+                    ? `${numberFormat.format(selectedVariant.price)}`
                     : null}
                 </span>
 
@@ -177,7 +138,7 @@ const ProductTemplate = ({ pageContext }) => {
                       addProductToCart(selectedVariant.shopifyId, Qty)
                     }
                   }}
-                  css={tw`flex ml-16 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded`}
+                  css={tw`flex px-6 py-2 ml-16 text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600`}
                 >
                   Add to Cart
                 </button>
@@ -209,29 +170,4 @@ const ProductTemplate = ({ pageContext }) => {
   )
 }
 
-// export const query = graphql`
-//   {
-//     shopifyProduct(
-//       shopifyId: { eq: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzUyOTE0NjU0NDE0MzE=" }
-//     ) {
-//       images {
-//         localFile {
-//           childImageSharp {
-//             thumb: fluid(
-//               maxWidth: 270
-//               maxHeight: 270
-//               quality: 100
-//               cropFocus: CENTER
-//             ) {
-//               ...GatsbyImageSharpFluid
-//             }
-//             full: fluid(maxWidth: 1024, quality: 100, cropFocus: CENTER) {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
 export default ProductTemplate

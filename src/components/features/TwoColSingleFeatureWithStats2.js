@@ -10,7 +10,8 @@ import { InlineWidget } from "react-calendly"
 import PhoneIcon from "~/images/phone-call.svg"
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
 import StatsIllustrationSrc from "~/images/stats-illustration.svg"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import "./feat.css"
 
 const Container = tw.div`relative`
@@ -18,7 +19,7 @@ const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-
 const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`
 const ImageColumn = tw(Column)`md:w-5/12 flex-shrink-0 h-80 md:h-auto relative`
 const TextColumn = styled(Column)(props => [
-  tw`md:w-7/12 mt-16 md:mt-0`,
+  tw`mt-16 md:w-7/12 md:mt-0`,
   props.textOnLeft
     ? tw`md:mr-12 lg:mr-16 md:order-first`
     : tw`md:ml-12 lg:ml-16 md:order-last`,
@@ -26,7 +27,7 @@ const TextColumn = styled(Column)(props => [
 
 const Image = styled.div(props => [
   `background-image: url("${props.imageSrc}");`,
-  tw`rounded bg-contain bg-no-repeat bg-center h-full`,
+  tw`h-full bg-center bg-no-repeat bg-contain rounded`,
 ])
 const TextContent = tw.div`text-center md:text-left`
 
@@ -57,7 +58,7 @@ export default ({
   description = "Come build your very own AR-15 with the guidance of our smiths! Approximately 2-hour class with social time at the end. Call now for class dates and times and to sign up for the next class!",
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
-  imageSrc = StatsIllustrationSrc,
+  image = StatsIllustrationSrc,
   imageCss = null,
   imageContainerCss = null,
   imageDecoratorBlob = false,
@@ -93,7 +94,7 @@ export default ({
         css={!imageInsideDiv && tw`md:items-center`}
       >
         <ImageColumn css={imageContainerCss}>
-          <Img fluid={imageSrc} css={imageCss} />
+          <GatsbyImage image={image} css={imageCss} />
         </ImageColumn>
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>

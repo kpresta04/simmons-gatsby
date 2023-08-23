@@ -57,7 +57,7 @@ export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-blue-700 transition duration-300
 `
 export const MobileNavLinks = motion.custom(styled.div`
-  ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
+  ${tw`fixed inset-x-0 top-0 z-10 p-8 mx-4 my-6 text-center text-gray-900 bg-white border rounded-lg lg:hidden`}
   ${NavLinks} {
     ${tw`flex flex-col items-center`}
   }
@@ -95,8 +95,8 @@ const HeadComponent = (roundedHeaderButton = false) => {
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      {/* <NavLink to="/shop">Shop</NavLink> */}
-      {/* <HeaderMenu /> */}
+      <NavLink to="/shop">Shop</NavLink>
+      <HeaderMenu />
       <NavLink to="/services">Services</NavLink>
       <NavLink to="/build-classes">Build an AR</NavLink>
 

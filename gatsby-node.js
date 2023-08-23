@@ -3,7 +3,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   // Query for all products in Shopify
   const result = await graphql(`
-    query {
+    query MyQuery {
       allShopifyProduct(limit: 250) {
         edges {
           node {
@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
             variants {
               id
               title
+              shopifyId
               availableForSale
               selectedOptions {
                 name
@@ -20,6 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             handle
             descriptionHtml
+            description
             priceRangeV2 {
               maxVariantPrice {
                 amount

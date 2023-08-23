@@ -83,8 +83,10 @@ export const StoreProvider = ({ children }) => {
       ]
       const newCheckout = await client.checkout.addLineItems(
         checkout.id,
-        lineItems
+        lineItems[0]
       )
+      // console.log(checkout.id)
+      // console.log(lineItems[0])
       // Buy Now Button Code
       // window.open(newCheckout.webUrl, "_blank")
       // console.log(newCheckout.webUrl)

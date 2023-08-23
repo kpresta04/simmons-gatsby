@@ -18,7 +18,6 @@ const Account = () => {
   const [loading, setLoading] = useState(true)
   const [orders, setOrders] = useState([])
   const [selectedOrder, selectOrder] = useState(null)
-  // console.log(user)
 
   useEffect(() => {
     if (user.token !== null) {
@@ -27,49 +26,74 @@ const Account = () => {
   }, [user.token])
 
   const fetchOrderHistory = async () => {
-    const mutation = `
-  query  {
-    customer(customerAccessToken: "${user.token.accessToken}") {
-      orders(first: 250) {
-        edges {
-          node {
-            orderNumber
-            id
-            processedAt
-            totalPrice
-            subtotalPrice
-            totalTax
-            totalShippingPrice
-            shippingAddress {
-              name
-              formatted
-            }
-            
-            lineItems(first: 10) {
-              edges {
-                node {
-                  quantity
+    const query = `
+query {
+  customer(customerAccessToken: "${user.token.accessToken}") {
+    orders(first: 10, reverse: true) {
+      edges {
+        node {
+          orderNumber
+          id
+          processedAt
+          totalPriceV2 {
+            amount
+            currencyCode
+          }
+          totalTaxV2 {
+            amount
+            currencyCode
+          }
+          totalShippingPriceV2 {
+            amount
+            currencyCode
+          }
+          currentTotalTax {
+            currencyCode
+            amount
+          }
+          currentSubtotalPrice {
+            amount
+            currencyCode
+          }
+          currentTotalPrice {
+            amount
+            currencyCode
+          }
+          lineItems(first: 10) {
+            edges {
+              node {
+                title
+                quantity
+                originalTotalPrice {
+                  amount
+                  currencyCode
+                }
+                variant {
                   title
-                       variant {
-                         title
-                    price
+                  priceV2 {
+                    amount
+                    currencyCode
                   }
-                  
                 }
               }
             }
           }
+          shippingAddress {
+            name
+            formatted
+          }
         }
       }
     }
-  }`
+  }
+}
+`
+
     try {
-      const response = await fetchGraphQL(mutation)
+      const response = await fetchGraphQL(query)
 
       let { data } = response.data
       const orderData = data.customer.orders.edges
-      orderData.reverse()
-      // console.log(orderData)
       setLoading(false)
 
       setOrders(orderData)
@@ -155,7 +179,9 @@ const Account = () => {
                               "MMMM Do YYYY"
                             )}
                           </td>
-                          <td data-label="Total">${order.node.totalPrice}</td>
+                          <td data-label="Total">
+                            ${order.node.totalPriceV2?.amount}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

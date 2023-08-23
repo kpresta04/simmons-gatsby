@@ -68,7 +68,7 @@ export default function Shop(props) {
   const isBrowser = typeof window !== "undefined"
   const getDefaultState = () => {
     let dfState = []
-    if (isBrowser && props.location.state.category) {
+    if (isBrowser && props.location.state?.category) {
       dfState = collectionDict[props.location.state.category]
       return dfState
     } else {
@@ -142,7 +142,7 @@ export default function Shop(props) {
               }}
             >
               {isBrowser ? (
-                props.location.state.category !== "undefined" ? (
+                props.location.state?.category !== "undefined" ? (
                   <option value="" selected disabled hidden>
                     Category
                   </option>

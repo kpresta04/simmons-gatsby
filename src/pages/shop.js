@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react"
 import SEO from "~/components/SEO/SEO"
-
 import Header from "../components/headers/light"
-// import SEO from "../components/seo"
 import Footer from "../components/footers/FiveColumnDark"
-// import ProductGrid from "../components/ProductGrid"
 import AnimationRevealPage from "../helpers/AnimationRevealPage"
 import tw from "twin.macro"
 import { graphql, Link } from "gatsby"
-
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-
 import ArrowLeft from "~/images/arrow-left.svg"
 import ArrowRight from "~/images/arrow-right.svg"
 import SearchIcon from "~/images/search.svg"
@@ -28,7 +23,6 @@ export function ProductCard(props) {
     <div
       style={{
         width: "240px",
-        // maxHeight: "240px",
         margin: "1.75rem",
         fontWeight: "bold",
       }}
@@ -60,8 +54,6 @@ export function ProductCard(props) {
 
 const PageHeader = tw.h1`text-3xl text-center my-12 md:text-5xl md:my-20`
 export default function Shop(props) {
-  console.log(props.data.featured.products)
-
   const collectionDict = {
     0: props.data.allProducts.nodes,
     1: props.data.featured.products,
@@ -78,11 +70,9 @@ export default function Shop(props) {
     let dfState = []
     if (isBrowser && props.location.state.category) {
       dfState = collectionDict[props.location.state.category]
-      // console.log(dfState)
       return dfState
     } else {
       dfState = props.data.allProducts.nodes
-      // console.log(dfState)
       return dfState
     }
   }

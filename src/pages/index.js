@@ -12,7 +12,6 @@ import MainFeature2 from "../components/features/TwoColSingleFeatureWithStats2.j
 import Testimonial from "../components/testimonials/ThreeColumnWithProfileImage.js"
 import Footer from "../components/footers/FiveColumnDark.js"
 import { graphql } from "gatsby"
-// import Img from "gatsby-image"
 import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 import PopupModal from "~/components/Modal/PopupModal"
 import SEO from "~/components/SEO/SEO"
@@ -39,14 +38,11 @@ export const query = graphql`
 export default ({ data }) => {
   const Subheading = tw.span`tracking-wider text-sm font-medium text-blue-900`
   const HighlightedText = tw.span`text-blue-700 inline-block`
-  // const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`
   const Description = tw.span`inline-block mt-8`
   const imageCss = tw`rounded-4xl`
-  // const { addProductToCart } = useContext(StoreContext)
-  // const logoSmall = data.logoSmall.childImageSharp
-  // console.log(data)
   const isBrowser = typeof window !== "undefined"
   let modalSubmitted
+
   if (isBrowser) {
     modalSubmitted = JSON.parse(sessionStorage.getItem("modalSubmitted"))
   } else {
@@ -68,7 +64,6 @@ export default ({ data }) => {
           </>
         }
         description=""
-        // imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         image={smithingImage}
         imageCss={imageCss}
         imageDecoratorBlob={true}
@@ -107,7 +102,7 @@ export default ({ data }) => {
             Latest <HighlightedText> products</HighlightedText>
           </>
         }
-      /> */}
+      /> 
       {/* <Features
         heading={
           <>
@@ -142,7 +137,6 @@ export default ({ data }) => {
         primaryButtonText="Order Now"
         primaryButtonUrl="/shop"
         imageInsideDiv={false}
-        // imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
         image={gunrackImage}
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`h-auto md:w-1/2`}

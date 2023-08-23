@@ -28,17 +28,11 @@ const ProductTemplate = ({ pageContext }) => {
   const handleSelectVariant = e => {
     setSelectedVariant(product.variants[e.target.value])
   }
-  const images = product.media.map(node => node.image.src)
+  const images =
+    product.media.filter(val => val["image"]).map(node => node.image?.src) ?? []
 
   return (
     <Layout>
-      {/* <div style={{ minHeight: "50vh" }}>
-        <button onClick={() => addProductToCart(product.variants[0].shopifyId)}>
-          Add To Cart
-        </button>
-        <h1>{product.title}</h1>
-        <div>{product.description}</div>
-      </div> */}
       <SEO
         pageDesc={product.description}
         pageTitle={`${product.title}: Simmons Gun Repair`}
@@ -47,7 +41,6 @@ const ProductTemplate = ({ pageContext }) => {
       <section css={tw`overflow-hidden text-gray-700`}>
         <div css={tw`container px-5 py-24 mx-auto`}>
           <div css={tw`flex flex-wrap justify-center mx-auto `}>
-            {/* <ProductImages shopifyId={selectedVariant.shopifyId} /> */}
             <div
               style={{
                 display: "flex",
@@ -61,32 +54,11 @@ const ProductTemplate = ({ pageContext }) => {
                 <Carousel images={images} />
               ) : (
                 <img
-                  // style={{ maxHeight: "500px" }}
                   alt="Product"
                   css={tw`object-scale-down object-top w-full rounded lg:h-auto`}
                   src={selectedImage}
                 />
               )}
-
-              {/* images.map((image, index) => (
-                  <div
-                    className="thumbnailDiv"
-                    css={tw`hocus:cursor-pointer`}
-                    style={{
-                      height: "50px",
-                      width: "50px",
-                      margin: "1em",
-                      marginLeft: "0",
-                    }}
-                    key={index}
-                    onClick={e => {
-                      console.log(e.target)
-                      setSelectedImage(image)
-                    }}
-                  >
-                    <img alt="product thumbnail" src={image} />
-                  </div>
-                )) */}
             </div>
 
             <div
@@ -115,14 +87,9 @@ const ProductTemplate = ({ pageContext }) => {
                   <div style={{ position: "relative" }}>
                     {product.variants.length > 1 && (
                       <select
-                        // defaultValue={minVariant[0].title}
                         onChange={handleSelectVariant}
                         css={tw`py-2 pl-3 pr-10 text-base border border-gray-400 rounded appearance-none focus:outline-none focus:border-indigo-500`}
                       >
-                        {/* <option>SM</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option> */}
                         {product.variants.map((variant, index) =>
                           variant.title === minVariant[0].title ? (
                             <option selected value={index} key={index}>
@@ -169,7 +136,6 @@ const ProductTemplate = ({ pageContext }) => {
                     if (Qty >= 1) {
                       setDisplayToast(true)
                       addProductToCart(selectedVariant.shopifyId, Qty)
-                      // console.log(selectedVariant.shopifyId)
                     }
                   }}
                   css={tw`flex px-6 py-2 ml-16 text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600`}
@@ -204,29 +170,4 @@ const ProductTemplate = ({ pageContext }) => {
   )
 }
 
-// export const query = graphql`
-//   {
-//     shopifyProduct(
-//       shopifyId: { eq: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzUyOTE0NjU0NDE0MzE=" }
-//     ) {
-//       images {
-//         localFile {
-//           childImageSharp {
-//             thumb: fluid(
-//               maxWidth: 270
-//               maxHeight: 270
-//               quality: 100
-//               cropFocus: CENTER
-//             ) {
-//               ...GatsbyImageSharpFluid
-//             }
-//             full: fluid(maxWidth: 1024, quality: 100, cropFocus: CENTER) {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
 export default ProductTemplate

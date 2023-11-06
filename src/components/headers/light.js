@@ -95,8 +95,8 @@ const HeadComponent = (roundedHeaderButton = false) => {
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink to="/shop">Shop</NavLink>
-      {/* <HeaderMenu /> */}
+      {/* <NavLink to="/shop">Shop</NavLink> */}
+      <HeaderMenu />
       <NavLink to="/services">Services</NavLink>
       <NavLink to="/build-classes">Build an AR</NavLink>
 

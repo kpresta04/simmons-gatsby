@@ -7,11 +7,9 @@ import {
   Subheading as SubheadingBase,
 } from "../misc/Headings.js"
 import { InlineWidget } from "react-calendly"
-import PhoneIcon from "~/images/phone-call.svg"
 import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js"
 import StatsIllustrationSrc from "~/images/stats-illustration.svg"
-// import Img from "gatsby-image"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { StaticImage } from "gatsby-plugin-image"
 import "./feat.css"
 
 const Container = tw.div`relative`
@@ -49,12 +47,7 @@ const PrimaryButton = tw(
 
 export default ({
   subheading = "Learn with the Pros",
-  heading = (
-    <>
-      Simmons AR-15 Building Class
-      {/* <span tw="text-primary-500">1999.</span> */}
-    </>
-  ),
+  heading = <>Simmons AR-15 Building Class</>,
   description = "Come build your very own AR-15 with the guidance of our smiths! Approximately 2-hour class with social time at the end. Call now for class dates and times and to sign up for the next class!",
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
@@ -94,7 +87,7 @@ export default ({
         css={!imageInsideDiv && tw`md:items-center`}
       >
         <ImageColumn css={imageContainerCss}>
-          <GatsbyImage image={image} css={imageCss} />
+          <StaticImage src="../../images/build5.png" alt="A dinosaur" />
         </ImageColumn>
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>

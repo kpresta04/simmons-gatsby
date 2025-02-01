@@ -1,7 +1,4 @@
 const path = require("path")
-// require("dotenv").config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// })
 
 const activeEnv =
   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
@@ -24,7 +21,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-
     `gatsby-plugin-postcss`,
     `gatsby-plugin-styled-components`,
     {

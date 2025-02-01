@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
-import Client from "shopify-buy"
+import { createStorefrontApiClient } from "@shopify/storefront-api-client"
 
-const client = Client.buildClient({
-  domain: "simmons-gun-repairs.myshopify.com",
-  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+const client = createStorefrontApiClient({
+  storeDomain: "simmons-gun-repairs.myshopify.com",
+  apiVersion: process.env.SHOPIFY_API_VERSION,
+  publicAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
 })
+
 const defaultContext = {
   isCartOpen: false,
   toggleCartOpen: () => {},
@@ -85,11 +87,7 @@ export const StoreProvider = ({ children }) => {
         checkout.id,
         lineItems[0]
       )
-      // console.log(checkout.id)
-      // console.log(lineItems[0])
-      // Buy Now Button Code
-      // window.open(newCheckout.webUrl, "_blank")
-      // console.log(newCheckout.webUrl)
+
       setCheckout(newCheckout)
       setLoading(false)
     } catch (e) {

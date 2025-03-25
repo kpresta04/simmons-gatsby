@@ -1,12 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
-import tw, { css } from "twin.macro"
+import tw from "twin.macro"
 import { PrimaryButton } from "~/components/misc/Buttons"
 import MessageToast from "~/components/misc/MessageToast"
-import { PopupWidget } from "react-calendly"
 import "~/styles/popup.css"
 
 const useStyles = makeStyles(theme => ({
@@ -27,27 +26,68 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function TransitionsModal() {
+export default function AgeVerificationModal() {
   const isBrowser = typeof window !== "undefined"
-
   const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
-  const [sent, setSent] = React.useState(false)
 
-  const handleOpen = () => {
-    setOpen(true)
+  const [dob, setDob] = useState("")
+  const [ageVerified, setAgeVerified] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [open, setOpen] = useState(true)
+
+  // Age threshold for verification (18 years old)
+  const ageThreshold = 18
+
+  // Function to calculate age from DOB
+  const calculateAge = dob => {
+    const birthDate = new Date(dob)
+    const today = new Date()
+    const age = today.getFullYear() - birthDate.getFullYear()
+    const month = today.getMonth() - birthDate.getMonth()
+
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      return age - 1
+    }
+    return age
+  }
+
+  // Handle form submission
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    if (!dob) {
+      setErrorMessage("Please enter your date of birth.")
+      return
+    }
+
+    const age = calculateAge(dob)
+
+    if (age >= ageThreshold) {
+      setAgeVerified(true)
+      setErrorMessage("")
+      setOpen(false) // Close modal if age is valid
+      if (isBrowser) {
+        sessionStorage.setItem("ageVerified", "true") // Store verified status
+      }
+    } else {
+      setAgeVerified(false)
+      setErrorMessage(`You must be at least ${ageThreshold} years old.`)
+      if (isBrowser) {
+        window.location.href = "https://www.google.com"
+      }
+    }
   }
 
   const handleClose = () => {
     setOpen(false)
-    // if (isBrowser) {
-    //   sessionStorage.setItem("modalSubmitted", "true")
-    // }
+    if (isBrowser) {
+      sessionStorage.setItem("ageVerified", "true") // Remember that the modal was closed
+    }
   }
 
   return (
     <div>
-      <MessageToast sent={sent} setSent={setSent} />
+      <MessageToast sent={ageVerified} setSent={setAgeVerified} />
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -65,73 +105,45 @@ export default function TransitionsModal() {
             <div className="popup-x" onClick={handleClose}>
               X
             </div>
-            <h1 css={tw`text-3xl text-blue-900 mb-6`}>How Can We Help?</h1>
-            <h2 css={tw`text-xl font-bold text-blue-900 mb-4`}>Contact Us</h2>
+            <h1 css={tw`mb-6 text-3xl text-blue-900`}>Age Verification</h1>
+            <h2 css={tw`mb-4 text-xl font-bold text-blue-900`}>
+              Please Verify Your Age
+            </h2>
             <p style={{ marginBottom: "1rem" }}>
-              Fill out this form or{" "}
-              <a
-                style={{ textDecoration: "underline" }}
-                href="https://calendly.com/simmonsgunrepair/connect-with-gunsmith"
-                target="_blank"
-                rel="noopener"
-              >
-                click here to book a virtual meeting
-              </a>{" "}
-              with a gunsmith directly.
+              To access this content, please verify that you are over 18 years
+              of age by entering your Date of Birth.
             </p>
+
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
             <form
-              id="popup-modal"
-              name="popup-modal"
+              id="age-verification-form"
+              name="age-verification-form"
               method="post"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
               css={tw`flex flex-wrap`}
-              onSubmit={e => {
-                // e.preventDefault()
-
-                // setOpen(false)
-                // setSent(true)
-                if (isBrowser) {
-                  sessionStorage.setItem("modalSubmitted", "true")
-                }
-              }}
+              onSubmit={handleSubmit}
             >
-              <input type="hidden" name="form-name" value="popup-modal" />
-              <label className="formLabel" htmlFor="name-input">
-                Name
+              <input
+                type="hidden"
+                name="form-name"
+                value="age-verification-form"
+              />
+              <label className="formLabel" htmlFor="dob-input">
+                Date of Birth
               </label>
               <input
                 required
                 css={tw`w-full`}
-                name="name"
-                placeholder="John Doe"
-                id="name-input"
-                type="text"
-              ></input>
-              <label className="formLabel" htmlFor="email-input">
-                Email
-              </label>
-              <input
-                css={tw`w-full`}
-                required
-                name="email"
-                id="email-input"
-                type="email"
-                placeholder="john@mail.com"
-              ></input>
-              <label className="formLabel" htmlFor="message-box">
-                Your Message
-              </label>
-              <textarea
-                style={{ minHeight: "150px" }}
-                css={tw`w-full outline-none`}
-                id="message-box"
-                name="message"
-                required
-              ></textarea>
-              <PrimaryButton type="submit" value="Submit">
-                Submit
-              </PrimaryButton>
+                name="dob"
+                id="dob-input"
+                type="date"
+                value={dob}
+                onChange={e => setDob(e.target.value)}
+              />
+
+              <PrimaryButton type="submit">Verify Age</PrimaryButton>
             </form>
           </div>
         </Fade>

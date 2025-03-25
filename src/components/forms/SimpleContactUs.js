@@ -7,16 +7,16 @@ const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24`
 
 const FormContainer = styled.div`
-  ${tw`p-10 sm:p-12 md:p-16 bg-blue-900 text-gray-100 rounded-lg relative`}
+  ${tw`relative p-10 text-gray-100 bg-blue-900 rounded-lg sm:p-12 md:p-16`}
   form {
     ${tw`mt-4`}
   }
   h2 {
-    ${tw`text-3xl sm:text-4xl font-bold`}
+    ${tw`text-3xl font-bold sm:text-4xl`}
   }
   input,
   textarea {
-    ${tw`w-full bg-transparent text-gray-100 text-base font-medium tracking-wide border-b-2 py-2 text-gray-100 hocus:border-pink-400 focus:outline-none transition duration-200`};
+    ${tw`w-full py-2 text-base font-medium tracking-wide text-gray-100 transition duration-200 bg-transparent border-b-2 hocus:border-pink-400 focus:outline-none`};
 
     ::placeholder {
       ${tw`text-gray-500`}
